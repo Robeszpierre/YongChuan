@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="anc" fx:id="anc" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ThreatmentController">
+   <children>
+      <Accordion layoutX="75.0" layoutY="42.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+        <panes>
+          <TitledPane animated="false" text="Romlás">
+               <content>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+               </content></TitledPane>
+          <TitledPane animated="false" text="Javulás">
+               <content>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+               </content></TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="36.0" text="Egyéb">
+               <content>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="434.0" text="Újabb javaslatok">
+               <content>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="434.0" text="Terápia (pontok, masszázs, moxa, köpöly stb.)">
+               <content>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="114.0" text="Manuálterápia">
+               <content>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+               </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+      <DatePicker id="threatmentDatePicker" fx:id="threatmentDatePicker" editable="false" layoutX="6.0" layoutY="10.0" onMouseClicked="#setToday" prefHeight="26.0" prefWidth="137.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="10.0" />
+      <Label layoutX="14.0" layoutY="15.0" text="Kezelés időpontja:" AnchorPane.topAnchor="15.0" />
+   </children>
+</AnchorPane>
