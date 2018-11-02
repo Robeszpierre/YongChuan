@@ -301,7 +301,7 @@ public class ManagePatientController {
             int numberOfTabs=therapyTabPane.getTabs().size();
             Tab tab = new Tab();
             therapyTabPane.getTabs().add(numberOfTabs-1,tab);
-            tab.setContent((Node) FXMLLoader.load(this.getClass().getResource("../View/threatment.fxml")));
+            tab.setContent((Node) FXMLLoader.load(this.getClass().getResource("/threatment.fxml")));
             tab.setText(String.valueOf(numberOfTabs));
             therapyTabPane.getSelectionModel().select(numberOfTabs-1);
 

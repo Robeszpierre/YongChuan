@@ -18,7 +18,7 @@ public class Main extends Application {
         Locale.setDefault(new Locale("hu", "HUN"));
 
         this.primaryStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("../View/startScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/startScreen.fxml"));
 
         Scene scene = new Scene(root);
 
@@ -26,17 +26,17 @@ public class Main extends Application {
         primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
         primaryStage.show();
-        scene.getStylesheets().add(this.getClass().getResource("../View/view.css").toExternalForm());
+        scene.getStylesheets().add(this.getClass().getResource("/view.css").toExternalForm());
 
         addSetScreens(scene);
     }
 
     private void addSetScreens(Scene scene) throws Exception{
         this.screenController = new ScreenController(scene);
-        screenController.addScreen("startScreen", FXMLLoader.load(getClass().getResource( "../View/startScreen.fxml" )));
-        screenController.addScreen("managePatient", FXMLLoader.load(getClass().getResource( "../View/managePatient.fxml" )));
-        screenController.addScreen("choosePatient", FXMLLoader.load(getClass().getResource( "../View/choosePatient.fxml" )));
-        screenController.addScreen("personalData", FXMLLoader.load(getClass().getResource( "../View/personalData.fxml" )));
+        screenController.addScreen("startScreen", FXMLLoader.load(getClass().getResource( "/startScreen.fxml" )));
+        screenController.addScreen("managePatient", FXMLLoader.load(getClass().getResource( "/managePatient.fxml" )));
+        screenController.addScreen("choosePatient", FXMLLoader.load(getClass().getResource( "/choosePatient.fxml" )));
+        screenController.addScreen("personalData", FXMLLoader.load(getClass().getResource( "/personalData.fxml" )));
     }
 
     public static void getStartScreen(){
