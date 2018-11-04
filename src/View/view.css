@@ -86,3 +86,8 @@
     -fx-border-insets: -4 -4 -6 -5, -2 -2 -5 -3;
     -fx-border-radius: 2, 1; /* looks sharper if outer border has a tighter radius (2 instead of 3) */
 }
+
+.labelText{
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}

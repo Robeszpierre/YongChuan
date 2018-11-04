@@ -18,7 +18,7 @@ public class Main extends Application {
         Locale.setDefault(new Locale("hu", "HUN"));
 
         this.primaryStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("/startScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/managePatient.fxml"));
 
         Scene scene = new Scene(root);
 

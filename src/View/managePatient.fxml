@@ -7,19 +7,24 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
 
 <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
   <items>
@@ -29,115 +34,261 @@
               <tabs>
                 <Tab text="Adatok">
                      <content>
-                        <GridPane>
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <StackPane id="personalDataStackPane1" fx:id="personalDataStackPane1" prefHeight="598.0" prefWidth="628.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label text="Páciens Neve:">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Anyja neve:">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Születési hely:">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Születési időpont">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Családi állapot:">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Foglalkozás:">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="E-mail cím:">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Telefonszám:">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Páciens neme:">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
+                                    <VBox id="personalDataVbox" fx:id="personalDataVbox" alignment="CENTER" prefHeight="598.0" prefWidth="628.0">
+                                       <children>
+                                          <HBox id="hbox" fx:id="hbox" alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Páciens Neve">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="personalDataLabel1" fx:id="personalDataLabel1" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Anyja neve">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="personalDataLabel2" fx:id="personalDataLabel2" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Születési hely">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="personalDataLabel3" fx:id="personalDataLabel3" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Születési időpont:">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <Label id="personalDataLabel4" fx:id="personalDataLabel4" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Családi állapot">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="personalDataLabel5" fx:id="personalDataLabel5" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Foglalkozás">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="personalDataLabel6" fx:id="personalDataLabel6" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="E-mail cím">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="personalDataLabel7" fx:id="personalDataLabel7" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Telefonszám">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="personalDataLabel8" fx:id="personalDataLabel8" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Páciens neme" />
+                                                <Label id="personalDataLabel9" fx:id="personalDataLabel9" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
                                  </children>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                              </StackPane>
+                              <StackPane id="personalDataStackPane1" fx:id="personalDataStackPane2" layoutX="10.0" layoutY="10.0" prefHeight="608.0" prefWidth="638.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label>
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label>
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label>
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label layoutX="10.0" layoutY="10.0">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label layoutX="10.0" layoutY="26.0">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label layoutX="10.0" layoutY="42.0">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label layoutX="10.0" layoutY="58.0">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label layoutX="10.0" layoutY="74.0">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label layoutX="10.0" layoutY="90.0">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
+                                    <VBox id="personalDataVbox" fx:id="personalDataVbox1" alignment="CENTER" prefHeight="598.0" prefWidth="628.0">
+                                       <children>
+                                          <HBox id="hbox" fx:id="hbox1" alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Páciens Neve">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField id="personalDataTextField1" fx:id="personalDataTextField1" prefHeight="30.0" prefWidth="250.0" promptText="Példa János">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Anyja neve">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField id="personalDataTextField2" fx:id="personalDataTextField2" prefHeight="30.0" prefWidth="250.0" promptText="Kiss Mária">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Születési hely">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField id="personalDataTextField3" fx:id="personalDataTextField3" prefHeight="30.0" prefWidth="250.0" promptText="Budapest" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Születési időpont:">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <DatePicker id="personalDataDatePicker" fx:id="personalDataDatePicker" prefWidth="250.0" promptText="1954. 04. 12." />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Családi állapot">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField id="personalDataTextField4" fx:id="personalDataTextField4" prefHeight="30.0" prefWidth="250.0" promptText="házas" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Foglalkozás">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField id="personalDataTextField5" fx:id="personalDataTextField5" prefHeight="30.0" prefWidth="250.0" promptText="fodrász" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="E-mail cím">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField id="personalDataTextField6" fx:id="personalDataTextField6" prefHeight="30.0" prefWidth="250.0" promptText="pelda@gmail.com" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Telefonszám">
+                                                   <padding>
+                                                      <Insets right="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField id="personalDataTextField7" fx:id="personalDataTextField7" prefHeight="30.0" prefWidth="250.0" promptText="+36202483759" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label minWidth="140.0" text="Páciens neme" />
+                                                <ComboBox id="genderCombobox" fx:id="genderCombobox" promptText="Páciens neme">
+                                                   <items>
+                                                      <FXCollections fx:factory="observableArrayList">
+                                                         <String fx:value="férfi" />
+                                                         <String fx:value="nő" />
+                                                      </FXCollections>
+                                                   </items>
+                                                </ComboBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
                                  </children>
-                              </VBox>
+                              </StackPane>
                            </children>
-                        </GridPane>
+                        </AnchorPane>
                      </content>
                 </Tab>
                 <Tab text="Tünetek">
@@ -185,25 +336,41 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Accordion layoutX="14.0" layoutY="14.0" prefHeight="636.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <panes>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="590.0" text="Magzati kor, születés körüli időszak">
+                              <StackPane id="psychicStackPane1" fx:id="psychicStackPane1" prefHeight="598.0" prefWidth="628.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ScrollPane id="psychicScrollPane" fx:id="psychicScrollPane" fitToWidth="true">
                                        <content>
-                                          <TextArea id="psychic1TextArea" fx:id="psychic1TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="166.0" text="Gyermekkor">
-                                       <content>
-                                          <TextArea id="psychic2TextArea" fx:id="psychic2TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="590.0" text="Felnőtt kor ill. jelenleg fennálló helyzet">
-                                       <content>
-                                          <TextArea id="psychic3TextArea" fx:id="psychic3TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                 </panes>
-                              </Accordion>
+                                          <TextFlow id="psychicTextFlow" fx:id="psychicTextFlow">
+                                             <padding>
+                                                <Insets left="20.0" top="20.0" />
+                                             </padding>
+                                          </TextFlow>
+                                       </content></ScrollPane>
+                                 </children>
+                              </StackPane>
+                              <StackPane id="psychicStackPane2" fx:id="psychicStackPane2" prefHeight="598.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Accordion prefHeight="636.0" prefWidth="628.0">
+                                       <panes>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Magzati kor, születés körüli időszak">
+                                             <content>
+                                                <TextArea id="psychic1TextArea" fx:id="psychic1TextArea" prefHeight="200.0" prefWidth="200.0" text="s" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Gyermekkor">
+                                             <content>
+                                                <TextArea id="psychic2TextArea" fx:id="psychic2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Felnőtt kor ill. jelenleg fennálló helyzet">
+                                             <content>
+                                                <TextArea id="psychic3TextArea" fx:id="psychic3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                       </panes>
+                                    </Accordion>
+                                 </children>
+                              </StackPane>
                            </children>
                         </AnchorPane>
                      </content>
@@ -212,55 +379,72 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Accordion layoutX="14.0" layoutY="14.0" prefHeight="636.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <panes>
-                                  <TitledPane id="first" fx:id="first" animated="false" disable="true" text="Gyermekkori nagyobb betegség(ek)">
+                              <StackPane id="clinicalHistoryStackPane1" fx:id="clinicalHistoryStackPane1" prefHeight="598.0" prefWidth="628.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ScrollPane id="clinicalHistoryScrollPane" fx:id="clinicalHistoryScrollPane" fitToWidth="true">
                                        <content>
-                                          <TextArea id="clinicalHistory1TextArea" fx:id="clinicalHistory1TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                          <TextFlow id="clinicalHistoryTextFlow" fx:id="clinicalHistoryTextFlow">
+                                             <padding>
+                                                <Insets left="20.0" top="20.0" />
+                                             </padding>
+                                          </TextFlow>
                                        </content>
-                                  </TitledPane>
-                                  <TitledPane animated="false" disable="true" text="Előző betegség(ek)">
-                                       <content>
-                                          <TextArea id="clinicalHistory2TextArea" fx:id="clinicalHistory2TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                  </TitledPane>
-                                  <TitledPane animated="false" disable="true" text="Ismert, jelenleg is fennálló betegsék(ek)">
-                                       <content>
-                                          <TextArea id="clinicalHistory3TextArea" fx:id="clinicalHistory3TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                  </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="62.0" text="Műtét(ek)">
-                                       <content>
-                                          <TextArea id="clinicalHistory4TextArea" fx:id="clinicalHistory4TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="36.0" text="Nagyobb fogászati beavatkozás(ok)">
-                                       <content>
-                                          <TextArea id="clinicalHistory5TextArea" fx:id="clinicalHistory5TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="564.0" text="Jelenleg szedett gyógyszer(ek), gyógynövény(ek)">
-                                       <content>
-                                          <TextArea id="clinicalHistory6TextArea" fx:id="clinicalHistory6TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="590.0" text="Gyógyszerérzékenyésg">
-                                       <content>
-                                          <TextArea id="clinicalHistory7TextArea" fx:id="clinicalHistory7TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="166.0" text="Korábbi terhesség(ek)">
-                                       <content>
-                                          <TextArea id="clinicalHistory8TextArea" fx:id="clinicalHistory8TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="590.0" text="Jelenleg állapotos-e?">
-                                       <content>
-                                          <TextArea id="clinicalHistory9TextArea" fx:id="clinicalHistory9TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                </panes>
-                              </Accordion>
+                                    </ScrollPane>
+                                 </children>
+                              </StackPane>
+                              <StackPane id="clinicalHistoryStackPane2" fx:id="clinicalHistoryStackPane2" prefHeight="598.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Accordion prefHeight="636.0" prefWidth="628.0">
+                                      <panes>
+                                        <TitledPane id="first" fx:id="first" animated="false" text="Gyermekkori nagyobb betegség(ek)">
+                                             <content>
+                                                <TextArea id="clinicalHistory1TextArea" fx:id="clinicalHistory1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                        </TitledPane>
+                                        <TitledPane animated="false" text="Előző betegség(ek)">
+                                             <content>
+                                                <TextArea id="clinicalHistory2TextArea" fx:id="clinicalHistory2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                        </TitledPane>
+                                        <TitledPane animated="false" text="Ismert, jelenleg is fennálló betegsék(ek)">
+                                             <content>
+                                                <TextArea id="clinicalHistory3TextArea" fx:id="clinicalHistory3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                        </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="62.0" text="Műtét(ek)">
+                                             <content>
+                                                <TextArea id="clinicalHistory4TextArea" fx:id="clinicalHistory4TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="36.0" text="Nagyobb fogászati beavatkozás(ok)">
+                                             <content>
+                                                <TextArea id="clinicalHistory5TextArea" fx:id="clinicalHistory5TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="564.0" text="Jelenleg szedett gyógyszer(ek), gyógynövény(ek)">
+                                             <content>
+                                                <TextArea id="clinicalHistory6TextArea" fx:id="clinicalHistory6TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Gyógyszerérzékenyésg">
+                                             <content>
+                                                <TextArea id="clinicalHistory7TextArea" fx:id="clinicalHistory7TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Korábbi terhesség(ek)">
+                                             <content>
+                                                <TextArea id="clinicalHistory8TextArea" fx:id="clinicalHistory8TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Jelenleg állapotos-e?">
+                                             <content>
+                                                <TextArea id="clinicalHistory9TextArea" fx:id="clinicalHistory9TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                      </panes>
+                                    </Accordion>
+                                 </children>
+                              </StackPane>
                            </children>
                         </AnchorPane>
                      </content>
@@ -269,35 +453,52 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Accordion layoutX="14.0" layoutY="14.0" prefHeight="636.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <panes>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="36.0" text="Nyugati orvosi diagnózis(ok)">
+                              <StackPane id="actualStackPane1" fx:id="actualStackPane1" prefHeight="598.0" prefWidth="628.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ScrollPane id="actualScrollPane" fx:id="actualScrollPane" fitToWidth="true">
                                        <content>
-                                          <TextArea id="actual1TextArea" fx:id="actual1TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                          <TextFlow id="actualTextFlow" fx:id="actualTextFlow">
+                                             <padding>
+                                                <Insets left="20.0" top="20.0" />
+                                             </padding>
+                                          </TextFlow>
                                        </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="564.0" text="Jelen panaszok">
-                                       <content>
-                                          <TextArea id="actual2TextArea" fx:id="actual2TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="590.0" text="Laborvizsgálat(ok) eredményei">
-                                       <content>
-                                          <TextArea id="actual3TextArea" fx:id="actual3TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="166.0" text="Képalkotó vizsgálat(ok)">
-                                       <content>
-                                          <TextArea id="actual4TextArea" fx:id="actual4TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="590.0" text="Jelenleg állapotos-e?">
-                                       <content>
-                                          <TextArea id="actual5TextArea" fx:id="actual5TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                 </panes>
-                              </Accordion>
+                                    </ScrollPane>
+                                 </children>
+                              </StackPane>
+                              <StackPane id="actualStackPane2" fx:id="actualStackPane2" prefHeight="598.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Accordion prefHeight="636.0" prefWidth="628.0">
+                                       <panes>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="36.0" text="Nyugati orvosi diagnózis(ok)">
+                                             <content>
+                                                <TextArea id="actual1TextArea" fx:id="actual1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="564.0" text="Jelen panaszok">
+                                             <content>
+                                                <TextArea id="actual2TextArea" fx:id="actual2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Laborvizsgálat(ok) eredményei">
+                                             <content>
+                                                <TextArea id="actual3TextArea" fx:id="actual3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Képalkotó vizsgálat(ok)">
+                                             <content>
+                                                <TextArea id="actual4TextArea" fx:id="actual4TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Jelenleg állapotos-e?">
+                                             <content>
+                                                <TextArea id="actual5TextArea" fx:id="actual5TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                       </panes>
+                                    </Accordion>
+                                 </children>
+                              </StackPane>
                            </children>
                         </AnchorPane>
                      </content>
@@ -306,62 +507,79 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Accordion layoutX="14.0" layoutY="14.0" prefHeight="636.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <panes>
-                                    <TitledPane id="hko1TitledPane" fx:id="hko1TitledPane" animated="false" disable="true" layoutX="10.0" layoutY="590.0" text="Diagnózis(ok)">
+                              <StackPane id="hkoStackPane1" fx:id="hkoStackPane1" prefHeight="598.0" prefWidth="628.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ScrollPane id="hkoScrollPane" fx:id="hkoScrollPane" fitToWidth="true">
                                        <content>
-                                          <TextArea id="hko1TextArea" fx:id="hko1TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                          <TextFlow id="hkoTextFlow" fx:id="hkoTextFlow">
+                                             <padding>
+                                                <Insets left="20.0" top="20.0" />
+                                             </padding>
+                                          </TextFlow>
                                        </content>
-                                    </TitledPane>
-                                    <TitledPane id="hko2TitledPane" fx:id="hko2TitledPane" animated="false" disable="true" layoutX="10.0" layoutY="166.0" text="Terápiás koncepció">
-                                       <content>
-                                          <TextArea id="hko2TextArea" fx:id="hko2TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane id="hko3TitledPane" fx:id="hko3TitledPane" animated="false" layoutX="10.0" layoutY="590.0" text="Javaslat(ok)">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Accordion layoutX="14.0" layoutY="14.0" prefHeight="636.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <panes>
-                                                      <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="590.0" text="Étrend">
-                                                         <content>
-                                                            <TextArea id="hko3TextArea" fx:id="hko3TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="166.0" text="Gyógynövény">
-                                                         <content>
-                                                            <TextArea id="hko4TextArea" fx:id="hko4TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="590.0" text="Kínai orvosság">
-                                                         <content>
-                                                            <TextArea id="hko5TextArea" fx:id="hko5TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="62.0" text="Mozgás/gyógytorna">
-                                                         <content>
-                                                            <TextArea id="hko6TextArea" fx:id="hko6TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="88.0" text="Manuálterápia">
-                                                         <content>
-                                                            <TextArea id="hko7TextArea" fx:id="hko7TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" disable="true" layoutX="10.0" layoutY="461.0" text="Életmód, egyéb javaslat">
-                                                         <content>
-                                                            <TextArea id="hko8TextArea" fx:id="hko8TextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-                                                         </content>
-                                                      </TitledPane>
-                                                   </panes>
-                                                </Accordion>
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                    </TitledPane>
-                                 </panes>
-                              </Accordion>
+                                    </ScrollPane>
+                                 </children>
+                              </StackPane>
+                              <StackPane id="hkoStackPane2" fx:id="hkoStackPane2" prefHeight="598.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Accordion prefHeight="636.0" prefWidth="628.0">
+                                       <panes>
+                                          <TitledPane id="hko1TitledPane" fx:id="hko1TitledPane" animated="false" layoutX="10.0" layoutY="590.0" text="Diagnózis(ok)">
+                                             <content>
+                                                <TextArea id="hko1TextArea" fx:id="hko1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane id="hko2TitledPane" fx:id="hko2TitledPane" animated="false" layoutX="10.0" layoutY="166.0" text="Terápiás koncepció">
+                                             <content>
+                                                <TextArea id="hko2TextArea" fx:id="hko2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane id="hko3TitledPane" fx:id="hko3TitledPane" animated="false" layoutX="10.0" layoutY="590.0" text="Javaslat(ok)">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Accordion layoutX="14.0" layoutY="14.0" prefHeight="636.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <panes>
+                                                            <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Étrend">
+                                                               <content>
+                                                                  <TextArea id="hko3TextArea" fx:id="hko3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                               </content>
+                                                            </TitledPane>
+                                                            <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Gyógynövény">
+                                                               <content>
+                                                                  <TextArea id="hko4TextArea" fx:id="hko4TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                               </content>
+                                                            </TitledPane>
+                                                            <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Kínai orvosság">
+                                                               <content>
+                                                                  <TextArea id="hko5TextArea" fx:id="hko5TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                               </content>
+                                                            </TitledPane>
+                                                            <TitledPane animated="false" layoutX="10.0" layoutY="62.0" text="Mozgás/gyógytorna">
+                                                               <content>
+                                                                  <TextArea id="hko6TextArea" fx:id="hko6TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                               </content>
+                                                            </TitledPane>
+                                                            <TitledPane animated="false" layoutX="10.0" layoutY="88.0" text="Manuálterápia">
+                                                               <content>
+                                                                  <TextArea id="hko7TextArea" fx:id="hko7TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                               </content>
+                                                            </TitledPane>
+                                                            <TitledPane animated="false" layoutX="10.0" layoutY="461.0" text="Életmód, egyéb javaslat">
+                                                               <content>
+                                                                  <TextArea id="hko8TextArea" fx:id="hko8TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                               </content>
+                                                            </TitledPane>
+                                                         </panes>
+                                                      </Accordion>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </TitledPane>
+                                       </panes>
+                                    </Accordion>
+                                 </children>
+                              </StackPane>
                            </children>
                         </AnchorPane>
                      </content>
@@ -701,7 +919,7 @@
                <children>
                   <VBox alignment="CENTER" layoutX="181.0" layoutY="-8.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button id="editTextAreasButton" fx:id="editTextAreasButton" mnemonicParsing="false" onMouseClicked="#changeTextearesEditability" text="Szerkesztés" />
+                        <Button id="editTextAreasButton" fx:id="editTextAreasButton" mnemonicParsing="false" onMouseClicked="#changeEditability" text="Áttekintő mód" />
                      </children>
                   </VBox>
                </children></AnchorPane>
@@ -722,7 +940,7 @@
                                           <Insets left="20.0" right="20.0" top="10.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <DatePicker id="finalOpinionDatePicker" fx:id="finalOpinionDatePicker" editable="false" onMouseClicked="#setToday" prefWidth="137.0">
+                                    <DatePicker id="finalOpinionDatePicker" fx:id="finalOpinionDatePicker" onMouseClicked="#setToday" prefWidth="137.0">
                                        <HBox.margin>
                                           <Insets top="10.0" />
                                        </HBox.margin>

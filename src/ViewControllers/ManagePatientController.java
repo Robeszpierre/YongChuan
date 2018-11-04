@@ -6,10 +6,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -128,8 +134,84 @@ public class ManagePatientController {
     TabPane jointTabPane;
     @FXML
     DatePicker finalOpinionDatePicker;
+    @FXML
+    StackPane psychicStackPane1;
+    @FXML
+    StackPane psychicStackPane2;
+    @FXML
+    ScrollPane psychicScrollPane;
+    @FXML
+    TextFlow psychicTextFlow;
+    @FXML
+    StackPane clinicalHistoryStackPane1;
+    @FXML
+    StackPane clinicalHistoryStackPane2;
+    @FXML
+    ScrollPane clinicalHistoryScrollPane;
+    @FXML
+    TextFlow clinicalHistoryTextFlow;
+    @FXML
+    StackPane actualStackPane1;
+    @FXML
+    StackPane actualStackPane2;
+    @FXML
+    ScrollPane actualScrollPane;
+    @FXML
+    TextFlow actualTextFlow;
+    @FXML
+    StackPane hkoStackPane1;
+    @FXML
+    StackPane hkoStackPane2;
+    @FXML
+    ScrollPane hkoScrollPane;
+    @FXML
+    TextFlow hkoTextFlow;
+    @FXML
+    TextField personalDataTextField1;
+    @FXML
+    TextField personalDataTextField2;
+    @FXML
+    TextField personalDataTextField3;
+    @FXML
+    TextField personalDataTextField4;
+    @FXML
+    TextField personalDataTextField5;
+    @FXML
+    TextField personalDataTextField6;
+    @FXML
+    TextField personalDataTextField7;
+    @FXML
+    DatePicker personalDataDatePicker;
+    @FXML
+    VBox personalDataVbox;
+    @FXML
+    HBox hbox;
+    @FXML
+    StackPane personalDataStackPane1;
+    @FXML
+    StackPane personalDataStackPane2;
+    @FXML
+    Label personalDataLabel1;
+    @FXML
+    Label personalDataLabel2;
+    @FXML
+    Label personalDataLabel3;
+    @FXML
+    Label personalDataLabel4;
+    @FXML
+    Label personalDataLabel5;
+    @FXML
+    Label personalDataLabel6;
+    @FXML
+    Label personalDataLabel7;
+    @FXML
+    Label personalDataLabel8;
+    @FXML
+    Label personalDataLabel9;
+    @FXML
+    ComboBox<String> genderCombobox;
 
-    Boolean editable=false;
+    Boolean editable=true;
 
     ArrayList<ChoiceBox> choiceBoxes;
     ArrayList<TextArea>  psychicTextAreas;
@@ -137,12 +219,58 @@ public class ManagePatientController {
     ArrayList<TextArea>  actualTextAreas;
     ArrayList<TextArea>  hkoTextAreas;
     ArrayList<ArrayList<TextArea>> allTextareas;
+    ArrayList<TextFlow> textFlows;
+    ArrayList<TextField> personalDateTextFields;
 
     @FXML
     public void initialize(){
         fixEditSplitPane();
         initPulseChoicboxes();
         makeListOfTextAreas();
+        makelistOfTextFlows();
+        makeListOfpersonalDateTextFields();
+        personalDataBindings();
+        setDatePickers();
+
+
+    }
+
+    private void setDatePickers() {
+        personalDataDatePicker.getEditor().focusedProperty().addListener((obs, oldVal, newVal) ->
+                personalDataDatePicker.setValue(LocalDate.now()));
+        finalOpinionDatePicker.getEditor().focusedProperty().addListener((obs, oldVal, newVal) ->
+                finalOpinionDatePicker.setValue(LocalDate.now()));
+    }
+
+    private void personalDataBindings() {
+        personalDataLabel1.textProperty().bind(personalDataTextField1.textProperty());
+        personalDataLabel2.textProperty().bind(personalDataTextField2.textProperty());
+        personalDataLabel3.textProperty().bind(personalDataTextField3.textProperty());
+        personalDataLabel4.textProperty().bindBidirectional(personalDataDatePicker.valueProperty(), personalDataDatePicker.getConverter());
+        personalDataLabel5.textProperty().bind(personalDataTextField4.textProperty());
+        personalDataLabel6.textProperty().bind(personalDataTextField5.textProperty());
+        personalDataLabel7.textProperty().bind(personalDataTextField6.textProperty());
+        personalDataLabel8.textProperty().bind(personalDataTextField7.textProperty());
+        personalDataLabel9.textProperty().bind(genderCombobox.valueProperty());
+    }
+
+    private void makeListOfpersonalDateTextFields() {
+        personalDateTextFields=new ArrayList<TextField>();
+        personalDateTextFields.add(personalDataTextField1);
+        personalDateTextFields.add(personalDataTextField2);
+        personalDateTextFields.add(personalDataTextField3);
+        personalDateTextFields.add(personalDataTextField4);
+        personalDateTextFields.add(personalDataTextField5);
+        personalDateTextFields.add(personalDataTextField6);
+        personalDateTextFields.add(personalDataTextField7);
+    }
+
+    private void makelistOfTextFlows() {
+        textFlows=new ArrayList<TextFlow>();
+        textFlows.add(psychicTextFlow);
+        textFlows.add(clinicalHistoryTextFlow);
+        textFlows.add(actualTextFlow);
+        textFlows.add(hkoTextFlow);
     }
 
     private void makeListOfTextAreas() {
@@ -255,43 +383,57 @@ public class ManagePatientController {
 
     //Szerkesztés button clicked
     @FXML
-    private void changeTextearesEditability(){
-        if(editable){
-            editable=false;
-            editTextAreasButton.setText("Szerkesztés");
-        }else{
-            editable=true;
-            editTextAreasButton.setText("Szerkesztés befejezése");
-        }
-        for(ArrayList<TextArea> textAreasPlace: allTextareas){
-            for(TextArea tarea: textAreasPlace){
-                tarea.setEditable(editable);
+    private void changeEditability(){
+            editable=!editable;
+            if(editable){
+                editTextAreasButton.setText("Áttekintő mód");
+            }else{
+                editTextAreasButton.setText("Szerkesztő mód");
             }
-        }
-        if(!editable) {
-            disableUnUsedTitledPanes();
-        }else{
-            enableAllTitledPanes();
-        }
+
+            psychicStackPane1.setVisible(!editable);
+            psychicStackPane2.setVisible(editable);
+            clinicalHistoryStackPane1.setVisible(!editable);
+            clinicalHistoryStackPane2.setVisible(editable);
+            actualStackPane1.setVisible(!editable);
+            actualStackPane2.setVisible(editable);
+            hkoStackPane1.setVisible(!editable);
+            hkoStackPane2.setVisible(editable);
+            personalDataStackPane1.setVisible(!editable);
+            personalDataStackPane2.setVisible(editable);
+
+            setDataDisplay();
     }
 
-    private void enableAllTitledPanes() {
+    private void setDataDisplay() {
+        for(TextFlow tf: textFlows){
+            tf.getChildren().clear();
+        }
+        int whichTab=0;
         for(ArrayList<TextArea> textAreasPlace: allTextareas){
             for(TextArea tarea: textAreasPlace){
                     TitledPane tp= (TitledPane) tarea.getParent().getParent();
-                    tp.setDisable(false);
-            }
-        }
-    }
-
-    private void disableUnUsedTitledPanes(){
-        for(ArrayList<TextArea> textAreasPlace: allTextareas){
-            for(TextArea tarea: textAreasPlace){
-                if(tarea.getText().equals("")){
-                    TitledPane tp= (TitledPane) tarea.getParent().getParent();
-                    tp.setDisable(true);
+                    if(!tarea.getText().equals("")){
+                    Text label = new Text(tp.getText() + "\n\n");
+                    label.getStyleClass().add("labelText");
+                    Text content = new Text(tarea.getText() + "\n\n\n");
+                    switch (whichTab) {
+                        case 0:
+                        psychicTextFlow.getChildren().addAll(label, content);
+                        break;
+                        case 1:
+                        clinicalHistoryTextFlow.getChildren().addAll(label, content);
+                        break;
+                        case 2:
+                        actualTextFlow.getChildren().addAll(label, content);
+                        break;
+                        case 3:
+                        hkoTextFlow.getChildren().addAll(label, content);
+                        break;
+                    }
                 }
             }
+            whichTab++;
         }
     }
 
@@ -312,6 +454,9 @@ public class ManagePatientController {
 
     public void setToday(MouseEvent mouseEvent) {
         finalOpinionDatePicker.setValue(LocalDate.now());
+    }
+
+    public void modifyPatientPersonalData(MouseEvent mouseEvent) {
     }
 }
 

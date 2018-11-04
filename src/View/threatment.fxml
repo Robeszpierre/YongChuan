@@ -41,7 +41,7 @@
             </TitledPane>
         </panes>
       </Accordion>
-      <DatePicker id="threatmentDatePicker" fx:id="threatmentDatePicker" editable="false" layoutX="6.0" layoutY="10.0" onMouseClicked="#setToday" prefHeight="26.0" prefWidth="137.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="10.0" />
+      <DatePicker id="threatmentDatePicker" fx:id="threatmentDatePicker" editable="false" layoutX="6.0" layoutY="10.0" prefHeight="26.0" prefWidth="137.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="10.0" />
       <Label layoutX="14.0" layoutY="15.0" text="Kezelés időpontja:" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>
