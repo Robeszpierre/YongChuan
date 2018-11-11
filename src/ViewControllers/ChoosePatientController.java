@@ -12,10 +12,12 @@ public class ChoosePatientController {
     TableView patientsTable;
 
     public void selectPatient(MouseEvent mouseEvent) {
+        Main.setNewPatient(false);
         Main.getmanagePatientScreen();
     }
 
     public void addNewPatient(MouseEvent mouseEvent) {
+        Main.setNewPatient(true);
         Main.getpersonalDatatScreen();
     }
 }

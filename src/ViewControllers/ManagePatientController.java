@@ -1,24 +1,25 @@
 package ViewControllers;
 
+import Controller.Main;
+import Modell.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -27,55 +28,55 @@ public class ManagePatientController {
     @FXML
     SplitPane splitPane;
     @FXML
-    ChoiceBox pulse1Choicebox;
+    ChoiceBox<String> pulse1Choicebox;
     @FXML
-    ChoiceBox pulse2Choicebox;
+    ChoiceBox<String> pulse2Choicebox;
     @FXML
-    ChoiceBox pulse3Choicebox;
+    ChoiceBox<String> pulse3Choicebox;
     @FXML
-    ChoiceBox pulse4Choicebox;
+    ChoiceBox<String> pulse4Choicebox;
     @FXML
-    ChoiceBox pulse5Choicebox;
+    ChoiceBox<String> pulse5Choicebox;
     @FXML
-    ChoiceBox pulse6Choicebox;
+    ChoiceBox<String> pulse6Choicebox;
     @FXML
-    ChoiceBox pulse7Choicebox;
+    ChoiceBox<String> pulse7Choicebox;
     @FXML
-    ChoiceBox pulse8Choicebox;
+    ChoiceBox<String> pulse8Choicebox;
     @FXML
-    ChoiceBox pulse9Choicebox;
+    ChoiceBox<String> pulse9Choicebox;
     @FXML
-    ChoiceBox pulse10Choicebox;
+    ChoiceBox<String> pulse10Choicebox;
     @FXML
-    ChoiceBox pulse11Choicebox;
+    ChoiceBox<String> pulse11Choicebox;
     @FXML
-    ChoiceBox pulse12Choicebox;
+    ChoiceBox<String> pulse12Choicebox;
     @FXML
-    ChoiceBox pulse13Choicebox;
+    ChoiceBox<String> pulse13Choicebox;
     @FXML
-    ChoiceBox pulse14Choicebox;
+    ChoiceBox<String> pulse14Choicebox;
     @FXML
-    ChoiceBox pulse15Choicebox;
+    ChoiceBox<String> pulse15Choicebox;
     @FXML
-    ChoiceBox pulse16Choicebox;
+    ChoiceBox<String> pulse16Choicebox;
     @FXML
-    ChoiceBox pulse17Choicebox;
+    ChoiceBox<String> pulse17Choicebox;
     @FXML
-    ChoiceBox pulse18Choicebox;
+    ChoiceBox<String> pulse18Choicebox;
     @FXML
-    ChoiceBox pulse19Choicebox;
+    ChoiceBox<String> pulse19Choicebox;
     @FXML
-    ChoiceBox pulse20Choicebox;
+    ChoiceBox<String> pulse20Choicebox;
     @FXML
-    ChoiceBox pulse21Choicebox;
+    ChoiceBox<String> pulse21Choicebox;
     @FXML
-    ChoiceBox pulse22Choicebox;
+    ChoiceBox<String> pulse22Choicebox;
     @FXML
-    ChoiceBox pulse23Choicebox;
+    ChoiceBox<String> pulse23Choicebox;
     @FXML
-    ChoiceBox pulse24Choicebox;
+    ChoiceBox<String> pulse24Choicebox;
     @FXML
-    ChoiceBox finalOpinionChoiceBox;
+    ChoiceBox<String> finalOpinionChoiceBox;
     @FXML
     TextArea psychic1TextArea;
     @FXML
@@ -111,21 +112,21 @@ public class ManagePatientController {
     @FXML
     TextArea actual5TextArea;
     @FXML
-    TextArea hko1TextArea;
+    TextArea tcm1TextArea;
     @FXML
-    TextArea hko2TextArea;
+    TextArea tcm2TextArea;
     @FXML
-    TextArea hko3TextArea;
+    TextArea tcm3TextArea;
     @FXML
-    TextArea hko4TextArea;
+    TextArea tcm4TextArea;
     @FXML
-    TextArea hko5TextArea;
+    TextArea tcm5TextArea;
     @FXML
-    TextArea hko6TextArea;
+    TextArea tcm6TextArea;
     @FXML
-    TextArea hko7TextArea;
+    TextArea tcm7TextArea;
     @FXML
-    TextArea hko8TextArea;
+    TextArea tcm8TextArea;
     @FXML
     Button editTextAreasButton;
     @FXML
@@ -159,13 +160,13 @@ public class ManagePatientController {
     @FXML
     TextFlow actualTextFlow;
     @FXML
-    StackPane hkoStackPane1;
+    StackPane tcmStackPane1;
     @FXML
-    StackPane hkoStackPane2;
+    StackPane tcmStackPane2;
     @FXML
-    ScrollPane hkoScrollPane;
+    ScrollPane tcmScrollPane;
     @FXML
-    TextFlow hkoTextFlow;
+    TextFlow tcmTextFlow;
     @FXML
     TextField personalDataTextField1;
     @FXML
@@ -209,18 +210,101 @@ public class ManagePatientController {
     @FXML
     Label personalDataLabel9;
     @FXML
-    ComboBox<String> genderCombobox;
+    ChoiceBox<String> genderChoiceBoxx;
+    @FXML
+    TextArea pulseTextArea2;
+    @FXML
+    TextArea pulseTextArea1;
+    @FXML
+    TextArea finalTextArea;
+    @FXML
+    StackPane finalStackPane1;
+    @FXML
+    StackPane finalStackPane2;
+    @FXML
+    Button treatmentOverViewButton;
+    @FXML
+    Button addNewTreatmentButton;
+    @FXML
+    TextFlow finalTextFlow;
+    @FXML
+    StackPane pulseStackPane1;
+    @FXML
+    StackPane pulseStackPane2;
+    @FXML
+    Label pulseLabel1;
+    @FXML
+    Label pulseLabel2;
+    @FXML
+    Label pulseLabel3;
+    @FXML
+    Label pulseLabel4;
+    @FXML
+    Label pulseLabel5;
+    @FXML
+    Label pulseLabel6;
+    @FXML
+    Label pulseLabel7;
+    @FXML
+    Label pulseLabel8;
+    @FXML
+    Label pulseLabel9;
+    @FXML
+    Label pulseLabel10;
+    @FXML
+    Label pulseLabel11;
+    @FXML
+    Label pulseLabel12;
+    @FXML
+    Label pulseLabel13;
+    @FXML
+    Label pulseLabel14;
+    @FXML
+    Label pulseLabel15;
+    @FXML
+    Label pulseLabel16;
+    @FXML
+    Label pulseLabel17;
+    @FXML
+    Label pulseLabel18;
+    @FXML
+    Label pulseLabel19;
+    @FXML
+    Label pulseLabel20;
+    @FXML
+    Label pulseLabel21;
+    @FXML
+    Label pulseLabel22;
+    @FXML
+    Label pulseLabel23;
+    @FXML
+    Label pulseLabel24;
+    @FXML
+    Label genderWarningLabel;
+    @FXML
+    Label patientNameWarningLabel;
+    @FXML
+    Label birthDateWarningLabel;
 
-    Boolean editable=true;
+
+    @FXML
+    TextArea treatment1TextArea;
+
+
+    Boolean patientDataEditable =true;
+    Boolean treatmentEditable=true;
+    Patient patient= Patient.getInstance();
 
     ArrayList<ChoiceBox> choiceBoxes;
     ArrayList<TextArea>  psychicTextAreas;
     ArrayList<TextArea>  clinicalHistoryTextAreas;
     ArrayList<TextArea>  actualTextAreas;
-    ArrayList<TextArea>  hkoTextAreas;
+    ArrayList<TextArea> tcmTextAreas;
     ArrayList<ArrayList<TextArea>> allTextareas;
     ArrayList<TextFlow> textFlows;
     ArrayList<TextField> personalDateTextFields;
+
+    ArrayList<TreatmentController> treatmentControllers=new ArrayList<>();
 
     @FXML
     public void initialize(){
@@ -231,15 +315,52 @@ public class ManagePatientController {
         makeListOfpersonalDateTextFields();
         personalDataBindings();
         setDatePickers();
+        setPulseBindings();
+        addListeners();
+    }
 
+    public void load() {
+        System.out.println(Main.getNewPatient());
+        if(Main.getNewPatient()) {
+            System.out.println("uj");
+        }else{
+            System.out.println("regi");
+
+        }
+    }
+
+
+    private void setPulseBindings() {
+        pulseLabel1.textProperty().bind(pulse1Choicebox.valueProperty());
+        pulseLabel2.textProperty().bind(pulse2Choicebox.valueProperty());
+        pulseLabel3.textProperty().bind(pulse3Choicebox.valueProperty());
+        pulseLabel4.textProperty().bind(pulse4Choicebox.valueProperty());
+        pulseLabel5.textProperty().bind(pulse5Choicebox.valueProperty());
+        pulseLabel6.textProperty().bind(pulse6Choicebox.valueProperty());
+        pulseLabel7.textProperty().bind(pulse7Choicebox.valueProperty());
+        pulseLabel8.textProperty().bind(pulse8Choicebox.valueProperty());
+        pulseLabel9.textProperty().bind(pulse9Choicebox.valueProperty());
+        pulseLabel10.textProperty().bind(pulse10Choicebox.valueProperty());
+        pulseLabel11.textProperty().bind(pulse11Choicebox.valueProperty());
+        pulseLabel12.textProperty().bind(pulse12Choicebox.valueProperty());
+        pulseLabel13.textProperty().bind(pulse13Choicebox.valueProperty());
+        pulseLabel14.textProperty().bind(pulse14Choicebox.valueProperty());
+        pulseLabel15.textProperty().bind(pulse15Choicebox.valueProperty());
+        pulseLabel16.textProperty().bind(pulse16Choicebox.valueProperty());
+        pulseLabel17.textProperty().bind(pulse17Choicebox.valueProperty());
+        pulseLabel18.textProperty().bind(pulse18Choicebox.valueProperty());
+        pulseLabel19.textProperty().bind(pulse19Choicebox.valueProperty());
+        pulseLabel20.textProperty().bind(pulse20Choicebox.valueProperty());
+        pulseLabel21.textProperty().bind(pulse21Choicebox.valueProperty());
+        pulseLabel22.textProperty().bind(pulse22Choicebox.valueProperty());
+        pulseLabel23.textProperty().bind(pulse23Choicebox.valueProperty());
+        pulseLabel24.textProperty().bind(pulse24Choicebox.valueProperty());
+        pulseTextArea1.textProperty().bind(pulseTextArea2.textProperty());
 
     }
 
     private void setDatePickers() {
-        personalDataDatePicker.getEditor().focusedProperty().addListener((obs, oldVal, newVal) ->
-                personalDataDatePicker.setValue(LocalDate.now()));
-        finalOpinionDatePicker.getEditor().focusedProperty().addListener((obs, oldVal, newVal) ->
-                finalOpinionDatePicker.setValue(LocalDate.now()));
+
     }
 
     private void personalDataBindings() {
@@ -251,7 +372,7 @@ public class ManagePatientController {
         personalDataLabel6.textProperty().bind(personalDataTextField5.textProperty());
         personalDataLabel7.textProperty().bind(personalDataTextField6.textProperty());
         personalDataLabel8.textProperty().bind(personalDataTextField7.textProperty());
-        personalDataLabel9.textProperty().bind(genderCombobox.valueProperty());
+        personalDataLabel9.textProperty().bind(genderChoiceBoxx.valueProperty());
     }
 
     private void makeListOfpersonalDateTextFields() {
@@ -270,7 +391,7 @@ public class ManagePatientController {
         textFlows.add(psychicTextFlow);
         textFlows.add(clinicalHistoryTextFlow);
         textFlows.add(actualTextFlow);
-        textFlows.add(hkoTextFlow);
+        textFlows.add(tcmTextFlow);
     }
 
     private void makeListOfTextAreas() {
@@ -297,21 +418,21 @@ public class ManagePatientController {
         actualTextAreas.add(actual4TextArea);
         actualTextAreas.add(actual5TextArea);
 
-        hkoTextAreas=new ArrayList<TextArea>();
-        hkoTextAreas.add(hko1TextArea);
-        hkoTextAreas.add(hko2TextArea);
-        hkoTextAreas.add(hko3TextArea);
-        hkoTextAreas.add(hko4TextArea);
-        hkoTextAreas.add(hko5TextArea);
-        hkoTextAreas.add(hko6TextArea);
-        hkoTextAreas.add(hko7TextArea);
-        hkoTextAreas.add(hko8TextArea);
+        tcmTextAreas =new ArrayList<TextArea>();
+        tcmTextAreas.add(tcm1TextArea);
+        tcmTextAreas.add(tcm2TextArea);
+        tcmTextAreas.add(tcm3TextArea);
+        tcmTextAreas.add(tcm4TextArea);
+        tcmTextAreas.add(tcm5TextArea);
+        tcmTextAreas.add(tcm6TextArea);
+        tcmTextAreas.add(tcm7TextArea);
+        tcmTextAreas.add(tcm8TextArea);
 
         allTextareas=new ArrayList<ArrayList<TextArea>>();
         allTextareas.add(psychicTextAreas);
         allTextareas.add(clinicalHistoryTextAreas);
         allTextareas.add(actualTextAreas);
-        allTextareas.add(hkoTextAreas);
+        allTextareas.add(tcmTextAreas);
     }
 
 
@@ -384,23 +505,25 @@ public class ManagePatientController {
     //Szerkesztés button clicked
     @FXML
     private void changeEditability(){
-            editable=!editable;
-            if(editable){
+            patientDataEditable =!patientDataEditable;
+            if(patientDataEditable){
                 editTextAreasButton.setText("Áttekintő mód");
             }else{
                 editTextAreasButton.setText("Szerkesztő mód");
             }
 
-            psychicStackPane1.setVisible(!editable);
-            psychicStackPane2.setVisible(editable);
-            clinicalHistoryStackPane1.setVisible(!editable);
-            clinicalHistoryStackPane2.setVisible(editable);
-            actualStackPane1.setVisible(!editable);
-            actualStackPane2.setVisible(editable);
-            hkoStackPane1.setVisible(!editable);
-            hkoStackPane2.setVisible(editable);
-            personalDataStackPane1.setVisible(!editable);
-            personalDataStackPane2.setVisible(editable);
+            psychicStackPane1.setVisible(!patientDataEditable);
+            psychicStackPane2.setVisible(patientDataEditable);
+            clinicalHistoryStackPane1.setVisible(!patientDataEditable);
+            clinicalHistoryStackPane2.setVisible(patientDataEditable);
+            actualStackPane1.setVisible(!patientDataEditable);
+            actualStackPane2.setVisible(patientDataEditable);
+            tcmStackPane1.setVisible(!patientDataEditable);
+            tcmStackPane2.setVisible(patientDataEditable);
+            personalDataStackPane1.setVisible(!patientDataEditable);
+            personalDataStackPane2.setVisible(patientDataEditable);
+            pulseStackPane1.setVisible(!patientDataEditable);
+            pulseStackPane2.setVisible(patientDataEditable);
 
             setDataDisplay();
     }
@@ -413,7 +536,7 @@ public class ManagePatientController {
         for(ArrayList<TextArea> textAreasPlace: allTextareas){
             for(TextArea tarea: textAreasPlace){
                     TitledPane tp= (TitledPane) tarea.getParent().getParent();
-                    if(!tarea.getText().equals("")){
+                    if(!tarea.getText().trim().equals("")){
                     Text label = new Text(tp.getText() + "\n\n");
                     label.getStyleClass().add("labelText");
                     Text content = new Text(tarea.getText() + "\n\n\n");
@@ -428,7 +551,7 @@ public class ManagePatientController {
                         actualTextFlow.getChildren().addAll(label, content);
                         break;
                         case 3:
-                        hkoTextFlow.getChildren().addAll(label, content);
+                        tcmTextFlow.getChildren().addAll(label, content);
                         break;
                     }
                 }
@@ -439,24 +562,410 @@ public class ManagePatientController {
 
 
     public void addNewThreatment(MouseEvent mouseEvent) {
+        addTreatment();
+    }
+
+    private void addTreatment() {
         try {
             int numberOfTabs=therapyTabPane.getTabs().size();
             Tab tab = new Tab();
             therapyTabPane.getTabs().add(numberOfTabs-1,tab);
-            tab.setContent((Node) FXMLLoader.load(this.getClass().getResource("/threatment.fxml")));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            AnchorPane ap=(AnchorPane) fxmlLoader.load(this.getClass().getResource("/treatment.fxml").openStream());
+            TreatmentController treatmentController = (TreatmentController) fxmlLoader.getController();
+
+            tab.setContent(ap);
             tab.setText(String.valueOf(numberOfTabs));
             therapyTabPane.getSelectionModel().select(numberOfTabs-1);
+            treatmentControllers.add(treatmentController);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void setToday(MouseEvent mouseEvent) {
-        finalOpinionDatePicker.setValue(LocalDate.now());
+
+    public void setTodayForFinal(MouseEvent mouseEvent) {
+        try {
+            String date = finalOpinionDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            finalOpinionDatePicker.setValue(LocalDate.now());
+        }
     }
 
-    public void modifyPatientPersonalData(MouseEvent mouseEvent) {
+    public void setTodayForBirthDate(MouseEvent mouseEvent) {
+        try {
+            String date = personalDataDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            personalDataDatePicker.setValue(LocalDate.now());
+        }
+    }
+
+    private Patient makePatient() {
+
+        String patientDate;
+        try {
+            patientDate = personalDataDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            patientDate=null;
+        }
+        PatientData patientData = new PatientData(
+                personalDataTextField1.getText(),
+                personalDataTextField2.getText(),
+                personalDataTextField3.getText(),
+                patientDate,
+                personalDataTextField4.getText(),
+                personalDataTextField5.getText(),
+                personalDataTextField6.getText(),
+                personalDataTextField7.getText(),
+                genderChoiceBoxx.getValue()
+        );
+        patient.setPatientData(patientData);
+
+        Psyche psyche=new Psyche(
+                psychic1TextArea.getText(),
+                psychic2TextArea.getText(),
+                psychic3TextArea.getText()
+        );
+        patient.setPsyche(psyche);
+
+        History history=new History(
+                clinicalHistory1TextArea.getText(),
+                clinicalHistory2TextArea.getText(),
+                clinicalHistory3TextArea.getText(),
+                clinicalHistory4TextArea.getText(),
+                clinicalHistory5TextArea.getText(),
+                clinicalHistory6TextArea.getText(),
+                clinicalHistory7TextArea.getText(),
+                clinicalHistory8TextArea.getText(),
+                clinicalHistory9TextArea.getText()
+        );
+        patient.setHistory(history);
+
+        Actual actual=new Actual(
+                actual1TextArea.getText(),
+                actual2TextArea.getText(),
+                actual3TextArea.getText(),
+                actual4TextArea.getText(),
+                actual5TextArea.getText()
+        );
+        patient.setActual(actual);
+
+
+        Tcm tcm=new Tcm(
+                tcm1TextArea.getText(),
+                tcm2TextArea.getText(),
+                tcm3TextArea.getText(),
+                tcm4TextArea.getText(),
+                tcm5TextArea.getText(),
+                tcm6TextArea.getText(),
+                tcm7TextArea.getText(),
+                tcm8TextArea.getText()
+        );
+        patient.setTcm(tcm);
+
+        Pulse pulse=new Pulse(
+                pulse1Choicebox.getValue(),
+                pulse2Choicebox.getValue(),
+                pulse3Choicebox.getValue(),
+                pulse4Choicebox.getValue(),
+                pulse5Choicebox.getValue(),
+                pulse6Choicebox.getValue(),
+                pulse7Choicebox.getValue(),
+                pulse8Choicebox.getValue(),
+                pulse9Choicebox.getValue(),
+                pulse10Choicebox.getValue(),
+                pulse11Choicebox.getValue(),
+                pulse12Choicebox.getValue(),
+                pulse13Choicebox.getValue(),
+                pulse14Choicebox.getValue(),
+                pulse15Choicebox.getValue(),
+                pulse16Choicebox.getValue(),
+                pulse17Choicebox.getValue(),
+                pulse18Choicebox.getValue(),
+                pulse19Choicebox.getValue(),
+                pulse20Choicebox.getValue(),
+                pulse21Choicebox.getValue(),
+                pulse22Choicebox.getValue(),
+                pulse23Choicebox.getValue(),
+                pulse24Choicebox.getValue(),
+                pulseTextArea2.getText()
+        );
+        patient.setPulse(pulse);
+
+        String finalDate;
+        try {
+            finalDate = finalOpinionDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            finalDate=null;
+        }
+
+        Final finalOpinion = new Final(
+                finalDate,
+                finalTextArea.getText(),
+                finalOpinionChoiceBox.getValue()
+        );
+        patient.setFinal(finalOpinion);
+
+        ArrayList<Treatment> treatments=new ArrayList<>();
+
+        for(TreatmentController tc: treatmentControllers){
+            Treatment tr=new Treatment(
+                    tc.getTreatmentDate(),
+                    tc.getTreatment1TextArea(),
+                    tc.getTreatment2TextArea(),
+                    tc.getTreatment3TextArea(),
+                    tc.getTreatment4TextArea(),
+                    tc.getTreatment5TextArea(),
+                    tc.getTreatment6TextArea()
+            );
+            treatments.add(tr);
+        }
+        patient.setTreatments(treatments);
+
+        return patient;
+    }
+
+    public void setPatient(){
+        Main.db.getPatient(patient.getPatient_ID());
+
+        PatientData pd=patient.getPatientData();
+
+        personalDataTextField1.setText(pd.getName());
+        personalDataTextField2.setText(pd.getMotherName());
+        personalDataTextField3.setText(pd.getBirthPlace());
+        personalDataDatePicker.setValue(LocalDate.parse(pd.getBirthDate()));
+        personalDataTextField4.setText(pd.getFamilyStatus());
+        personalDataTextField5.setText(pd.getJob());
+        personalDataTextField6.setText(pd.getEmail());
+        personalDataTextField7.setText(pd.getPhone());
+        genderChoiceBoxx.setValue(pd.getGender());
+
+        psychic1TextArea.setText(patient.getPsyche().getPsyche1());
+        psychic2TextArea.setText(patient.getPsyche().getPsyche2());
+        psychic3TextArea.setText(patient.getPsyche().getPsyche3());
+
+        History h=patient.getHistory();
+        clinicalHistory1TextArea.setText(h.getHistory1());
+        clinicalHistory2TextArea.setText(h.getHistory2());
+        clinicalHistory3TextArea.setText(h.getHistory3());
+        clinicalHistory4TextArea.setText(h.getHistory4());
+        clinicalHistory5TextArea.setText(h.getHistory5());
+        clinicalHistory6TextArea.setText(h.getHistory6());
+        clinicalHistory7TextArea.setText(h.getHistory7());
+        clinicalHistory8TextArea.setText(h.getHistory8());
+        clinicalHistory9TextArea.setText(h.getHistory9());
+
+        Actual a=patient.getActual();
+        actual1TextArea.setText(a.getActual1());
+        actual2TextArea.setText(a.getActual2());
+        actual3TextArea.setText(a.getActual3());
+        actual4TextArea.setText(a.getActual4());
+        actual5TextArea.setText(a.getActual5());
+
+
+
+        Tcm t=patient.getTcm();
+        tcm1TextArea.setText(t.getTcm1());
+        tcm2TextArea.setText(t.getTcm2());
+        tcm3TextArea.setText(t.getTcm3());
+        tcm4TextArea.setText(t.getTcm4());
+        tcm5TextArea.setText(t.getTcm5());
+        tcm6TextArea.setText(t.getTcm6());
+        tcm7TextArea.setText(t.getTcm7());
+        tcm8TextArea.setText(t.getTcm8());
+
+        Pulse p=patient.getPulse();
+        pulse1Choicebox.setValue(p.getPulse1());
+        pulse2Choicebox.setValue(p.getPulse2());
+        pulse3Choicebox.setValue(p.getPulse3());
+        pulse4Choicebox.setValue(p.getPulse4());
+        pulse5Choicebox.setValue(p.getPulse5());
+        pulse6Choicebox.setValue(p.getPulse6());
+        pulse7Choicebox.setValue(p.getPulse7());
+        pulse8Choicebox.setValue(p.getPulse8());
+        pulse9Choicebox.setValue(p.getPulse9());
+        pulse10Choicebox.setValue(p.getPulse10());
+        pulse11Choicebox.setValue(p.getPulse11());
+        pulse12Choicebox.setValue(p.getPulse12());
+        pulse13Choicebox.setValue(p.getPulse13());
+        pulse14Choicebox.setValue(p.getPulse14());
+        pulse15Choicebox.setValue(p.getPulse15());
+        pulse16Choicebox.setValue(p.getPulse16());
+        pulse17Choicebox.setValue(p.getPulse17());
+        pulse18Choicebox.setValue(p.getPulse18());
+        pulse19Choicebox.setValue(p.getPulse19());
+        pulse20Choicebox.setValue(p.getPulse20());
+        pulse21Choicebox.setValue(p.getPulse21());
+        pulse22Choicebox.setValue(p.getPulse22());
+        pulse23Choicebox.setValue(p.getPulse23());
+        pulse24Choicebox.setValue(p.getPulse24());
+        pulseTextArea2.setText(p.getOther());
+
+        Final f=patient.getFinal();
+        finalOpinionDatePicker.setValue(LocalDate.parse(f.getDate()));
+        finalTextArea.setText(f.getAssessment());
+        finalOpinionChoiceBox.setValue(f.getResult());
+
+        //treatmentControllers.clear();
+        //therapyTabPane.getTabs().clear();
+
+
+        ArrayList<Treatment> tr=patient.getTreatments();
+        int i=tr.size();
+
+        int k=0;
+        while (k<i){
+            addTreatment();
+            k++;
+        }
+        k=0;
+        for(TreatmentController treatmentController: treatmentControllers){
+                treatmentController.setTreatmentDatePicker(tr.get(k).getDate());
+                treatmentController.setTreatment1TextArea(tr.get(k).getTreatment1());
+                treatmentController.setTreatment2TextArea(tr.get(k).getTreatment2());
+                treatmentController.setTreatment3TextArea(tr.get(k).getTreatment3());
+                treatmentController.setTreatment4TextArea(tr.get(k).getTreatment4());
+                treatmentController.setTreatment5TextArea(tr.get(k).getTreatment5());
+                treatmentController.setTreatment6TextArea(tr.get(k).getTreatment6());
+                treatmentController.setGreenArrows();
+
+                treatmentController.addChangeListeners();
+                k++;
+        }
+
+    }
+
+    public void treatmentOverviewButton(MouseEvent mouseEvent) {
+        treatmentEditable=!treatmentEditable;
+        addNewTreatmentButton.setVisible(treatmentEditable);
+        finalStackPane1.setVisible(!treatmentEditable);
+        finalStackPane2.setVisible(treatmentEditable);
+        if(treatmentEditable) {
+            treatmentOverViewButton.setText("Áttekintő mód");
+        }else {
+            makeOverView();
+        }
+        for (TreatmentController t : treatmentControllers) {
+            t.changeEditMode(treatmentEditable);
+        }
+    }
+
+    private void makeOverView() {
+        treatmentOverViewButton.setText("Szerkesztő mód");
+        finalTextFlow.getChildren().clear();
+        String checkContent;
+        try {
+            checkContent = finalOpinionDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (Exception e) {
+            checkContent = "";
+        }
+        if (!checkContent.equals("")) {
+            Text label = new Text();
+            Text content = new Text();
+            label.setText("Záróvélemény dátuma: ");
+            content.getStyleClass().add("labelText");
+            content.setText(checkContent);
+            finalTextFlow.getChildren().addAll(label, content);
+        }
+        checkContent = finalTextArea.getText();
+        if (!checkContent.equals("")) {
+            Text label = new Text();
+            Text content = new Text();
+            label.setText("\n\n\nÉrtékelés\n\n");
+            label.getStyleClass().add("labelText");
+            content.setText(checkContent);
+            finalTextFlow.getChildren().addAll(label, content);
+        }
+        checkContent = finalOpinionChoiceBox.getValue();
+        if (!checkContent.equals("────────")) {
+            Text label = new Text();
+            Text content = new Text();
+            label.setText("\n\n\n\n\nVégső vélemény: ");
+            content.getStyleClass().add("labelText");
+            content.setText(checkContent);
+            finalTextFlow.getChildren().addAll(label, content);
+        }
+    }
+
+    public void addListeners(){
+        for(ArrayList<TextArea> textAreasPlace: allTextareas){
+            addChangelisteners(textAreasPlace);
+        }
+        addChangeListenersForPersonalData();
+
+    }
+
+    private void addChangelisteners(ArrayList<TextArea> textAreasPlace) {
+        addChangleListeners(textAreasPlace);
+    }
+
+    public static void addChangleListeners(ArrayList<TextArea> textAreasPlace) {
+        try{
+            for(TextArea tarea: textAreasPlace) {
+                tarea.textProperty().addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                        try {
+                            TitledPane tp = (TitledPane) tarea.getParent().getParent();
+                            if (!tarea.getText().trim().equals("")) {
+                                if (!tp.getStyleClass().contains("green-arrow")) {
+                                    tp.getStyleClass().add("green-arrow");
+                                }
+                            } else {
+                                tp.getStyleClass().remove("green-arrow");
+                            }
+                        }catch (Exception e){
+
+                        }
+                    }
+                });
+            }
+        }catch(Exception e){
+
+        }
+    }
+
+    private void addChangeListenersForPersonalData(){
+        personalDataTextField1.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!personalDataTextField1.getText().trim().equals("")){
+                    patientNameWarningLabel.setVisible(false);
+                }else{
+                    patientNameWarningLabel.setVisible(true);
+                }
+        });
+
+        personalDataDatePicker.valueProperty().addListener((observable, oldValue, newValue) ->  {
+                if(!personalDataDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).equals("")){
+                    birthDateWarningLabel.setVisible(false);
+                }else{
+                    birthDateWarningLabel.setVisible(true);
+                }
+        });
+
+        genderChoiceBoxx.valueProperty().addListener((observable, oldValue, newValue) ->  {
+                if(!genderChoiceBoxx.getValue().equals("")){
+                    genderWarningLabel.setVisible(false);
+                }else{
+                    genderWarningLabel.setVisible(true);
+                }
+        });
+
+    }
+
+    public void getPatient(MouseEvent mouseEvent) {
+
+    }
+
+    public void upDatePatient(MouseEvent mouseEvent) {
+        Patient patient = makePatient();
+        Main.db.updatePatient(patient);
+    }
+
+    public void save(MouseEvent mouseEvent) {
+        Patient patient = makePatient();
+
+        Main.db.addPatient(patient);
     }
 }
 

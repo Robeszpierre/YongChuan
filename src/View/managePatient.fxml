@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -24,13 +23,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
 <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
   <items>
       <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.9626307922272048" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
         <items>
-            <TabPane id="leftTabPane" fx:id="leftTabPane" prefHeight="669.0" prefWidth="628.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="669.0" prefWidth="628.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Adatok">
                      <content>
@@ -156,26 +156,31 @@
                               </StackPane>
                               <StackPane id="personalDataStackPane1" fx:id="personalDataStackPane2" layoutX="10.0" layoutY="10.0" prefHeight="608.0" prefWidth="638.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <VBox id="personalDataVbox" fx:id="personalDataVbox1" alignment="CENTER" prefHeight="598.0" prefWidth="628.0">
+                                    <VBox id="personalDataVbox" fx:id="personalDataVbox1" alignment="CENTER">
                                        <children>
-                                          <HBox id="hbox" fx:id="hbox1" alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox id="hbox" fx:id="hbox1" alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="600.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label minWidth="140.0" text="Páciens Neve">
                                                    <padding>
                                                       <Insets right="20.0" />
                                                    </padding>
                                                 </Label>
-                                                <TextField id="personalDataTextField1" fx:id="personalDataTextField1" prefHeight="30.0" prefWidth="250.0" promptText="Példa János">
+                                                <TextField id="personalDataTextField1" fx:id="personalDataTextField1" minWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Példa János">
                                                    <HBox.margin>
-                                                      <Insets />
+                                                      <Insets right="20.0" />
                                                    </HBox.margin>
                                                 </TextField>
+                                                <Label fx:id="patientNameWarningLabel" style="-fx-font-weight: bold;" text="Kötelező kitölteni!" textFill="#ff6a6a">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="600.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label minWidth="140.0" text="Anyja neve">
                                                    <padding>
@@ -192,7 +197,7 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="600.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label minWidth="140.0" text="Születési hely">
                                                    <padding>
@@ -205,20 +210,29 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="600.0" prefHeight="100.0">
                                              <children>
                                                 <Label minWidth="140.0" text="Születési időpont:">
                                                    <HBox.margin>
                                                       <Insets />
                                                    </HBox.margin>
                                                 </Label>
-                                                <DatePicker id="personalDataDatePicker" fx:id="personalDataDatePicker" prefWidth="250.0" promptText="1954. 04. 12." />
+                                                <DatePicker id="personalDataDatePicker" fx:id="personalDataDatePicker" minWidth="250.0" onMouseClicked="#setTodayForBirthDate" prefWidth="250.0" promptText="1954. 04. 12.">
+                                                   <HBox.margin>
+                                                      <Insets right="20.0" />
+                                                   </HBox.margin></DatePicker>
+                                                <Label fx:id="birthDateWarningLabel" style="-fx-font-weight: bold;" text="Kötelező kitölteni!" textFill="#ff6a6a">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="600.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label minWidth="140.0" text="Családi állapot">
                                                    <padding>
@@ -231,7 +245,7 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="600.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label minWidth="140.0" text="Foglalkozás">
                                                    <padding>
@@ -244,7 +258,7 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="600.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label minWidth="140.0" text="E-mail cím">
                                                    <padding>
@@ -257,7 +271,7 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="600.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label minWidth="140.0" text="Telefonszám">
                                                    <padding>
@@ -270,17 +284,25 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="500.0" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="600.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label minWidth="140.0" text="Páciens neme" />
-                                                <ComboBox id="genderCombobox" fx:id="genderCombobox" promptText="Páciens neme">
+                                                <ChoiceBox id="genderChoiceBoxx" fx:id="genderChoiceBoxx" minWidth="250.0" prefHeight="30.0" prefWidth="250.0">
                                                    <items>
-                                                      <FXCollections fx:factory="observableArrayList">
-                                                         <String fx:value="férfi" />
-                                                         <String fx:value="nő" />
-                                                      </FXCollections>
+                                                       <FXCollections fx:factory="observableArrayList">
+                                                           <String fx:value="férfi" />
+                                                           <String fx:value="nő" />
+                                                       </FXCollections>
                                                    </items>
-                                                </ComboBox>
+                                                   <HBox.margin>
+                                                      <Insets right="20.0" />
+                                                   </HBox.margin>
+                                                </ChoiceBox>
+                                                <Label fx:id="genderWarningLabel" style="-fx-font-weight: bold;" text="Kötelező kitölteni!" textFill="#ff6a6a">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
                                              </children>
                                           </HBox>
                                        </children>
@@ -354,7 +376,7 @@
                                        <panes>
                                           <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Magzati kor, születés körüli időszak">
                                              <content>
-                                                <TextArea id="psychic1TextArea" fx:id="psychic1TextArea" prefHeight="200.0" prefWidth="200.0" text="s" wrapText="true" />
+                                                <TextArea id="psychic1TextArea" fx:id="psychic1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
                                           <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Gyermekkor">
@@ -507,11 +529,11 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <StackPane id="hkoStackPane1" fx:id="hkoStackPane1" prefHeight="598.0" prefWidth="628.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <StackPane id="tcmStackPane1" fx:id="tcmStackPane1" prefHeight="598.0" prefWidth="628.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <ScrollPane id="hkoScrollPane" fx:id="hkoScrollPane" fitToWidth="true">
+                                    <ScrollPane id="tcmScrollPane" fx:id="tcmScrollPane" fitToWidth="true">
                                        <content>
-                                          <TextFlow id="hkoTextFlow" fx:id="hkoTextFlow">
+                                          <TextFlow id="tcmTextFlow" fx:id="tcmTextFlow">
                                              <padding>
                                                 <Insets left="20.0" top="20.0" />
                                              </padding>
@@ -520,21 +542,21 @@
                                     </ScrollPane>
                                  </children>
                               </StackPane>
-                              <StackPane id="hkoStackPane2" fx:id="hkoStackPane2" prefHeight="598.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <StackPane id="tcmStackPane2" fx:id="tcmStackPane2" prefHeight="598.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Accordion prefHeight="636.0" prefWidth="628.0">
                                        <panes>
-                                          <TitledPane id="hko1TitledPane" fx:id="hko1TitledPane" animated="false" layoutX="10.0" layoutY="590.0" text="Diagnózis(ok)">
+                                          <TitledPane id="tcm1TitledPane" fx:id="tcm1TitledPane" animated="false" layoutX="10.0" layoutY="590.0" text="Diagnózis(ok)">
                                              <content>
-                                                <TextArea id="hko1TextArea" fx:id="hko1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                <TextArea id="tcm1TextArea" fx:id="tcm1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane id="hko2TitledPane" fx:id="hko2TitledPane" animated="false" layoutX="10.0" layoutY="166.0" text="Terápiás koncepció">
+                                          <TitledPane id="tcm2TitledPane" fx:id="tcm2TitledPane" animated="false" layoutX="10.0" layoutY="166.0" text="Terápiás koncepció">
                                              <content>
-                                                <TextArea id="hko2TextArea" fx:id="hko2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                <TextArea id="tcm2TextArea" fx:id="tcm2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane id="hko3TitledPane" fx:id="hko3TitledPane" animated="false" layoutX="10.0" layoutY="590.0" text="Javaslat(ok)">
+                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" styleClass="normal-arrow" text="Javaslat(ok)">
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
@@ -542,32 +564,32 @@
                                                          <panes>
                                                             <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Étrend">
                                                                <content>
-                                                                  <TextArea id="hko3TextArea" fx:id="hko3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                                  <TextArea id="tcm3TextArea" fx:id="tcm3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
                                                             <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Gyógynövény">
                                                                <content>
-                                                                  <TextArea id="hko4TextArea" fx:id="hko4TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                                  <TextArea id="tcm4TextArea" fx:id="tcm4TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
                                                             <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Kínai orvosság">
                                                                <content>
-                                                                  <TextArea id="hko5TextArea" fx:id="hko5TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                                  <TextArea id="tcm5TextArea" fx:id="tcm5TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
                                                             <TitledPane animated="false" layoutX="10.0" layoutY="62.0" text="Mozgás/gyógytorna">
                                                                <content>
-                                                                  <TextArea id="hko6TextArea" fx:id="hko6TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                                  <TextArea id="tcm6TextArea" fx:id="tcm6TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
                                                             <TitledPane animated="false" layoutX="10.0" layoutY="88.0" text="Manuálterápia">
                                                                <content>
-                                                                  <TextArea id="hko7TextArea" fx:id="hko7TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                                  <TextArea id="tcm7TextArea" fx:id="tcm7TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
                                                             <TitledPane animated="false" layoutX="10.0" layoutY="461.0" text="Életmód, egyéb javaslat">
                                                                <content>
-                                                                  <TextArea id="hko8TextArea" fx:id="hko8TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                                  <TextArea id="tcm8TextArea" fx:id="tcm8TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
                                                          </panes>
@@ -587,328 +609,702 @@
                   <Tab text="Pulzus">
                      <content>
                         <GridPane>
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                              <StackPane id="pulseStackPane1" fx:id="pulseStackPane1" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="10">
                                  <children>
-                                    <Label text="1 (T)" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <GridPane>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
                                        <children>
-                                          <Label text="JOBB" />
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label text="1 (T)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label text="JOBB" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <Label text="Mélység" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                             <children>
+                                                <Label text="Sebesség" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+                                             <children>
+                                                <Label text="Erő" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                                             <children>
+                                                <Label text="Ritmus" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label text="2 (L)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                                             <children>
+                                                <Label text="3 (V)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="BAL" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
+                                             <children>
+                                                <Label text="1 (SZ)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="7">
+                                             <children>
+                                                <Label text="2 (M)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="8">
+                                             <children>
+                                                <Label text="3 (V)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="Mélység" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="Sebesség" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="Erő" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="Ritmus" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                             <children>
+                                                <Label id="pulseLabel3" fx:id="pulseLabel3" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label id="pulseLabel1" fx:id="pulseLabel1" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label id="pulseLabel2" fx:id="pulseLabel2" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label id="pulseLabel4" fx:id="pulseLabel4" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label id="pulseLabel5" fx:id="pulseLabel5" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label id="pulseLabel6" fx:id="pulseLabel6" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label id="pulseLabel7" fx:id="pulseLabel7" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label id="pulseLabel8" fx:id="pulseLabel8" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <children>
+                                                <Label id="pulseLabel9" fx:id="pulseLabel9" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <children>
+                                                <Label id="pulseLabel10" fx:id="pulseLabel10" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                             <children>
+                                                <Label id="pulseLabel11" fx:id="pulseLabel11" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                             <children>
+                                                <Label id="pulseLabel12" fx:id="pulseLabel12" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                             <children>
+                                                <Label id="pulseLabel13" fx:id="pulseLabel13" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                             <children>
+                                                <Label id="pulseLabel14" fx:id="pulseLabel14" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                             <children>
+                                                <Label id="pulseLabel15" fx:id="pulseLabel15" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                             <children>
+                                                <Label id="pulseLabel16" fx:id="pulseLabel16" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                             <children>
+                                                <Label id="pulseLabel17" fx:id="pulseLabel17" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                             <children>
+                                                <Label id="pulseLabel18" fx:id="pulseLabel18" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                             <children>
+                                                <Label id="pulseLabel19" fx:id="pulseLabel19" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                             <children>
+                                                <Label id="pulseLabel20" fx:id="pulseLabel20" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                             <children>
+                                                <Label id="pulseLabel21" fx:id="pulseLabel21" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                             <children>
+                                                <Label id="pulseLabel22" fx:id="pulseLabel22" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                                             <children>
+                                                <Label id="pulseLabel23" fx:id="pulseLabel23" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                                             <children>
+                                                <Label id="pulseLabel24" fx:id="pulseLabel24" text="Label">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <TextArea id="pulseTextArea1" fx:id="pulseTextArea1" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+                                          <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="9">
+                                             <children>
+                                                <Label text="Egyéb:">
+                                                   <VBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
                                        </children>
-                                    </VBox>
+                                    </GridPane>
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                              </StackPane>
+                              <StackPane id="pulseStackPane2" fx:id="pulseStackPane2" prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="5" GridPane.rowSpan="10">
                                  <children>
-                                    <Label text="Mélység" />
+                                    <GridPane>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label text="1 (T)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label text="JOBB" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <Label text="Mélység" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                             <children>
+                                                <Label text="Sebesség" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+                                             <children>
+                                                <Label text="Erő" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                                             <children>
+                                                <Label text="Ritmus" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label text="2 (L)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                                             <children>
+                                                <Label text="3 (V)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="BAL" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
+                                             <children>
+                                                <Label text="1 (SZ)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="7">
+                                             <children>
+                                                <Label text="2 (M)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="8">
+                                             <children>
+                                                <Label text="3 (V)" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="Mélység" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="Sebesség" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="Erő" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                             <children>
+                                                <Label text="Ritmus" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                             <children>
+                                                <ChoiceBox id="pulse3Choicebox" fx:id="pulse3Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <ChoiceBox id="pulse1Choicebox" fx:id="pulse1Choicebox" maxWidth="100.0" minWidth="100.0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <children>
+                                                <ChoiceBox id="pulse2Choicebox" fx:id="pulse2Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                             <children>
+                                                <ChoiceBox id="pulse3Choicebox" fx:id="pulse4Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <children>
+                                                <ChoiceBox id="pulse5Choicebox" fx:id="pulse5Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <children>
+                                                <ChoiceBox id="pulse6Choicebox" fx:id="pulse6Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                             <children>
+                                                <ChoiceBox id="pulse7Choicebox" fx:id="pulse7Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                             <children>
+                                                <ChoiceBox id="pulse8Choicebox" fx:id="pulse8Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <children>
+                                                <ChoiceBox id="pulse9Choicebox" fx:id="pulse9Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <children>
+                                                <ChoiceBox id="pulse10Choicebox" fx:id="pulse10Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                             <children>
+                                                <ChoiceBox id="pulse11Choicebox" fx:id="pulse11Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                             <children>
+                                                <ChoiceBox id="pulse12Choicebox" fx:id="pulse12Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                             <children>
+                                                <ChoiceBox id="pulse13Choicebox" fx:id="pulse13Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                             <children>
+                                                <ChoiceBox id="pulse14Choicebox" fx:id="pulse14Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                             <children>
+                                                <ChoiceBox id="pulse15Choicebox" fx:id="pulse15Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                             <children>
+                                                <ChoiceBox id="pulse16Choicebox" fx:id="pulse16Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                             <children>
+                                                <ChoiceBox id="pulse17Choicebox" fx:id="pulse17Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                             <children>
+                                                <ChoiceBox id="pulse18Choicebox" fx:id="pulse18Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                             <children>
+                                                <ChoiceBox id="pulse19Choicebox" fx:id="pulse19Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                             <children>
+                                                <ChoiceBox id="pulse20Choicebox" fx:id="pulse20Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                             <children>
+                                                <ChoiceBox id="pulse21Choicebox" fx:id="pulse21Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                             <children>
+                                                <ChoiceBox id="pulse22Choicebox" fx:id="pulse22Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                                             <children>
+                                                <ChoiceBox id="pulse23Choicebox" fx:id="pulse23Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                                             <children>
+                                                <ChoiceBox id="pulse24Choicebox" fx:id="pulse24Choicebox" maxWidth="100.0" minWidth="100.0">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                          <TextArea id="pulseTextArea2" fx:id="pulseTextArea2" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+                                          <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="9">
+                                             <children>
+                                                <Label text="Egyéb:">
+                                                   <VBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </GridPane>
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                                 <children>
-                                    <Label text="Sebesség" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
-                                 <children>
-                                    <Label text="Erő" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
-                                 <children>
-                                    <Label text="Ritmus" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-                                 <children>
-                                    <Label text="2 (L)" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
-                                 <children>
-                                    <Label text="3 (V)" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
-                                 <children>
-                                    <Label text="BAL" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
-                                 <children>
-                                    <Label text="1 (SZ)" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="7">
-                                 <children>
-                                    <Label text="2 (M)" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="8">
-                                 <children>
-                                    <Label text="3 (V)" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                 <children>
-                                    <Label text="Mélység" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                 <children>
-                                    <Label text="Sebesség" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                 <children>
-                                    <Label text="Erő" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
-                                 <children>
-                                    <Label text="Ritmus" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                 <children>
-                                    <ChoiceBox id="pulse3Choicebox" fx:id="pulse3Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <children>
-                                    <ChoiceBox id="pulse1Choicebox" fx:id="pulse1Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <children>
-                                    <ChoiceBox id="pulse2Choicebox" fx:id="pulse2Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                 <children>
-                                    <ChoiceBox id="pulse3Choicebox" fx:id="pulse4Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <children>
-                                    <ChoiceBox id="pulse5Choicebox" fx:id="pulse5Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <children>
-                                    <ChoiceBox id="pulse6Choicebox" fx:id="pulse6Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                 <children>
-                                    <ChoiceBox id="pulse7Choicebox" fx:id="pulse7Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                                 <children>
-                                    <ChoiceBox id="pulse8Choicebox" fx:id="pulse8Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <children>
-                                    <ChoiceBox id="pulse9Choicebox" fx:id="pulse9Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <children>
-                                    <ChoiceBox id="pulse10Choicebox" fx:id="pulse10Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                 <children>
-                                    <ChoiceBox id="pulse11Choicebox" fx:id="pulse11Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                                 <children>
-                                    <ChoiceBox id="pulse12Choicebox" fx:id="pulse12Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                 <children>
-                                    <ChoiceBox id="pulse13Choicebox" fx:id="pulse13Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                                 <children>
-                                    <ChoiceBox id="pulse14Choicebox" fx:id="pulse14Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                                 <children>
-                                    <ChoiceBox id="pulse15Choicebox" fx:id="pulse15Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                                 <children>
-                                    <ChoiceBox id="pulse16Choicebox" fx:id="pulse16Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                 <children>
-                                    <ChoiceBox id="pulse17Choicebox" fx:id="pulse17Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                                 <children>
-                                    <ChoiceBox id="pulse18Choicebox" fx:id="pulse18Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                                 <children>
-                                    <ChoiceBox id="pulse19Choicebox" fx:id="pulse19Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
-                                 <children>
-                                    <ChoiceBox id="pulse20Choicebox" fx:id="pulse20Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                                 <children>
-                                    <ChoiceBox id="pulse21Choicebox" fx:id="pulse21Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
-                                 <children>
-                                    <ChoiceBox id="pulse22Choicebox" fx:id="pulse22Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="8">
-                                 <children>
-                                    <ChoiceBox id="pulse23Choicebox" fx:id="pulse23Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="8">
-                                 <children>
-                                    <ChoiceBox id="pulse24Choicebox" fx:id="pulse24Choicebox" maxWidth="100.0" minWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </VBox.margin>
-                                    </ChoiceBox>
-                                 </children>
-                              </VBox>
+                              </StackPane>
                            </children>
                         </GridPane>
                      </content>
@@ -925,52 +1321,83 @@
                </children></AnchorPane>
         </items>
       </SplitPane>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="74.0" prefWidth="160.0">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL">
          <items>
-            <TabPane id="therapyTabPane" fx:id="therapyTabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane id="therapyTabPane" fx:id="therapyTabPane" prefHeight="200.0" prefWidth="200.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Záróvélemény">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane>
                            <children>
-                              <HBox alignment="CENTER_LEFT">
+                              <StackPane id="finalStackPane1" fx:id="finalStackPane1" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label text="Záróvélemény kelte:">
-                                       <HBox.margin>
-                                          <Insets left="20.0" right="20.0" top="10.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <DatePicker id="finalOpinionDatePicker" fx:id="finalOpinionDatePicker" onMouseClicked="#setToday" prefWidth="137.0">
-                                       <HBox.margin>
-                                          <Insets top="10.0" />
-                                       </HBox.margin>
-                                    </DatePicker>
+                                    <ScrollPane id="finalScrollPane" fx:id="finalScrollPane" fitToWidth="true">
+                                       <content>
+                                          <TextFlow id="finalTextFlow" fx:id="finalTextFlow">
+                                             <padding>
+                                                <Insets left="20.0" top="20.0" />
+                                             </padding>
+                                          </TextFlow>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
-                              </HBox>
-                              <TextArea layoutX="14.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0" />
-                              <ChoiceBox id="finalOpinionChoiceBox" fx:id="finalOpinionChoiceBox" layoutX="20.0" layoutY="450.0" prefWidth="150.0" value="────────" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
-                                  <items>
-                                      <FXCollections fx:factory="observableArrayList">
-                                          <String fx:value="────────" />
-                                          <String fx:value="gyógyult" />
-                                          <String fx:value="részben gyógyult" />
-                                          <String fx:value="nem gyógyult" />
-                                          <String fx:value="egyéb" />
-                                      </FXCollections>
-                                  </items>
-                              </ChoiceBox>
-                              <Label layoutX="20.0" layoutY="43.0" text="Értékelés:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="43.0" />
+                              </StackPane>
+                              <StackPane id="finalStackPane2" fx:id="finalStackPane2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label text="Záróvélemény kelte:">
+                                                   <HBox.margin>
+                                                      <Insets left="20.0" right="20.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <DatePicker id="finalOpinionDatePicker" fx:id="finalOpinionDatePicker" editable="false" onMouseClicked="#setTodayForFinal" prefWidth="160.0">
+                                                   <HBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </HBox.margin>
+                                                </DatePicker>
+                                             </children>
+                                          </HBox>
+                                          <TextArea id="finalTextArea" fx:id="finalTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0" />
+                                          <ChoiceBox id="finalOpinionChoiceBox" fx:id="finalOpinionChoiceBox" prefWidth="150.0" value="────────" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
+                                              <items>
+                                                  <FXCollections fx:factory="observableArrayList">
+                                                      <String fx:value="────────" />
+                                                      <String fx:value="gyógyult" />
+                                                      <String fx:value="részben gyógyult" />
+                                                      <String fx:value="nem gyógyult" />
+                                                      <String fx:value="egyéb" />
+                                                  </FXCollections>
+                                              </items>
+                                          </ChoiceBox>
+                                          <Label text="Értékelés:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="43.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children></StackPane>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
               </tabs>
             </TabPane>
-            <AnchorPane maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0">
+            <AnchorPane maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
                <children>
                   <HBox alignment="CENTER" layoutX="34.0" layoutY="-35.0" prefHeight="30.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#addNewThreatment" text="Új kezelés" />
+                        <Button id="addNewTreatmentButton" fx:id="addNewTreatmentButton" mnemonicParsing="false" onMouseClicked="#addNewThreatment" text="Új kezelés">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin></Button>
+                        <Button id="treatmentOverViewButton" fx:id="treatmentOverViewButton" layoutX="239.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#treatmentOverviewButton" text="Áttekintő mód">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#save" text="Mentés" />
+                        <Button mnemonicParsing="false" onMouseClicked="#getPatient" text="getPatient" />
+                        <Button mnemonicParsing="false" onMouseClicked="#upDatePatient" text="update" />
                      </children>
                   </HBox>
                </children>

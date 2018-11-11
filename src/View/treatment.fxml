@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="anc" fx:id="anc" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.TreatmentController">
+   <children>
+      <StackPane id="treatmentStackPane1" fx:id="treatmentStackPane1" prefHeight="598.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ScrollPane id="psychicScrollPane" fx:id="psychicScrollPane" fitToWidth="true">
+               <content>
+                  <TextFlow id="treatmentTextFlow" fx:id="treatmentTextFlow">
+                     <padding>
+                        <Insets left="20.0" top="20.0" />
+                     </padding>
+                  </TextFlow>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
+      <StackPane id="treatmentStackPane2" fx:id="treatmentStackPane2" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                    <panes>
+                      <TitledPane fx:id="titledPane1" animated="false" text="Romlás">
+                           <content>
+                              <TextArea id="treatment1TextArea" fx:id="treatment1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                           </content>
+                        </TitledPane>
+                      <TitledPane fx:id="titledPane2" animated="false" text="Javulás">
+                           <content>
+                              <TextArea id="treatment2TextArea" fx:id="treatment2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                           </content>
+                        </TitledPane>
+                        <TitledPane fx:id="titledPane3" animated="false" layoutX="10.0" layoutY="36.0" text="Egyéb">
+                           <content>
+                              <TextArea id="treatment3TextArea" fx:id="treatment3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                           </content>
+                        </TitledPane>
+                        <TitledPane fx:id="titledPane4" animated="false" layoutX="10.0" layoutY="434.0" text="Újabb javaslatok">
+                           <content>
+                              <TextArea id="treatment4TextArea" fx:id="treatment4TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                           </content>
+                        </TitledPane>
+                        <TitledPane fx:id="titledPane5" animated="false" layoutX="10.0" layoutY="434.0" text="Terápia (pontok, masszázs, moxa, köpöly stb.)">
+                           <content>
+                              <TextArea id="treatment5TextArea" fx:id="treatment5TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                           </content>
+                        </TitledPane>
+                        <TitledPane fx:id="titledPane6" animated="false" layoutX="10.0" layoutY="114.0" text="Manuálterápia">
+                           <content>
+                              <TextArea id="treatment6TextArea" fx:id="treatment6TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                           </content>
+                        </TitledPane>
+                    </panes>
+                  </Accordion>
+                  <DatePicker id="treatmentDatePicker" fx:id="treatmentDatePicker" editable="false" prefHeight="26.0" prefWidth="160.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="10.0" />
+                  <Label text="Kezelés időpontja:" AnchorPane.topAnchor="15.0" />
+               </children></AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,33 @@
+.tab-pane{
+    -fx-font-size: 1.2em;
+}
+
+.titled-pane
+{
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+}
+
+.text-area
+{
+    -fx-font-size: 1em;
+    -fx-font-weight: normal;
+}
+
+.label{
+    -fx-font-size: 1em;
+}
+
+.text-area{
+    -fx-font-size: 1em;
+}
+
+.date-picker{
+    -fx-font-size: 1em;
+}
+.choice-box{
+    -fx-font-size: 1em;
+}
+.combo-box{
+    -fx-font-size: 1em;
+}
