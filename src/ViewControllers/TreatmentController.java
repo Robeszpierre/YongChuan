@@ -71,7 +71,12 @@ public class TreatmentController {
         treatmentTextAreas.add(treatment5TextArea);
         treatmentTextAreas.add(treatment6TextArea);
 
-        addChangeListeners();
+        addChangeListener(treatment1TextArea, titledPane1);
+        addChangeListener(treatment2TextArea, titledPane2);
+        addChangeListener(treatment3TextArea, titledPane3);
+        addChangeListener(treatment4TextArea, titledPane4);
+        addChangeListener(treatment5TextArea, titledPane5);
+        addChangeListener(treatment6TextArea, titledPane6);
     }
 
     public String getTreatmentDate(){
@@ -146,8 +151,19 @@ public class TreatmentController {
         treatmentDatePicker.setValue(LocalDate.parse(content));
     }
 
-    public void addChangeListeners(){
-            ManagePatientController.addChangleListeners(treatmentTextAreas);
+    public void addChangeListener(TextArea tarea, TitledPane tp){
+        tarea.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!tarea.getText().trim().equals("")) {
+                    if (!tp.getStyleClass().contains("green-arrow")) {
+                        tp.getStyleClass().add("green-arrow");
+                    }
+                } else {
+                    tp.getStyleClass().remove("green-arrow");
+                }
+            }
+        });
     }
 
 

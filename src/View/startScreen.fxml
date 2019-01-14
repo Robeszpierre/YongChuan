@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="937.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.StartController">
+<AnchorPane fx:id="main" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.StartController">
    <children>
-      <VBox id="background" fx:id="background" alignment="CENTER" prefHeight="512.0" prefWidth="937.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox id="background" fx:id="background" alignment="CENTER" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button mnemonicParsing="false" onMouseClicked="#getchoosePatientScreen" prefHeight="100.0" prefWidth="400.0" styleClass="dark-grey" text="Betegek kezelése">
                <VBox.margin>
                   <Insets bottom="100.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="400.0" styleClass="dark-grey" text="Statisztika">
+            <Button mnemonicParsing="false" onMouseClicked="#getStartScreen" prefHeight="100.0" prefWidth="400.0" styleClass="dark-grey" text="Statisztika">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

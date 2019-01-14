@@ -31,3 +31,28 @@
 .combo-box{
     -fx-font-size: 1em;
 }
+
+.table-view .column-header .label {
+    -fx-font-size: 1.2em;
+}
+
+.table-row{
+    -fx-font-size: 1.1em;
+}
+
+.chart-title {
+    -fx-font-size: 1.6em;
+    -fx-font-weight: bold;
+}
+
+.chart-pie-label {
+    -fx-font-size: 1.3em;
+}
+
+.legend {
+    -fx-font-size: 1.5em;
+}
+
+.chart-legend{
+    -fx-font-size: 1.3em;
+}

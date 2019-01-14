@@ -39,8 +39,8 @@ public class DB_CreateTables extends  DB_Config {
                         "(" +
                         "    PATIENT_ID INT," +
                         "    NAME varchar(100)," +
-                        "    LOCATION int," +
-                        "    TYPE smallint" +
+                        "    LOCATION varchar(5)," +
+                        "    TYPE int" +
                         ")");
                 System.out.println("symptoms table created");
             }

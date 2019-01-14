@@ -2,10 +2,27 @@ package ViewControllers;
 
 import Controller.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 
-public class PersonalDataController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class PersonalDataController implements Initializable, ControlledScreen {
+
+    ScreensController myController;
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+
+    public void setScreenParent(ScreensController screenParent){
+        myController = screenParent;
+    }
 
     @FXML
     ComboBox genderCombobox;
@@ -21,6 +38,8 @@ public class PersonalDataController {
     }
 
     public void addNewPatientData(MouseEvent mouseEvent) {
-        Main.getmanagePatientScreen();
+
     }
+
+
 }

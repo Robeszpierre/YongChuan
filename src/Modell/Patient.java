@@ -13,7 +13,7 @@ public class Patient {
 
         private int patient_ID;
         private PatientData patientData;
-        private Symptoms symptoms;
+        private Symptom symptoms;
         private Psyche psyche;
         private History history;
         private Actual actual;
@@ -22,7 +22,7 @@ public class Patient {
         private ArrayList<Treatment> treatments;
         private Final Final;
 
-        private Patient(PatientData patientData, Symptoms symptoms, Psyche psyche, History history, Actual actual, Tcm tcm, Pulse pulse, ArrayList<Treatment> treatments, Final Final){
+        private Patient(PatientData patientData, Symptom symptoms, Psyche psyche, History history, Actual actual, Tcm tcm, Pulse pulse, ArrayList<Treatment> treatments, Final Final){
             this.patient_ID=Main.patientID;
             this.patientData=patientData;
             this.symptoms=symptoms;
@@ -38,7 +38,7 @@ public class Patient {
         private Patient(){
             this.patient_ID=Main.patientID;
             this.patientData=new PatientData();
-            this.symptoms=new Symptoms();
+            this.symptoms=new Symptom();
             this.psyche=new Psyche();
             this.history=new History();
             this.actual=new Actual();
@@ -56,11 +56,11 @@ public class Patient {
             this.patientData = patientData;
         }
 
-        public Symptoms getSymptoms() {
+        public Symptom getSymptoms() {
             return symptoms;
         }
 
-        public void setSymptoms(Symptoms symptoms) {
+        public void setSymptoms(Symptom symptoms) {
             this.symptoms = symptoms;
         }
 

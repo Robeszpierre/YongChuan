@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="850.0" prefWidth="1038.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.JointsController">
+   <children>
+      <VBox prefHeight="778.0" prefWidth="1045.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Panasz helye:" wrapText="true" />
+                  <TextField id="jointsTextField1" fx:id="jointsTextField1" prefWidth="500.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Panasz fennállásának ideje" wrapText="true" />
+                  <TextField id="jointsTextField2" fx:id="jointsTextField2" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Kisugárzás:" wrapText="true" />
+                  <TextField id="jointsTextField3" fx:id="jointsTextField3" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Érintett meridián(ok)" wrapText="true" />
+                  <TextField id="jointsTextField4" fx:id="jointsTextField4" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Érzékeny (trigger, Ah Shi pontok" wrapText="true" />
+                  <TextField id="jointsTextField5" fx:id="jointsTextField5" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Éjszaka fennáll-e a fájdalom?" wrapText="true" />
+                  <ComboBox id="jointsCombobox1" fx:id="jointsCombobox1" value="nem">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="nem" />
+                           <String fx:value="igen" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Fájdalom jellege:" wrapText="true" />
+                  <TextField id="jointsTextField6" fx:id="jointsTextField6" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Mi ronja?" wrapText="true" />
+                  <TextField id="jointsTextField7" fx:id="jointsTextField7" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Mi javítja?" wrapText="true" />
+                  <TextField id="jointsTextField8" fx:id="jointsTextField8" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Mozgáskorlátozott-e?" wrapText="true" />
+                  <ComboBox id="jointsCombobox2" fx:id="jointsCombobox2" value="nem">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="nem" />
+                           <String fx:value="igen" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="290.0" prefWidth="300.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Egyéb kísérő tünetek (pl. bőrpír)" wrapText="true" />
+                  <TextField id="jointsTextField9" fx:id="jointsTextField9" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="570.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Korábbi sérülés" />
+                  <TextField id="jointsTextField10" fx:id="jointsTextField10" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="626.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Korábbi műtét:" />
+                  <TextField id="jointsTextField11" fx:id="jointsTextField11" prefWidth="500.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="638.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Panaszok szimmetrikusak-e?" />
+                  <ComboBox id="jointsCombobox3" fx:id="jointsCombobox3" promptText="Nem megkérdezett">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="nem" />
+                           <String fx:value="igen" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="750.0" spacing="40.0">
+               <children>
+                  <Label minWidth="-Infinity" prefWidth="200.0" text="Egyéb:" />
+                  <TextField id="jointsTextField12" fx:id="jointsTextField12" prefWidth="500.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

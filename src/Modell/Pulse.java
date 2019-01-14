@@ -60,31 +60,31 @@ public class Pulse {
     }
 
     public  Pulse(){
-        this.pulse1 = new SimpleStringProperty("");
-        this.pulse2 = new SimpleStringProperty("");
-        this.pulse3 = new SimpleStringProperty("");
-        this.pulse4 = new SimpleStringProperty("");
-        this.pulse5 = new SimpleStringProperty("");
-        this.pulse6 = new SimpleStringProperty("");
-        this.pulse7 = new SimpleStringProperty("");
-        this.pulse8 = new SimpleStringProperty("");
-        this.pulse9 = new SimpleStringProperty("");
-        this.pulse10 = new SimpleStringProperty("");
-        this.pulse11 = new SimpleStringProperty("");
-        this.pulse12 = new SimpleStringProperty("");
-        this.pulse13 = new SimpleStringProperty("");
-        this.pulse14 = new SimpleStringProperty("");
-        this.pulse15 = new SimpleStringProperty("");
-        this.pulse16 = new SimpleStringProperty("");
-        this.pulse17 = new SimpleStringProperty("");
-        this.pulse18 = new SimpleStringProperty("");
-        this.pulse19 = new SimpleStringProperty("");
-        this.pulse20 = new SimpleStringProperty("");
-        this.pulse21 = new SimpleStringProperty("");
-        this.pulse22 = new SimpleStringProperty("");
-        this.pulse23 = new SimpleStringProperty("");
-        this.pulse24 = new SimpleStringProperty("");
-        this.other = new SimpleStringProperty("");
+        this.pulse1 = new SimpleStringProperty("────────");
+        this.pulse2 = new SimpleStringProperty("────────");
+        this.pulse3 = new SimpleStringProperty("────────");
+        this.pulse4 = new SimpleStringProperty("────────");
+        this.pulse5 = new SimpleStringProperty("────────");
+        this.pulse6 = new SimpleStringProperty("────────");
+        this.pulse7 = new SimpleStringProperty("────────");
+        this.pulse8 = new SimpleStringProperty("────────");
+        this.pulse9 = new SimpleStringProperty("────────");
+        this.pulse10 = new SimpleStringProperty("────────");
+        this.pulse11 = new SimpleStringProperty("────────");
+        this.pulse12 = new SimpleStringProperty("────────");
+        this.pulse13 = new SimpleStringProperty("────────");
+        this.pulse14 = new SimpleStringProperty("────────");
+        this.pulse15 = new SimpleStringProperty("────────");
+        this.pulse16 = new SimpleStringProperty("────────");
+        this.pulse17 = new SimpleStringProperty("────────");
+        this.pulse18 = new SimpleStringProperty("────────");
+        this.pulse19 = new SimpleStringProperty("────────");
+        this.pulse20 = new SimpleStringProperty("────────");
+        this.pulse21 = new SimpleStringProperty("────────");
+        this.pulse22 = new SimpleStringProperty("────────");
+        this.pulse23 = new SimpleStringProperty("────────");
+        this.pulse24 = new SimpleStringProperty("────────");
+        this.other = new SimpleStringProperty("────────");
     }
 
     public String getPulse1() {

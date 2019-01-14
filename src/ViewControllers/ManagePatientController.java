@@ -8,25 +8,104 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
-public class ManagePatientController {
+public class ManagePatientController implements Initializable, ControlledScreen {
+
+    ScreensController myController;
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        fixEditSplitPane();
+        initPulseChoicboxes();
+        makeListOfTitledPanes();
+        makeListOfTextAreas();
+        makelistOfTextFlows();
+        makeListOfpersonalDateTextFields();
+        personalDataBindings();
+        setDatePickers();
+        setPulseBindings();
+        addListeners();
+
+        loadSymptoms();
+    }
+
+    public void setScreenParent(ScreensController screenParent){
+        myController = screenParent;
+    }
 
     @FXML
     SplitPane splitPane;
+    @FXML
+    TitledPane titledPane1;
+    @FXML
+    TitledPane titledPane2;
+    @FXML
+    TitledPane titledPane3;
+    @FXML
+    TitledPane titledPane4;
+    @FXML
+    TitledPane titledPane5;
+    @FXML
+    TitledPane titledPane6;
+    @FXML
+    TitledPane titledPane7;
+    @FXML
+    TitledPane titledPane8;
+    @FXML
+    TitledPane titledPane9;
+    @FXML
+    TitledPane titledPane10;
+    @FXML
+    TitledPane titledPane11;
+    @FXML
+    TitledPane titledPane12;
+    @FXML
+    TitledPane titledPane13;
+    @FXML
+    TitledPane titledPane14;
+    @FXML
+    TitledPane titledPane15;
+    @FXML
+    TitledPane titledPane16;
+    @FXML
+    TitledPane titledPane17;
+    @FXML
+    TitledPane titledPane18;
+    @FXML
+    TitledPane titledPane19;
+    @FXML
+    TitledPane titledPane20;
+    @FXML
+    TitledPane titledPane21;
+    @FXML
+    TitledPane titledPane22;
+    @FXML
+    TitledPane titledPane23;
+    @FXML
+    TitledPane titledPane24;
+    @FXML
+    TitledPane titledPane25;
     @FXML
     ChoiceBox<String> pulse1Choicebox;
     @FXML
@@ -285,15 +364,17 @@ public class ManagePatientController {
     Label patientNameWarningLabel;
     @FXML
     Label birthDateWarningLabel;
+    @FXML
+    TextArea symptomsTextArea1;
 
 
     @FXML
     TextArea treatment1TextArea;
 
 
-    Boolean patientDataEditable =true;
-    Boolean treatmentEditable=true;
-    Patient patient= Patient.getInstance();
+    private Boolean patientDataEditable =true;
+    private Boolean treatmentEditable=true;
+    private Patient patient= Patient.getInstance();
 
     ArrayList<ChoiceBox> choiceBoxes;
     ArrayList<TextArea>  psychicTextAreas;
@@ -303,29 +384,27 @@ public class ManagePatientController {
     ArrayList<ArrayList<TextArea>> allTextareas;
     ArrayList<TextFlow> textFlows;
     ArrayList<TextField> personalDateTextFields;
+    ArrayList<TitledPane> titledPanes;
 
-    ArrayList<TreatmentController> treatmentControllers=new ArrayList<>();
-
-    @FXML
-    public void initialize(){
-        fixEditSplitPane();
-        initPulseChoicboxes();
-        makeListOfTextAreas();
-        makelistOfTextFlows();
-        makeListOfpersonalDateTextFields();
-        personalDataBindings();
-        setDatePickers();
-        setPulseBindings();
-        addListeners();
-    }
+    private ArrayList<TreatmentController> treatmentControllers=new ArrayList<>();
+    private ManagePatientController managePatientController;
 
     public void load() {
-        System.out.println(Main.getNewPatient());
         if(Main.getNewPatient()) {
-            System.out.println("uj");
+            Patient p=Patient.getInstance();
+            p.setPatientData(new PatientData());
+            p.setPsyche(new Psyche());
+            p.setHistory(new History());
+            p.setActual(new Actual());
+            p.setActual(new Actual());
+            p.setTcm(new Tcm());
+            p.setPulse(new Pulse());
+            p.setTreatments(new ArrayList<>());
+            p.setFinal(new Final());
+            setPatient();
         }else{
-            System.out.println("regi");
-
+            Main.db.getPatient(Main.patientID);
+            setPatient();
         }
     }
 
@@ -394,7 +473,7 @@ public class ManagePatientController {
         textFlows.add(tcmTextFlow);
     }
 
-    private void makeListOfTextAreas() {
+    private void makeListOfTitledPanes() {
         psychicTextAreas=new ArrayList<TextArea>();
         psychicTextAreas.add(psychic1TextArea);
         psychicTextAreas.add(psychic2TextArea);
@@ -433,6 +512,33 @@ public class ManagePatientController {
         allTextareas.add(clinicalHistoryTextAreas);
         allTextareas.add(actualTextAreas);
         allTextareas.add(tcmTextAreas);
+    }private void makeListOfTextAreas() {
+        titledPanes=new ArrayList<TitledPane>();
+        titledPanes.add(titledPane1);
+        titledPanes.add(titledPane2);
+        titledPanes.add(titledPane3);
+        titledPanes.add(titledPane4);
+        titledPanes.add(titledPane5);
+        titledPanes.add(titledPane6);
+        titledPanes.add(titledPane7);
+        titledPanes.add(titledPane8);
+        titledPanes.add(titledPane9);
+        titledPanes.add(titledPane10);
+        titledPanes.add(titledPane11);
+        titledPanes.add(titledPane12);
+        titledPanes.add(titledPane13);
+        titledPanes.add(titledPane14);
+        titledPanes.add(titledPane15);
+        titledPanes.add(titledPane16);
+        titledPanes.add(titledPane17);
+        titledPanes.add(titledPane18);
+        titledPanes.add(titledPane19);
+        titledPanes.add(titledPane20);
+        titledPanes.add(titledPane21);
+        titledPanes.add(titledPane22);
+        titledPanes.add(titledPane23);
+        titledPanes.add(titledPane24);
+        titledPanes.add(titledPane25);
     }
 
 
@@ -504,28 +610,33 @@ public class ManagePatientController {
 
     //Szerkesztés button clicked
     @FXML
-    private void changeEditability(){
-            patientDataEditable =!patientDataEditable;
-            if(patientDataEditable){
-                editTextAreasButton.setText("Áttekintő mód");
-            }else{
-                editTextAreasButton.setText("Szerkesztő mód");
-            }
+    private void changeEditabilityClicked(){
+        changeEditability();
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+    }
 
-            psychicStackPane1.setVisible(!patientDataEditable);
-            psychicStackPane2.setVisible(patientDataEditable);
-            clinicalHistoryStackPane1.setVisible(!patientDataEditable);
-            clinicalHistoryStackPane2.setVisible(patientDataEditable);
-            actualStackPane1.setVisible(!patientDataEditable);
-            actualStackPane2.setVisible(patientDataEditable);
-            tcmStackPane1.setVisible(!patientDataEditable);
-            tcmStackPane2.setVisible(patientDataEditable);
-            personalDataStackPane1.setVisible(!patientDataEditable);
-            personalDataStackPane2.setVisible(patientDataEditable);
-            pulseStackPane1.setVisible(!patientDataEditable);
-            pulseStackPane2.setVisible(patientDataEditable);
+    public void changeEditability(){
+        patientDataEditable =!patientDataEditable;
+        if(patientDataEditable){
+            editTextAreasButton.setText("Áttekintő mód");
+        }else{
+            editTextAreasButton.setText("Szerkesztő mód");
+        }
 
-            setDataDisplay();
+        psychicStackPane1.setVisible(!patientDataEditable);
+        psychicStackPane2.setVisible(patientDataEditable);
+        clinicalHistoryStackPane1.setVisible(!patientDataEditable);
+        clinicalHistoryStackPane2.setVisible(patientDataEditable);
+        actualStackPane1.setVisible(!patientDataEditable);
+        actualStackPane2.setVisible(patientDataEditable);
+        tcmStackPane1.setVisible(!patientDataEditable);
+        tcmStackPane2.setVisible(patientDataEditable);
+        personalDataStackPane1.setVisible(!patientDataEditable);
+        personalDataStackPane2.setVisible(patientDataEditable);
+        pulseStackPane1.setVisible(!patientDataEditable);
+        pulseStackPane2.setVisible(patientDataEditable);
+
+        setDataDisplay();
     }
 
     private void setDataDisplay() {
@@ -727,19 +838,24 @@ public class ManagePatientController {
     }
 
     public void setPatient(){
-        Main.db.getPatient(patient.getPatient_ID());
-
         PatientData pd=patient.getPatientData();
 
         personalDataTextField1.setText(pd.getName());
         personalDataTextField2.setText(pd.getMotherName());
         personalDataTextField3.setText(pd.getBirthPlace());
         personalDataDatePicker.setValue(LocalDate.parse(pd.getBirthDate()));
+        if(Main.newPatient){
+            personalDataDatePicker.setValue(null);
+            personalDataDatePicker.getEditor().textProperty().set("");
+        }
         personalDataTextField4.setText(pd.getFamilyStatus());
         personalDataTextField5.setText(pd.getJob());
         personalDataTextField6.setText(pd.getEmail());
         personalDataTextField7.setText(pd.getPhone());
         genderChoiceBoxx.setValue(pd.getGender());
+        if(Main.newPatient){
+            genderChoiceBoxx.setValue("────────");
+        }
 
         psychic1TextArea.setText(patient.getPsyche().getPsyche1());
         psychic2TextArea.setText(patient.getPsyche().getPsyche2());
@@ -803,12 +919,21 @@ public class ManagePatientController {
         pulseTextArea2.setText(p.getOther());
 
         Final f=patient.getFinal();
-        finalOpinionDatePicker.setValue(LocalDate.parse(f.getDate()));
+        try {
+            finalOpinionDatePicker.setValue(LocalDate.parse(f.getDate()));
+        }catch (Exception e){
+            finalOpinionDatePicker.setValue(null);
+        }
+        if(Main.newPatient){
+            finalOpinionDatePicker.setValue(null);
+        }
         finalTextArea.setText(f.getAssessment());
         finalOpinionChoiceBox.setValue(f.getResult());
 
-        //treatmentControllers.clear();
-        //therapyTabPane.getTabs().clear();
+        treatmentControllers.clear();
+        ObservableList<Tab> tabList = therapyTabPane.getTabs();
+        int size=tabList.size();
+        therapyTabPane.getTabs().remove(0, size-1);
 
 
         ArrayList<Treatment> tr=patient.getTreatments();
@@ -830,7 +955,6 @@ public class ManagePatientController {
                 treatmentController.setTreatment6TextArea(tr.get(k).getTreatment6());
                 treatmentController.setGreenArrows();
 
-                treatmentController.addChangeListeners();
                 k++;
         }
 
@@ -889,25 +1013,15 @@ public class ManagePatientController {
     }
 
     public void addListeners(){
+        int i=0;
         for(ArrayList<TextArea> textAreasPlace: allTextareas){
-            addChangelisteners(textAreasPlace);
-        }
-        addChangeListenersForPersonalData();
-
-    }
-
-    private void addChangelisteners(ArrayList<TextArea> textAreasPlace) {
-        addChangleListeners(textAreasPlace);
-    }
-
-    public static void addChangleListeners(ArrayList<TextArea> textAreasPlace) {
-        try{
-            for(TextArea tarea: textAreasPlace) {
-                tarea.textProperty().addListener(new ChangeListener<String>() {
-                    @Override
-                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                        try {
-                            TitledPane tp = (TitledPane) tarea.getParent().getParent();
+            try{
+                for(TextArea tarea: textAreasPlace) {
+                    TitledPane tp;
+                    tp=titledPanes.get(i);
+                    tarea.textProperty().addListener(new ChangeListener<String>() {
+                        @Override
+                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                             if (!tarea.getText().trim().equals("")) {
                                 if (!tp.getStyleClass().contains("green-arrow")) {
                                     tp.getStyleClass().add("green-arrow");
@@ -915,15 +1029,15 @@ public class ManagePatientController {
                             } else {
                                 tp.getStyleClass().remove("green-arrow");
                             }
-                        }catch (Exception e){
-
                         }
-                    }
-                });
-            }
-        }catch(Exception e){
+                    });
+                    i++;
+                }
+            }catch(Exception e){
 
+            }
         }
+        addChangeListenersForPersonalData();
     }
 
     private void addChangeListenersForPersonalData(){
@@ -935,8 +1049,8 @@ public class ManagePatientController {
                 }
         });
 
-        personalDataDatePicker.valueProperty().addListener((observable, oldValue, newValue) ->  {
-                if(!personalDataDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).equals("")){
+        personalDataDatePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!personalDataDatePicker.getEditor().getText().equals("")){
                     birthDateWarningLabel.setVisible(false);
                 }else{
                     birthDateWarningLabel.setVisible(true);
@@ -944,28 +1058,85 @@ public class ManagePatientController {
         });
 
         genderChoiceBoxx.valueProperty().addListener((observable, oldValue, newValue) ->  {
-                if(!genderChoiceBoxx.getValue().equals("")){
+                if (!genderChoiceBoxx.getValue().equals("────────")) {
                     genderWarningLabel.setVisible(false);
-                }else{
+                } else {
                     genderWarningLabel.setVisible(true);
                 }
         });
 
     }
 
-    public void getPatient(MouseEvent mouseEvent) {
 
+    public void upDateClicked(MouseEvent mouseEvent) {
+        update();
     }
 
-    public void upDatePatient(MouseEvent mouseEvent) {
+    public void saveClicked(MouseEvent mouseEvent) {
+        save();
+    }
+
+    public void save(){
+        System.out.println("save");
+        Patient patient = makePatient();
+        Main.db.addPatient(patient);
+    }
+
+    public void update(){
         Patient patient = makePatient();
         Main.db.updatePatient(patient);
     }
 
-    public void save(MouseEvent mouseEvent) {
-        Patient patient = makePatient();
+    public void chooseOtherPatient(MouseEvent mouseEvent) {
+        if(Main.newPatient){
+            save();
+            System.out.println("save");
+        }else {
+            update();
+            System.out.println("update");
+        }
+        myController.choosePatientController.refreshTableData();
+        myController.setScreen("choose");
+    }
 
-        Main.db.addPatient(patient);
+    public Boolean getPatientDataEditable() {
+        return patientDataEditable;
+    }
+
+    public void setPatientDataEditable(Boolean patientDataEditable) {
+        this.patientDataEditable = patientDataEditable;
+    }
+
+    public void showSymptomsWindow(MouseEvent mouseEvent) {
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            TabPane t=(TabPane) fxmlLoader.load(getClass().getResource("/symptoms.fxml").openStream());
+            SymptomsController symptomsController = (SymptomsController) fxmlLoader.getController();
+
+            Stage stage = new Stage();
+            stage.setTitle("Tünetek");
+            stage.setScene(new Scene(t));
+            stage.show();
+            stage.setMaximized(true);
+            t.getStylesheets().add(this.getClass().getResource("/symptoms.css").toExternalForm());
+            Main main=new Main();
+            Stage currentStage;
+            currentStage=(Stage) splitPane.getScene().getWindow();
+            currentStage.hide();
+            symptomsController.setMainStage(currentStage);
+            symptomsController.setManagePatientController(myController.managePatientController);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshSymptoms(){
+        System.out.println("aaaaaa");
+    }
+
+    private void loadSymptoms(){
+        symptomsTextArea1.setText("fejfajas, köhögés");
     }
 }
 

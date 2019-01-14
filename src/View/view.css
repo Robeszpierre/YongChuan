@@ -23,7 +23,7 @@
 }
 
 .background {
-    -fx-background-image: url("img/5.jpg");
+    -fx-background-image: url("img/7.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-size: stretch;
 }
@@ -191,4 +191,44 @@
     -fx-background-insets: 1 0 -1 0, 0;
     -fx-padding: 0.65em 0.626em 0.5em 0.625em; /* 3 3.75 3 3.75 */
     -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/*PIE CHART*/
+
+#genderPieChart .default-color0.chart-pie { -fx-pie-color: #66a0ff; }
+#genderPieChart .default-color1.chart-pie { -fx-pie-color: #ff6666; }
+
+#resultPieChart .default-color0.chart-pie { -fx-pie-color: #b6ff72; }
+#resultPieChart .default-color1.chart-pie { -fx-pie-color: #ffe771; }
+#resultPieChart .default-color2.chart-pie { -fx-pie-color: #ff6666; }
+#resultPieChart .default-color3.chart-pie { -fx-pie-color: #fc88f6; }
+
+.pie-legend-symbol.chart-pie {
+    -fx-background-radius: 1.5em;
+    -fx-padding: 1.5em;
+    -fx-border-color: null;
+}
+
+.transparent{
+    -fx-background-color: rgba(255,255,255,0.6);
+    -fx-border-color: black;
+    -fx-border-width: 0 1 1 0;
+    -fx-border-style: solid;
+}
+
+.transparent .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.transparent .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.transparent .scroll-pane .content{
+    -fx-background-color: transparent;
 }

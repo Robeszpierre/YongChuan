@@ -26,7 +26,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
+<SplitPane dividerPositions="0.5" prefHeight="600.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
   <items>
       <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.9626307922272048" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
         <items>
@@ -290,6 +290,7 @@
                                                 <ChoiceBox id="genderChoiceBoxx" fx:id="genderChoiceBoxx" minWidth="250.0" prefHeight="30.0" prefWidth="250.0">
                                                    <items>
                                                        <FXCollections fx:factory="observableArrayList">
+                                                           <String fx:value="────────" />
                                                            <String fx:value="férfi" />
                                                            <String fx:value="nő" />
                                                        </FXCollections>
@@ -330,26 +331,39 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <TabPane id="jointTabPane" fx:id="jointTabPane" prefHeight="220.0" prefWidth="200.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <TabPane id="jointTabPane" fx:id="jointTabPane" prefHeight="220.0" prefWidth="258.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                       <tabs>
                                         <Tab text="Izület 1">
-                                          <content>
-                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                   <cursor>
-                                                      <Cursor fx:constant="DEFAULT" />
-                                                   </cursor>
-                                                </AnchorPane>
-                                          </content>
+                                             <content>
+                                                <TextArea id="symptomsTextArea10" fx:id="symptomsTextArea10" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" />
+                                             </content>
                                         </Tab>
                                         <Tab text="Izület 2">
-                                          <content>
-                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                          </content>
+                                             <content>
+                                                <TextArea prefHeight="200.0" prefWidth="200.0" />
+                                             </content>
                                         </Tab>
                                       </tabs>
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
                                     </TabPane>
+                                    <TextArea id="symptomsTextArea1" fx:id="symptomsTextArea1" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" />
+                                    <TextArea id="symptomsTextArea2" fx:id="symptomsTextArea1" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" GridPane.columnIndex="1" />
+                                    <TextArea id="symptomsTextArea3" fx:id="symptomsTextArea3" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" GridPane.rowIndex="1" />
+                                    <TextArea id="symptomsTextArea4" fx:id="symptomsTextArea4" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextArea id="symptomsTextArea5" fx:id="symptomsTextArea5" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" GridPane.rowIndex="2" />
+                                    <TextArea id="symptomsTextArea6" fx:id="symptomsTextArea6" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextArea id="symptomsTextArea7" fx:id="symptomsTextArea7" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" GridPane.rowIndex="3" />
+                                    <TextArea id="symptomsTextArea8" fx:id="symptomsTextArea8" prefHeight="200.0" prefWidth="277.0" styleClass="transparent" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextArea id="symptomsTextArea9" fx:id="symptomsTextArea9" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
+                              <VBox alignment="CENTER" layoutX="200.0" layoutY="491.0" prefHeight="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onMouseClicked="#showSymptomsWindow" text="Tünetek szerkesztése" />
+                                 </children>
+                              </VBox>
                            </children>
                         </AnchorPane>
                   </content>
@@ -374,17 +388,17 @@
                                  <children>
                                     <Accordion prefHeight="636.0" prefWidth="628.0">
                                        <panes>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Magzati kor, születés körüli időszak">
+                                          <TitledPane fx:id="titledPane1" animated="false" layoutX="10.0" layoutY="590.0" text="Magzati kor, születés körüli időszak">
                                              <content>
                                                 <TextArea id="psychic1TextArea" fx:id="psychic1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Gyermekkor">
+                                          <TitledPane fx:id="titledPane2" animated="false" layoutX="10.0" layoutY="166.0" text="Gyermekkor">
                                              <content>
                                                 <TextArea id="psychic2TextArea" fx:id="psychic2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Felnőtt kor ill. jelenleg fennálló helyzet">
+                                          <TitledPane fx:id="titledPane3" animated="false" layoutX="10.0" layoutY="590.0" text="Felnőtt kor ill. jelenleg fennálló helyzet">
                                              <content>
                                                 <TextArea id="psychic3TextArea" fx:id="psychic3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
@@ -418,47 +432,47 @@
                                  <children>
                                     <Accordion prefHeight="636.0" prefWidth="628.0">
                                       <panes>
-                                        <TitledPane id="first" fx:id="first" animated="false" text="Gyermekkori nagyobb betegség(ek)">
+                                        <TitledPane id="first" fx:id="titledPane4" animated="false" text="Gyermekkori nagyobb betegség(ek)">
                                              <content>
                                                 <TextArea id="clinicalHistory1TextArea" fx:id="clinicalHistory1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                         </TitledPane>
-                                        <TitledPane animated="false" text="Előző betegség(ek)">
+                                        <TitledPane fx:id="titledPane5" animated="false" text="Előző betegség(ek)">
                                              <content>
                                                 <TextArea id="clinicalHistory2TextArea" fx:id="clinicalHistory2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                         </TitledPane>
-                                        <TitledPane animated="false" text="Ismert, jelenleg is fennálló betegsék(ek)">
+                                        <TitledPane fx:id="titledPane6" animated="false" text="Ismert, jelenleg is fennálló betegsék(ek)">
                                              <content>
                                                 <TextArea id="clinicalHistory3TextArea" fx:id="clinicalHistory3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                         </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="62.0" text="Műtét(ek)">
+                                          <TitledPane fx:id="titledPane7" animated="false" layoutX="10.0" layoutY="62.0" text="Műtét(ek)">
                                              <content>
                                                 <TextArea id="clinicalHistory4TextArea" fx:id="clinicalHistory4TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="36.0" text="Nagyobb fogászati beavatkozás(ok)">
+                                          <TitledPane fx:id="titledPane8" animated="false" layoutX="10.0" layoutY="36.0" text="Nagyobb fogászati beavatkozás(ok)">
                                              <content>
                                                 <TextArea id="clinicalHistory5TextArea" fx:id="clinicalHistory5TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="564.0" text="Jelenleg szedett gyógyszer(ek), gyógynövény(ek)">
+                                          <TitledPane fx:id="titledPane9" animated="false" layoutX="10.0" layoutY="564.0" text="Jelenleg szedett gyógyszer(ek), gyógynövény(ek)">
                                              <content>
                                                 <TextArea id="clinicalHistory6TextArea" fx:id="clinicalHistory6TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Gyógyszerérzékenyésg">
+                                          <TitledPane fx:id="titledPane10" animated="false" layoutX="10.0" layoutY="590.0" text="Gyógyszerérzékenyésg">
                                              <content>
                                                 <TextArea id="clinicalHistory7TextArea" fx:id="clinicalHistory7TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Korábbi terhesség(ek)">
+                                          <TitledPane fx:id="titledPane11" animated="false" layoutX="10.0" layoutY="166.0" text="Korábbi terhesség(ek)">
                                              <content>
                                                 <TextArea id="clinicalHistory8TextArea" fx:id="clinicalHistory8TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Jelenleg állapotos-e?">
+                                          <TitledPane fx:id="titledPane12" animated="false" layoutX="10.0" layoutY="590.0" text="Jelenleg állapotos-e?">
                                              <content>
                                                 <TextArea id="clinicalHistory9TextArea" fx:id="clinicalHistory9TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
@@ -492,27 +506,27 @@
                                  <children>
                                     <Accordion prefHeight="636.0" prefWidth="628.0">
                                        <panes>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="36.0" text="Nyugati orvosi diagnózis(ok)">
+                                          <TitledPane fx:id="titledPane13" animated="false" layoutX="10.0" layoutY="36.0" text="Nyugati orvosi diagnózis(ok)">
                                              <content>
                                                 <TextArea id="actual1TextArea" fx:id="actual1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="564.0" text="Jelen panaszok">
+                                          <TitledPane fx:id="titledPane14" animated="false" layoutX="10.0" layoutY="564.0" text="Jelen panaszok">
                                              <content>
                                                 <TextArea id="actual2TextArea" fx:id="actual2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Laborvizsgálat(ok) eredményei">
+                                          <TitledPane fx:id="titledPane15" animated="false" layoutX="10.0" layoutY="590.0" text="Laborvizsgálat(ok) eredményei">
                                              <content>
                                                 <TextArea id="actual3TextArea" fx:id="actual3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Képalkotó vizsgálat(ok)">
+                                          <TitledPane fx:id="titledPane16" animated="false" layoutX="10.0" layoutY="166.0" text="Képalkotó vizsgálat(ok)">
                                              <content>
                                                 <TextArea id="actual4TextArea" fx:id="actual4TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Jelenleg állapotos-e?">
+                                          <TitledPane fx:id="titledPane17" animated="false" layoutX="10.0" layoutY="590.0" text="Jelenleg állapotos-e?">
                                              <content>
                                                 <TextArea id="actual5TextArea" fx:id="actual5TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
@@ -546,12 +560,12 @@
                                  <children>
                                     <Accordion prefHeight="636.0" prefWidth="628.0">
                                        <panes>
-                                          <TitledPane id="tcm1TitledPane" fx:id="tcm1TitledPane" animated="false" layoutX="10.0" layoutY="590.0" text="Diagnózis(ok)">
+                                          <TitledPane id="tcm1TitledPane" fx:id="titledPane18" animated="false" layoutX="10.0" layoutY="590.0" text="Diagnózis(ok)">
                                              <content>
                                                 <TextArea id="tcm1TextArea" fx:id="tcm1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane id="tcm2TitledPane" fx:id="tcm2TitledPane" animated="false" layoutX="10.0" layoutY="166.0" text="Terápiás koncepció">
+                                          <TitledPane id="tcm2TitledPane" fx:id="titledPane19" animated="false" layoutX="10.0" layoutY="166.0" text="Terápiás koncepció">
                                              <content>
                                                 <TextArea id="tcm2TextArea" fx:id="tcm2TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                              </content>
@@ -562,32 +576,32 @@
                                                    <children>
                                                       <Accordion layoutX="14.0" layoutY="14.0" prefHeight="636.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <panes>
-                                                            <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Étrend">
+                                                            <TitledPane fx:id="titledPane20" animated="false" layoutX="10.0" layoutY="590.0" text="Étrend">
                                                                <content>
                                                                   <TextArea id="tcm3TextArea" fx:id="tcm3TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
-                                                            <TitledPane animated="false" layoutX="10.0" layoutY="166.0" text="Gyógynövény">
+                                                            <TitledPane fx:id="titledPane21" animated="false" layoutX="10.0" layoutY="166.0" text="Gyógynövény">
                                                                <content>
                                                                   <TextArea id="tcm4TextArea" fx:id="tcm4TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
-                                                            <TitledPane animated="false" layoutX="10.0" layoutY="590.0" text="Kínai orvosság">
+                                                            <TitledPane fx:id="titledPane22" animated="false" layoutX="10.0" layoutY="590.0" text="Kínai orvosság">
                                                                <content>
                                                                   <TextArea id="tcm5TextArea" fx:id="tcm5TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
-                                                            <TitledPane animated="false" layoutX="10.0" layoutY="62.0" text="Mozgás/gyógytorna">
+                                                            <TitledPane fx:id="titledPane23" animated="false" layoutX="10.0" layoutY="62.0" text="Mozgás/gyógytorna">
                                                                <content>
                                                                   <TextArea id="tcm6TextArea" fx:id="tcm6TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
-                                                            <TitledPane animated="false" layoutX="10.0" layoutY="88.0" text="Manuálterápia">
+                                                            <TitledPane fx:id="titledPane24" animated="false" layoutX="10.0" layoutY="88.0" text="Manuálterápia">
                                                                <content>
                                                                   <TextArea id="tcm7TextArea" fx:id="tcm7TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
                                                             </TitledPane>
-                                                            <TitledPane animated="false" layoutX="10.0" layoutY="461.0" text="Életmód, egyéb javaslat">
+                                                            <TitledPane fx:id="titledPane25" animated="false" layoutX="10.0" layoutY="461.0" text="Életmód, egyéb javaslat">
                                                                <content>
                                                                   <TextArea id="tcm8TextArea" fx:id="tcm8TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                                </content>
@@ -1313,11 +1327,15 @@
             </TabPane>
           <AnchorPane maxHeight="30.0" minHeight="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="160.0">
                <children>
-                  <VBox alignment="CENTER" layoutX="181.0" layoutY="-8.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="516.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button id="editTextAreasButton" fx:id="editTextAreasButton" mnemonicParsing="false" onMouseClicked="#changeEditability" text="Áttekintő mód" />
+                        <Button id="editTextAreasButton" fx:id="editTextAreasButton" mnemonicParsing="false" onMouseClicked="#changeEditabilityClicked" text="Áttekintő mód">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin></Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#chooseOtherPatient" text="Másik páciens" />
                      </children>
-                  </VBox>
+                  </HBox>
                </children></AnchorPane>
         </items>
       </SplitPane>
@@ -1395,9 +1413,6 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#save" text="Mentés" />
-                        <Button mnemonicParsing="false" onMouseClicked="#getPatient" text="getPatient" />
-                        <Button mnemonicParsing="false" onMouseClicked="#upDatePatient" text="update" />
                      </children>
                   </HBox>
                </children>

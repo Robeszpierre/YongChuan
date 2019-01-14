@@ -2,7 +2,6 @@ package Modell.Database;
 
 import Controller.Main;
 import Modell.*;
-import ViewControllers.ManagePatientController;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,10 +33,14 @@ public class DB_Controller extends DB_CreateTables {
             System.out.println(""+ex);
         }
 
+        //set the patient id
+        Main.patientID=getID();
+
+
         try {
             String sql = "insert into PSYCHE (PATIENT_ID, PSYCHE1, PSYCHE2, PSYCHE3) VALUES (?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getPsyche().getPsyche1());
             preparedStatement.setString(3, patient.getPsyche().getPsyche2());
             preparedStatement.setString(4, patient.getPsyche().getPsyche3());
@@ -50,7 +53,7 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "insert into HISTORY (PATIENT_ID, HISTORY1, HISTORY2, HISTORY3, HISTORY4, HISTORY5, HISTORY6, HISTORY7, HISTORY8, HISTORY9) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getHistory().getHistory1());
             preparedStatement.setString(3, patient.getHistory().getHistory2());
             preparedStatement.setString(4, patient.getHistory().getHistory3());
@@ -69,7 +72,7 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "insert into ACTUAL (PATIENT_ID, ACTUAL1, ACTUAL2, ACTUAL3, ACTUAL4, ACTUAL5) VALUES (?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getActual().getActual1());
             preparedStatement.setString(3, patient.getActual().getActual2());
             preparedStatement.setString(4, patient.getActual().getActual3());
@@ -84,7 +87,7 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "insert into TCM (PATIENT_ID, TCM1, TCM2, TCM3, TCM4, TCM5, TCM6, TCM7, TCM8) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getTcm().getTcm1());
             preparedStatement.setString(3, patient.getTcm().getTcm2());
             preparedStatement.setString(4, patient.getTcm().getTcm3());
@@ -102,7 +105,7 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "insert into PULSE (PATIENT_ID, PULSE1, PULSE2, PULSE3, PULSE4, PULSE5, PULSE6, PULSE7, PULSE8, PULSE9, PULSE10, PULSE11, PULSE12, PULSE13, PULSE14, PULSE15, PULSE16, PULSE17, PULSE18, PULSE19, PULSE20, PULSE21, PULSE22, PULSE23, PULSE24, OTHER) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getPulse().getPulse1());
             preparedStatement.setString(3, patient.getPulse().getPulse2());
             preparedStatement.setString(4, patient.getPulse().getPulse3());
@@ -137,7 +140,7 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "insert into FINAL (PATIENT_ID, DATE, ASSASSMENT, RESULT) VALUES (?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getFinal().getDate());
             preparedStatement.setString(3, patient.getFinal().getAssessment());
             preparedStatement.setString(4, patient.getFinal().getResult());
@@ -161,7 +164,7 @@ public class DB_Controller extends DB_CreateTables {
             preparedStatement.setString(7, patient.getPatientData().getEmail());
             preparedStatement.setString(8, patient.getPatientData().getPhone());
             preparedStatement.setString(9, patient.getPatientData().getGender());
-            preparedStatement.setInt(10, patient.getPatient_ID());
+            preparedStatement.setInt(10, Main.patientID);
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("something wrong with updating PATIENT_DATA");
@@ -171,11 +174,11 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "update PSYCHE set PATIENT_ID=?, PSYCHE1=?, PSYCHE2=?, PSYCHE3=? where PATIENT_ID=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getPsyche().getPsyche1());
             preparedStatement.setString(3, patient.getPsyche().getPsyche2());
             preparedStatement.setString(4, patient.getPsyche().getPsyche3());
-            preparedStatement.setInt(5, patient.getPatient_ID());
+            preparedStatement.setInt(5, Main.patientID);
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("something wrong with updating PSYCHE");
@@ -185,7 +188,7 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "update HISTORY set PATIENT_ID=?, HISTORY1=?, HISTORY2=?, HISTORY3=?, HISTORY4=?, HISTORY5=?, HISTORY6=?, HISTORY7=?, HISTORY8=?, HISTORY9=? where PATIENT_ID=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getHistory().getHistory1());
             preparedStatement.setString(3, patient.getHistory().getHistory2());
             preparedStatement.setString(4, patient.getHistory().getHistory3());
@@ -195,7 +198,7 @@ public class DB_Controller extends DB_CreateTables {
             preparedStatement.setString(8, patient.getHistory().getHistory7());
             preparedStatement.setString(9, patient.getHistory().getHistory8());
             preparedStatement.setString(10, patient.getHistory().getHistory9());
-            preparedStatement.setInt(11, patient.getPatient_ID());
+            preparedStatement.setInt(11, Main.patientID);
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("something wrong with updating HISTORY");
@@ -205,13 +208,13 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "update ACTUAL set PATIENT_ID=?, ACTUAL1=?, ACTUAL2=?, ACTUAL3=?, ACTUAL4=?, ACTUAL5=? where PATIENT_ID=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getActual().getActual1());
             preparedStatement.setString(3, patient.getActual().getActual2());
             preparedStatement.setString(4, patient.getActual().getActual3());
             preparedStatement.setString(5, patient.getActual().getActual4());
             preparedStatement.setString(6, patient.getActual().getActual5());
-            preparedStatement.setInt(7, patient.getPatient_ID());
+            preparedStatement.setInt(7, Main.patientID);
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("something wrong with updating ACTUAL");
@@ -221,7 +224,7 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "update TCM set PATIENT_ID=?, TCM1=?, TCM2=?, TCM3=?, TCM4=?, TCM5=?, TCM6=?, TCM7=?, TCM8=? where PATIENT_ID=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getTcm().getTcm1());
             preparedStatement.setString(3, patient.getTcm().getTcm2());
             preparedStatement.setString(4, patient.getTcm().getTcm3());
@@ -230,7 +233,7 @@ public class DB_Controller extends DB_CreateTables {
             preparedStatement.setString(7, patient.getTcm().getTcm6());
             preparedStatement.setString(8, patient.getTcm().getTcm7());
             preparedStatement.setString(9, patient.getTcm().getTcm8());
-            preparedStatement.setInt(10, patient.getPatient_ID());
+            preparedStatement.setInt(10, Main.patientID);
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("something wrong with updating TCM");
@@ -240,7 +243,7 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "update PULSE set PATIENT_ID=?, PULSE1=?, PULSE2=?, PULSE3=?, PULSE4=?, PULSE5=?, PULSE6=?, PULSE7=?, PULSE8=?, PULSE9=?, PULSE10=?, PULSE11=?, PULSE12=?, PULSE13=?, PULSE14=?, PULSE15=?, PULSE16=?, PULSE17=?, PULSE18=?, PULSE19=?, PULSE20=?, PULSE21=?, PULSE22=?, PULSE23=?, PULSE24=?, OTHER=? where PATIENT_ID=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getPulse().getPulse1());
             preparedStatement.setString(3, patient.getPulse().getPulse2());
             preparedStatement.setString(4, patient.getPulse().getPulse3());
@@ -266,7 +269,7 @@ public class DB_Controller extends DB_CreateTables {
             preparedStatement.setString(24, patient.getPulse().getPulse23());
             preparedStatement.setString(25, patient.getPulse().getPulse24());
             preparedStatement.setString(26, patient.getPulse().getOther());
-            preparedStatement.setInt(27, patient.getPatient_ID());
+            preparedStatement.setInt(27, Main.patientID);
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("something wrong with updating PULSE");
@@ -284,7 +287,7 @@ public class DB_Controller extends DB_CreateTables {
                     try {
                         sql = "update TREATMENT set PATIENT_ID=?, TREATMENT_ID=?, TREATMENT_DATE=?, TREATMENT1=?, TREATMENT2=?, TREATMENT3=?, TREATMENT4=?, TREATMENT5=?, TREATMENT6=? where PATIENT_ID=? and TREATMENT_ID=" + treatmentNumber;
                         PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                        preparedStatement.setInt(1, patient.getPatient_ID());
+                        preparedStatement.setInt(1, Main.patientID);
                         preparedStatement.setInt(2, treatmentNumber);
                         preparedStatement.setString(3, treatment.getDate());
                         preparedStatement.setString(4, treatment.getTreatment1());
@@ -293,7 +296,7 @@ public class DB_Controller extends DB_CreateTables {
                         preparedStatement.setString(7, treatment.getTreatment4());
                         preparedStatement.setString(8, treatment.getTreatment5());
                         preparedStatement.setString(9, treatment.getTreatment6());
-                        preparedStatement.setInt(10, patient.getPatient_ID());
+                        preparedStatement.setInt(10, Main.patientID);
                         preparedStatement.execute();
                         System.out.println("updatelve");
                     } catch (SQLException ex) {
@@ -304,7 +307,7 @@ public class DB_Controller extends DB_CreateTables {
                     try {
                         sql = "insert into TREATMENT (PATIENT_ID, TREATMENT_ID, TREATMENT_DATE, TREATMENT1, TREATMENT2, TREATMENT3, TREATMENT4, TREATMENT5, TREATMENT6) VALUES (?,?,?,?,?,?,?,?,?)";
                         PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                        preparedStatement.setInt(1, patient.getPatient_ID());
+                        preparedStatement.setInt(1, Main.patientID);
                         preparedStatement.setInt(2, treatmentNumber);
                         preparedStatement.setString(3, treatment.getDate());
                         preparedStatement.setString(4, treatment.getTreatment1());
@@ -330,11 +333,11 @@ public class DB_Controller extends DB_CreateTables {
         try {
             String sql = "update FINAL set PATIENT_ID=?, DATE=?, ASSASSMENT=?, RESULT=? where PATIENT_ID=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, patient.getPatient_ID() );
+            preparedStatement.setInt(1, Main.patientID );
             preparedStatement.setString(2, patient.getFinal().getDate());
             preparedStatement.setString(3, patient.getFinal().getAssessment());
             preparedStatement.setString(4, patient.getFinal().getResult());
-            preparedStatement.setInt(5, patient.getPatient_ID());
+            preparedStatement.setInt(5, Main.patientID);
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("something wrong with updating FINAL");
@@ -342,9 +345,27 @@ public class DB_Controller extends DB_CreateTables {
         }
     }
 
+    public ArrayList<PatientForChooseTable> getAllPatients(){
+        String sql = "select * from PATIENT_DATA";
+        ArrayList<PatientForChooseTable> patients = null;
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            patients = new ArrayList<>();
+
+            while (rs.next()){
+                PatientForChooseTable actualPatient = new PatientForChooseTable(rs.getInt("PATIENT_ID"),rs.getString("NAME"),rs.getString("BIRTHDATE"));
+                patients.add(actualPatient);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Valami baj van a userek kiolvasásakor");
+            System.out.println(""+ex);
+        }
+        return patients;
+    }
+
     public void getPatient(int id) {
         Patient patient=Patient.getInstance();
-        patient.setPatientData(getPatientDate(id));
+        patient.setPatientData(getPatientData(id));
         patient.setPsyche(getPsyche(id));
         patient.setHistory(getHistory(id));
         patient.setActual(getActual(id));
@@ -354,7 +375,20 @@ public class DB_Controller extends DB_CreateTables {
         patient.setFinal(getFinal(id));
     }
 
-    public PatientData getPatientDate(int id) {
+    private int getID(){
+            String sql = "select max(PATIENT_ID) as id from PATIENT_DATA";
+            int patiendID=0;
+            try {
+                ResultSet rs = createStatement.executeQuery(sql);
+                rs.next();
+                patiendID = rs.getInt("id");
+            } catch (SQLException ex) {
+                System.out.println("couldn!t get patient id");
+            }
+            return patiendID;
+    }
+
+    public PatientData getPatientData(int id) {
         String sql = "select * from PATIENT_DATA where PATIENT_ID=" + id;
         PatientData patientData = null;
         try {
@@ -531,5 +565,78 @@ public class DB_Controller extends DB_CreateTables {
         return finalOpinion;
     }
 
+    //-----------STATISTIC-----------
+    public double getManPercent(){
+        String sql = "select count(*) as everyone from PATIENT_DATA";
+        double all = 0;
+        double mans = 0;
+        double result=0;
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            rs.next();
+            all=rs.getInt("everyone");
+        } catch (SQLException ex) {
+            System.out.println("no patient with the id ");
+        }
 
+
+        sql = "select count(*) as mans from PATIENT_DATA where GENDER='férfi'";
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            rs.next();
+            mans=rs.getInt("mans");
+        } catch (SQLException ex) {
+            System.out.println("no patient with the id ");
+        }
+
+        result=mans/all*100;
+
+        return result;
+    }
+
+    public ResultForPieChart getresultForPieChart(){
+        int healed=getresult("gyógyult");
+        int partiallyHealed=getresult("részben gyógyult");
+        int notHealed=getresult("nem gyógyult");
+        int other=getresult("egyéb");
+
+        return new ResultForPieChart(healed, partiallyHealed, notHealed, other);
+    }
+
+    private int getresult(String result){
+        String sql = "select count(*) as condition from FINAL where RESULT='"+result+"'";
+        int data=0;
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            rs.next();
+            data=rs.getInt("condition");
+        } catch (SQLException ex) {
+            System.out.println("no result");
+        }
+        return data;
+    }
+
+    //-----------TREATMENTS-----------
+
+    public void addTreatments(ArrayList<Symptom> symptoms) {
+        try {
+            conn.createStatement().executeUpdate("TRUNCATE TABLE SYMPTOMS");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            String sql = "insert into SYMPTOMS (PATIENT_ID, NAME, LOCATION, TYPE) VALUES (?,?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            for(Symptom symptom: symptoms) {
+                preparedStatement.setInt(1, Integer.parseInt(symptom.getPatientID()));
+                preparedStatement.setString(2, symptom.getName());
+                preparedStatement.setString(3, symptom.getLocation());
+                preparedStatement.setInt(4, Integer.parseInt(symptom.getType()));
+                preparedStatement.execute();
+            }
+        } catch (SQLException ex) {
+            System.out.println("something wrong with adding PSYCHE");
+            System.out.println("" + ex);
+        }
+    }
 }

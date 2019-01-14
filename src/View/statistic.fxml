@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.StatisticController">
+   <children>
+      <ScrollPane fx:id="statScrollPane" fitToHeight="true" fitToWidth="true" layoutX="139.0" layoutY="45.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <VBox alignment="CENTER" spacing="100.0">
+               <children>
+                  <PieChart fx:id="genderPieChart" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" title="Nemek Aránya" />
+                  <PieChart fx:id="resultPieChart" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" title="Gyógyultak aránya" />
+               </children></VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

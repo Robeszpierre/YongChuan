@@ -34,11 +34,11 @@ public class PatientData {
     }
 
     public PatientData(){
-        this.patientID = new SimpleStringProperty(Integer.toString(Main.patientID));
+        this.patientID = new SimpleStringProperty("");
         this.name = new SimpleStringProperty("");
         this.motherName = new SimpleStringProperty("");
         this.birthPlace = new SimpleStringProperty("");
-        this.birthDate = new SimpleStringProperty("");
+        this.birthDate = new SimpleStringProperty("1111-11-11");
         this.familyStatus = new SimpleStringProperty("");
         this.job = new SimpleStringProperty("");
         this.email = new SimpleStringProperty("");

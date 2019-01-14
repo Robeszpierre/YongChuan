@@ -1,23 +1,144 @@
 package ViewControllers;
 
 import Controller.Main;
+import Modell.Database.PatientForChooseTable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import javax.swing.text.TableView;
+public class ChoosePatientController implements Initializable, ControlledScreen {
 
-public class ChoosePatientController {
+    ScreensController myController;
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        setTableData();
+        customerSearch();
+    }
+
+    public void setScreenParent(ScreensController screenParent){
+        myController = screenParent;
+    }
+
     @FXML
-    TableView patientsTable;
+    TableView<PatientForChooseTable> patientsTable;
+    @FXML
+    TextField filterField;
+
+    TableColumn nameCol=null;
+
+
+
+    private final ObservableList<PatientForChooseTable> data = FXCollections.observableArrayList();
+    private FilteredList<PatientForChooseTable> filteredData = new FilteredList<>(data, p -> true);
 
     public void selectPatient(MouseEvent mouseEvent) {
-        Main.setNewPatient(false);
-        Main.getmanagePatientScreen();
+        try {
+            Main.setNewPatient(false);
+            PatientForChooseTable selectedPatient = patientsTable.getSelectionModel().getSelectedItem();
+            Main.patientID = Integer.parseInt(selectedPatient.getPatientID());
+            myController.managePatientController.load();
+            if(!myController.getManagePatientController().getPatientDataEditable()){
+                myController.getManagePatientController().setPatientDataEditable(true);
+                myController.getManagePatientController().changeEditability();
+            }
+            myController.setScreen("manage");
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Figyelmeztetés");
+            alert.setHeaderText("Nem választott ki pácienst!");
+            alert.setContentText("Kérem válasszon!");
+
+            alert.showAndWait();
+        }
     }
 
     public void addNewPatient(MouseEvent mouseEvent) {
         Main.setNewPatient(true);
-        Main.getpersonalDatatScreen();
+        myController.managePatientController.load();
+        myController.setScreen("manage");
+    }
+
+    private void setTableData(){
+        nameCol = new TableColumn("Páciens neve");
+        nameCol.setMinWidth(170);
+        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameCol.setCellValueFactory(new PropertyValueFactory<PatientForChooseTable,String>("name"));
+
+        TableColumn birthDateCol = new TableColumn("Születési dátuma");
+        birthDateCol.setMinWidth(170);
+        birthDateCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        birthDateCol.setCellValueFactory(new PropertyValueFactory<PatientForChooseTable, String>("birthDate"));
+
+        nameCol.setSortType(TableColumn.SortType.ASCENDING);
+
+        patientsTable.getColumns().addAll(nameCol,birthDateCol);
+        data.addAll(Main.db.getAllPatients());
+        patientsTable.setItems(data );
+
+        patientsTable.getSelectionModel().selectFirst();
+        patientsTable.getSortOrder().add(nameCol);
+
+        patientsTable.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY );
+        nameCol.setMaxWidth( 1f * Integer.MAX_VALUE * 50 ); // 50% width
+        birthDateCol.setMaxWidth( 1f * Integer.MAX_VALUE * 50 ); // 30% width
+    }
+
+    public void refreshTableData(){
+        data.clear();
+        //get data from database
+        data.addAll(Main.db.getAllPatients());
+        //add database data to the table
+        patientsTable.setItems(data);
+        patientsTable.getSelectionModel().selectFirst();
+        patientsTable.getSortOrder().add(nameCol);
+        filterField.clear();
+        customerSearch();
+    }
+
+    public void customerSearch() {
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(patient -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (patient.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                    if (patient.getBirthDate().contains(newValue)) {
+                        return true;
+                    }
+                return false; // Does not match.
+            });
+        });
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<PatientForChooseTable> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(patientsTable.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        patientsTable.setItems(sortedData);
+    }
+
+    public void backToMainManu(MouseEvent mouseEvent) {
+        myController.setScreen("start");
     }
 }

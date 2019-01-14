@@ -2,21 +2,21 @@ package Modell;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Symptoms {
+public class Symptom {
 
     private final SimpleStringProperty patientID;
     private final SimpleStringProperty name;
     private final SimpleStringProperty location;
     private final SimpleStringProperty type;
 
-    public Symptoms(int patientID, String name, String location, int type){
+    public Symptom(int patientID, String name, String location, int type){
         this.patientID = new SimpleStringProperty(Integer.toString(patientID));
         this.name = new SimpleStringProperty(name);
         this.location = new SimpleStringProperty(location);
         this.type = new SimpleStringProperty(Integer.toString(type));
     }
 
-    public Symptoms(){
+    public Symptom(){
         this.patientID = new SimpleStringProperty("");
         this.name = new SimpleStringProperty("");
         this.location = new SimpleStringProperty("");
