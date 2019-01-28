@@ -47,6 +47,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -60,6 +61,9 @@ public class ScreensController extends StackPane {
     ManagePatientController managePatientController;
     ChoosePatientController choosePatientController;
     StatisticController statisticController;
+    SettingsController settingsController;
+
+    Group root;
 
     //Holds the screens to be displayed
 
@@ -95,6 +99,9 @@ public class ScreensController extends StackPane {
             if(name.equals("stat")) {
                 statisticController = (StatisticController) myLoader.getController();
             }
+            if(name.equals("settings")) {
+                settingsController = (SettingsController) myLoader.getController();
+            }
             myScreenControler.setScreenParent(this);
             addScreen(name, loadScreen);
             return true;
@@ -108,7 +115,7 @@ public class ScreensController extends StackPane {
     //First it makes sure the screen has been already loaded.  Then if there is more than
     //one screen the new screen is been added second, and then the current screen is removed.
     // If there isn't any screen being displayed, the new screen is just added to the root.
-    public boolean setScreen(final String name) {       
+    public boolean setScreen(final String name) {
         if (screens.get(name) != null) {   //screen loaded
             final DoubleProperty opacity = opacityProperty();
 
@@ -171,6 +178,18 @@ public class ScreensController extends StackPane {
 
     public ManagePatientController getManagePatientController(){
         return managePatientController;
+    }
+
+    public SettingsController getSettingsController() {
+        return settingsController;
+    }
+
+    public Group getRoot() {
+        return root;
+    }
+
+    public void setRoot(Group root) {
+        this.root = root;
     }
 }
 

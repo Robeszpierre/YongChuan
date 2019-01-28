@@ -15,10 +15,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.xml.soap.Text;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class SymptomsController {
 
@@ -336,8 +335,80 @@ public class SymptomsController {
     ComboBox<String> spineComboBox2;
     @FXML
     ComboBox<String> spineComboBox3;
+    @FXML
+    CheckBox shitChechBox;
+    @FXML
+    CheckBox otherRareCheckBox1;
+    @FXML
+    CheckBox otherFrequentCheckBox1;
+    @FXML
+    TextField otherRareTextField1;
+    @FXML
+    TextField otherFrequentTextField1;
+    @FXML
+    CheckBox otherRareCheckBox2;
+    @FXML
+    CheckBox otherFrequentCheckBox2;
+    @FXML
+    TextField otherRareTextField2;
+    @FXML
+    TextField otherFrequentTextField2;
+    @FXML
+    CheckBox otherRareCheckBox3;
+    @FXML
+    CheckBox otherFrequentCheckBox3;
+    @FXML
+    TextField otherRareTextField3;
+    @FXML
+    TextField otherFrequentTextField3;
+    @FXML
+    CheckBox otherRareCheckBox4;
+    @FXML
+    CheckBox otherFrequentCheckBox4;
+    @FXML
+    TextField otherRareTextField4;
+    @FXML
+    TextField otherFrequentTextField4;
+    @FXML
+    CheckBox otherRareCheckBox5;
+    @FXML
+    CheckBox otherFrequentCheckBox5;
+    @FXML
+    TextField otherRareTextField5;
+    @FXML
+    TextField otherFrequentTextField5;
+    @FXML
+    CheckBox otherRareCheckBox6;
+    @FXML
+    CheckBox otherFrequentCheckBox6;
+    @FXML
+    TextField otherRareTextField6;
+    @FXML
+    TextField otherFrequentTextField6;
+    @FXML
+    CheckBox dailyFluidCheckBox;
+    @FXML
+    CheckBox urinationCountCheckBox;
+    @FXML
+    CheckBox mensesAtAgeCheckBox;
+    @FXML
+    CheckBox cycleDayCountCheckBox;
+    @FXML
+    Spinner<Integer> group80Spinner;
+    @FXML
+    RadioButton radio1;
+    @FXML
+    RadioButton radio5;
 
-    private ArrayList<ToggleGroup> toggleGroups;
+    private ArrayList<ToggleGroup> toggleGroups=new ArrayList<>();;
+    private ArrayList<TextField> textFields=new ArrayList<>();
+    private ArrayList<CheckBox> checkBoxes=new ArrayList<>();
+    ArrayList<ComboBox> comboBoxes = new ArrayList<>();
+    ArrayList<Spinner> spinners = new ArrayList<>();
+
+
+    private Stage currentStage;
+
     private  ArrayList<Symptom> symptoms=new ArrayList<>();
     private ArrayList<JointsController> jointsControllers=new ArrayList<>();
 
@@ -347,8 +418,26 @@ public class SymptomsController {
     @FXML
     public void initialize() {
         addTab();
-        makeToggleGroup();
         addListeners();
+
+        makeToggleGroup();
+        getTextFields();
+        getCheckBoxes();
+        getComboBoxes();
+        getSpinners();
+
+    }
+
+    public void setCurrentStage(Stage currentStage) {
+        this.currentStage = currentStage;
+    }
+
+    public void setOnCloseRequest(){
+        currentStage.setOnCloseRequest(e -> {
+            e.consume();
+            save();
+            currentStage.close();
+        });
     }
 
     private void addListeners() {
@@ -388,32 +477,32 @@ public class SymptomsController {
             }
 
         });
+
     }
 
     private void addTab(){
-        try {
-            Tab tab = new Tab();
-            jointsTabPane.getTabs().add(tab);
-            int tabNum=jointsTabPane.getTabs().size();
-            tab.setText(tabNum + ". izület");
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            tab.setContent((AnchorPane) fxmlLoader.load(this.getClass().getResource("/joints.fxml").openStream()));
-            JointsController jointsController = (JointsController) fxmlLoader.getController();
-            jointsControllers.add(jointsController);
-            jointsController.setLocation(String.valueOf(tabNum));
+        int i=0;
+        while(i<5) {
+            try {
+                Tab tab = new Tab();
+                jointsTabPane.getTabs().add(tab);
+                tab.setText(i+1 + ". izület");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                tab.setContent((AnchorPane) fxmlLoader.load(this.getClass().getResource("/joints.fxml").openStream()));
+                JointsController jointsController = (JointsController) fxmlLoader.getController();
+                jointsControllers.add(jointsController);
+                jointsController.setLocation(String.valueOf(i));
 
-            jointsTabPane.getSelectionModel().select(tabNum-1);
-        } catch (IOException e) {
-            e.printStackTrace();
+                jointsTabPane.getSelectionModel().select(i - 1);
+                i++;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    public void addNewTab(MouseEvent mouseEvent) {
-        addTab();
+        jointsTabPane.getSelectionModel().select(0);
     }
 
     private void makeToggleGroup(){
-        toggleGroups=new ArrayList<>();
         toggleGroups.add(group1);
         toggleGroups.add(group2);
         toggleGroups.add(group3);
@@ -523,11 +612,8 @@ public class SymptomsController {
         toggleGroups.add(group107);
     }
 
-    @FXML
-    private void saveButton(ActionEvent actionEvent) {
-        ArrayList<Integer> radioButtonChoices=new ArrayList<>();
-        radioButtonChoices=getRadioButtonChoices();
 
+    private void moveSymptomsToFigure(){
         symptoms=getSymptoms();
 
         for (JointsController j: jointsControllers){
@@ -537,10 +623,7 @@ public class SymptomsController {
             }
         }
 
-        Main.db.addTreatments(symptoms);
-
-        Stage stage = (Stage) symptomsTabPane.getScene().getWindow();
-        stage.close();
+        Main.db.addSymptoms(symptoms);
 
         managePatientController.refreshSymptoms();
         mainStage.show();
@@ -566,6 +649,157 @@ public class SymptomsController {
         return radioButtonChoices;
     }
 
+    private ArrayList<TextField> getTextFields(){
+        textFields.add(faceColorTextField);
+        textFields.add(headTextField1);
+        textFields.add(headTextField2);
+        textFields.add(headTextField3);
+        textFields.add(headTextField4);
+        textFields.add(headTextField5);
+        textFields.add(headTextField6);
+        textFields.add(group5TextField);
+        textFields.add(otherRareTextField1);
+        textFields.add(otherFrequentTextField1);
+        textFields.add(group36TextField);
+        textFields.add(otherRareTextField2);
+        textFields.add(otherFrequentTextField2);
+        textFields.add(shitTextField1);
+        textFields.add(shitTextField2);
+        textFields.add(shitTextField3);
+        textFields.add(otherRareTextField3);
+        textFields.add(otherRareTextField4);
+        textFields.add(otherFrequentTextField4);
+        textFields.add(dailyFluidTextField);
+        textFields.add(otherRareTextField5);
+        textFields.add(otherFrequentTextField5);
+        textFields.add(otherRareTextField6);
+        textFields.add(otherFrequentTextField6);
+        textFields.add(spineTextField1);
+        textFields.add(spineTextField2);
+        textFields.add(spineTextField3);
+        textFields.add(spineTextField4);
+        textFields.add(spineTextField5);
+        textFields.add(spineTextField6);
+        textFields.add(spineTextField7);
+        textFields.add(spineTextField8);
+        textFields.add(spineTextField9);
+        textFields.add(spineTextField10);
+        textFields.add(spineTextField11);
+        for(JointsController j: jointsControllers){
+            for(TextField t:j.getTextFields()){
+                textFields.add(t);
+            }
+        }
+        return textFields;
+    }
+
+    private ArrayList<CheckBox> getCheckBoxes(){
+        for(ToggleGroup g: toggleGroups) {
+            RadioButton selectedRadioButton = (RadioButton) g.getToggles().get(0);
+            ObservableList<Node> nodes=selectedRadioButton.getParent().getChildrenUnmodifiable();
+            CheckBox c=(CheckBox) nodes.get(0);
+            checkBoxes.add(c);
+        }
+        checkBoxes.add(otherRareCheckBox1);
+        checkBoxes.add(otherFrequentCheckBox1);
+        checkBoxes.add(otherRareCheckBox2);
+        checkBoxes.add(otherFrequentCheckBox2);
+        checkBoxes.add(otherRareCheckBox3);
+        checkBoxes.add(otherFrequentCheckBox3);
+        checkBoxes.add(otherRareCheckBox4);
+        checkBoxes.add(otherFrequentCheckBox4);
+        checkBoxes.add(otherRareCheckBox5);
+        checkBoxes.add(otherFrequentCheckBox5);
+        checkBoxes.add(otherRareCheckBox6);
+        checkBoxes.add(otherFrequentCheckBox6);
+        checkBoxes.add(shitChechBox);
+        checkBoxes.add(dailyFluidCheckBox);
+        checkBoxes.add(urinationCountCheckBox);
+        checkBoxes.add(mensesAtAgeCheckBox);
+        checkBoxes.add(cycleDayCountCheckBox);
+
+        return checkBoxes;
+    }
+
+    private ArrayList<ComboBox> getComboBoxes() {
+        comboBoxes.add(group15ComboBox1);
+        comboBoxes.add(group15ComboBox2);
+        comboBoxes.add(group78ComboBox);
+        comboBoxes.add(dailyFluidComboBox);
+        comboBoxes.add(group86ComboBox);
+        comboBoxes.add(mensesComboBox1);
+        comboBoxes.add(mensesComboBox2);
+        comboBoxes.add(mensesComboBox3);
+        comboBoxes.add(group107ComboBox);
+        comboBoxes.add(spineComboBox1);
+        comboBoxes.add(spineComboBox2);
+        comboBoxes.add(spineComboBox3);
+
+        for(JointsController j: jointsControllers){
+            for(ComboBox c:j.getComboBoxes()){
+                comboBoxes.add(c);
+            }
+        }
+
+        return comboBoxes;
+    }
+
+    private ArrayList<Spinner> getSpinners() {
+        spinners.add(urinationCountSpinner);
+        spinners.add(group80Spinner);
+        spinners.add(mensesSpinner1);
+        spinners.add(mensesSpinner2);
+        spinners.add(mensesSpinner3);
+        spinners.add(mensesSpinner4);
+        spinners.add(mensesSpinner5);
+
+        return spinners;
+    }
+
+    private void save(){
+        ArrayList<Integer> radioButtonChoices=new ArrayList<>();
+        radioButtonChoices=getRadioButtonChoices();
+
+        String radiobuttonSave="";
+        for(int i:radioButtonChoices){
+            radiobuttonSave+=i+" ";
+        }
+
+        String textFieldSave="";
+        for(TextField t:textFields){
+            textFieldSave+=gettextFromTextField(t);
+        }
+
+
+        String checkBoxSave="";
+        for(CheckBox c:checkBoxes){
+            if(c.isSelected()){
+                checkBoxSave+="1 ";
+            }else{
+                checkBoxSave+="0 ";
+            }
+        }
+
+        String comboBoxSave="";
+        for(ComboBox c:comboBoxes){
+            comboBoxSave+=c.getValue()+"~";
+        }
+
+
+        String spinnerSave="";
+        for(Spinner s:spinners){
+            spinnerSave+=s.getValue()+"~";
+        }
+
+        Main.db.saveSymptoms(radiobuttonSave, textFieldSave, checkBoxSave, comboBoxSave, spinnerSave);
+
+        moveSymptomsToFigure();
+    }
+
+    private String gettextFromTextField(TextField textfield) {
+        return textfield.getText()+"~§~";
+    }
+
     private ArrayList<Symptom> getSymptoms(){
         ArrayList<Symptom> symptoms=new ArrayList<>();
         int i=1;
@@ -585,6 +819,9 @@ public class SymptomsController {
                 ObservableList<Node> nodes=selectedRadioButton.getParent().getChildrenUnmodifiable();
                 CheckBox c=(CheckBox) nodes.get(0);
                 symptom.setName(c.getText());
+                if(c.isSelected()){
+                    symptom.setImportant(true);
+                }
 
                 if(i==1){
                     if(!headTextField1.getText().equals("")){
@@ -625,6 +862,9 @@ public class SymptomsController {
                 if(i==78 && !(group78ComboBox.getValue()==null)){
                         symptom.setName(symptom.getName() + " " + group78ComboBox.getValue() + " oldalon");
                 }
+                if(i==80 && !(group80Spinner.getValue()==0)){
+                        symptom.setName(symptom.getName() + " - száma: " + group80Spinner.getValue());
+                }
                 if(i==86 && !(group86ComboBox.getValue()==null)){
                     if(group86ComboBox.getValue().equals("igen")) {
                         symptom.setName(symptom.getName() + " - hajlamos hólyaghurutra");
@@ -657,10 +897,10 @@ public class SymptomsController {
         }
 
         if(!faceColorTextField.getText().equals("")){
-            symptoms.add(new Symptom(Main.patientID, "Arc színe: " + faceColorTextField.getText(), "3" ,0));
+            symptoms.add(new Symptom(Main.patientID, "Arc színe: " + faceColorTextField.getText(), "3" ,0, false));
         }
         if(!shitTextField1.getText().equals("") || !shitTextField2.getText().equals("") || !shitTextField3.getText().equals("")){
-            Symptom symptom=new Symptom(Main.patientID, "Széklet", "0" ,0);
+            Symptom symptom=new Symptom(Main.patientID, "Széklet", "0" ,0, shitChechBox.isSelected());
             if(!shitTextField1.getText().equals("")){
                 symptom.setName(symptom.getName() + " - gyakorisága: " + shitTextField1.getText());
             }
@@ -674,7 +914,7 @@ public class SymptomsController {
         }
 
         if(!dailyFluidTextField.getText().equals("") || !(dailyFluidComboBox.getValue()==null)){
-            Symptom symptom=new Symptom(Main.patientID, "Napi folyadékbevitel ", "4" ,0);
+            Symptom symptom=new Symptom(Main.patientID, "Napi folyadékbevitel ", "4", 0, dailyFluidCheckBox.isSelected());
             if(!dailyFluidTextField.getText().equals("")){
                 symptom.setName(symptom.getName() + " - mennyisége: " + dailyFluidTextField.getText() + " liter");
             }
@@ -685,11 +925,11 @@ public class SymptomsController {
         }
 
         if(!(urinationCountSpinner.getValue()==0)){
-            symptoms.add(new Symptom(Main.patientID, "Napiközbeni vizeletürítések száma: " + urinationCountSpinner.getValue(), "4" ,0));
+            symptoms.add(new Symptom(Main.patientID, "Napközbeni vizeletürítések száma: " + urinationCountSpinner.getValue(), "4" ,0, urinationCountCheckBox.isSelected()));
         }
 
         if(!(mensesSpinner1.getValue()==0)){
-            Symptom symptom=new Symptom(Main.patientID, "", "4" ,0);
+            Symptom symptom=new Symptom(Main.patientID, "", "4" ,0, mensesAtAgeCheckBox.isSelected());
             if(!(mensesSpinner1.getValue()==0)){
                 symptom.setName(symptom.getName() + "Első menses: " + mensesSpinner1.getValue() + " évesen");
             }
@@ -725,7 +965,7 @@ public class SymptomsController {
             symptoms.add(symptom);
         }
         if(!(mensesSpinner5.getValue()==0)){
-            Symptom symptom=new Symptom(Main.patientID, "Cikluson belüli " + mensesSpinner5.getValue() + " napos a vérzés", "4" ,0);
+            Symptom symptom=new Symptom(Main.patientID, "Cikluson belüli " + mensesSpinner5.getValue() + " napos a vérzés", "4" ,0, cycleDayCountCheckBox.isSelected());
             symptoms.add(symptom);
         }
 
@@ -786,6 +1026,90 @@ public class SymptomsController {
             Symptom symptom=new Symptom(Main.patientID, "Egyéb: " +spineTextField11.getText(), "5" ,0);
             symptoms.add(symptom);
         }
+        if(!otherRareTextField1.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherRareTextField1.getText(), "1" ,0);
+            if(otherRareCheckBox1.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherFrequentTextField1.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherFrequentTextField1.getText(), "1" ,1);
+            if(otherFrequentCheckBox1.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherRareTextField2.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherRareTextField2.getText(), "2" ,0);
+            if(otherRareCheckBox2.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherFrequentTextField2.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherFrequentTextField2.getText(), "2" ,1);
+            if(otherFrequentCheckBox2.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherRareTextField3.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherRareTextField3.getText(), "3" ,0);
+            if(otherRareCheckBox3.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherFrequentTextField3.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherFrequentTextField3.getText(), "3" ,1);
+            if(otherFrequentCheckBox3.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherRareTextField4.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherRareTextField4.getText(), "3" ,0);
+            if(otherRareCheckBox4.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherFrequentTextField4.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherFrequentTextField4.getText(), "3" ,1);
+            if(otherFrequentCheckBox4.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherRareTextField5.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherRareTextField5.getText(), "4" ,0);
+            if(otherRareCheckBox5.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherFrequentTextField5.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherFrequentTextField5.getText(), "4" ,1);
+            if(otherFrequentCheckBox5.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherRareTextField6.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherRareTextField6.getText(), "4" ,0);
+            if(otherRareCheckBox6.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
+        if(!otherFrequentTextField6.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, otherFrequentTextField6.getText(), "4" ,1);
+            if(otherFrequentCheckBox6.isSelected()){
+                symptom.setImportant(true);
+            }
+            symptoms.add(symptom);
+        }
         return symptoms;
     }
 
@@ -796,4 +1120,86 @@ public class SymptomsController {
     public void setManagePatientController(ManagePatientController managePatientController) {
         this.managePatientController = managePatientController;
     }
+
+    public void setSymptomValues(){
+        try {
+            ArrayList<String> savedData = Main.db.loadSymptoms();
+            String radiobuttonText = savedData.get(0);
+
+            String[] savedRadioButtons = radiobuttonText.split(" ");
+            int i = 0;
+            for (String s : savedRadioButtons) {
+                ToggleGroup g = toggleGroups.get(i);
+                ObservableList<Toggle> toggles = g.getToggles();
+                if (s.equals("0")) {
+                    RadioButton r = (RadioButton) toggles.get(0);
+                    r.setSelected(true);
+                } else if (s.equals("1")) {
+                    RadioButton r = (RadioButton) toggles.get(1);
+                    r.setSelected(true);
+                } else if (s.equals("2")) {
+                    RadioButton r = (RadioButton) toggles.get(2);
+                    r.setSelected(true);
+                } else if (s.equals("3")) {
+                    RadioButton r = (RadioButton) toggles.get(3);
+                    r.setSelected(true);
+                }
+                i++;
+            }
+
+            String textFieldTexts = savedData.get(1);
+            String[] savedTextFields = textFieldTexts.split("~§~");
+
+            i = 0;
+            for (String s : savedTextFields) {
+                textFields.get(i).setText(s);
+                i++;
+            }
+
+            String checkBoxTexts = savedData.get(2);
+            String[] savedCheckBoxes = checkBoxTexts.split(" ");
+
+            i=0;
+            for(String s: savedCheckBoxes){
+                CheckBox c=checkBoxes.get(i);
+                if(s.equals("1")){
+                    c.setSelected(true);
+                }
+                i++;
+            }
+
+            String comboBoxTexts = savedData.get(3);
+            String[] savedcomboBoxes = comboBoxTexts.split("~");
+
+            i=0;
+            for(String s: savedcomboBoxes){
+                if(!(s.equals("null"))){
+                    comboBoxes.get(i).setValue(s);
+                }
+                i++;
+            }
+
+            String spinnerTexts = savedData.get(4);
+            String[] savedSpinners = spinnerTexts.split("~");
+
+            i=0;
+            for(String s: savedSpinners){
+                    spinners.get(i).getValueFactory().setValue(Integer.parseInt(s));
+                i++;
+            }
+
+        }catch (Exception e){
+            //new patient
+        }
+    }
+
+    public void disableMenses(String gender){
+        if(gender.equals("férfi")){
+            symptomsTabPane.getTabs().get(5).setDisable(true);
+        }else {
+            symptomsTabPane.getTabs().get(5).setDisable(false);
+        }
+
+    }
+
 }

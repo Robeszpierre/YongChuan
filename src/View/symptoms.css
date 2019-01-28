@@ -34,3 +34,65 @@ HBox {
     -fx-border-width: 0 0 1 0;
     -fx-border-style: solid;
 }
+
+.text-field {
+    -fx-background-color: black, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+.text-field:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}
+
+/*tab background*/
+.my-tab-pane > .tab-header-area > .headers-region > .tab:top {
+    -fx-border-color: #a3a7a8;
+    -fx-border-radius: 5 5 0 0;
+    -fx-background-color: white;
+    -fx-pref-height: 40px;
+    -fx-background-insets: 0;
+}
+
+/*selected tab backround*/
+.my-tab-pane > .tab-header-area > .headers-region > .tab:selected:top {
+    -fx-border-color: black #a3a7a8 #a3a7a8 #a3a7a8;
+    -fx-border-width: 5 1 1 1;
+    -fx-border-radius: 5 5 0 0;
+    -fx-background-color: white;
+    -fx-pref-height: 40px;
+    -fx-background-insets: 0;
+}
+
+/*text in selected tab*/
+.my-tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+/*text in non selected tabs*/
+.my-tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+/*header background*/
+.my-tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color:white;
+    -fx-border-color: #a3a7a8;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-insets: 0;
+    -fx-pref-height: 45px;
+}
+
+.my-tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-width: 1, 1;
+    -fx-border-color: -fx-focus-color, -fx-faint-focus-color;
+    -fx-border-insets: -4 -4 -6 -5, -2 -2 -5 -3;
+    -fx-border-radius: 2, 1; /* looks sharper if outer border has a tighter radius (2 instead of 3) */
+}
+
+.my-tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: -fx-background;
+}

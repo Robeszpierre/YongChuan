@@ -19,6 +19,13 @@ import java.util.ResourceBundle;
 
 public class StatisticController implements Initializable, ControlledScreen {
 
+    @FXML
+    PieChart genderPieChart;
+    @FXML
+    PieChart resultPieChart;
+    @FXML
+    ScrollPane statScrollPane;
+
     ScreensController myController;
 
     @Override
@@ -59,10 +66,7 @@ public class StatisticController implements Initializable, ControlledScreen {
         myController = screenParent;
     }
 
-    @FXML
-    PieChart genderPieChart;
-    @FXML
-    PieChart resultPieChart;
-    @FXML
-    ScrollPane statScrollPane;
+    public void getMainMenu(MouseEvent mouseEvent) {
+        myController.setScreen(Main.screen1ID);
+    }
 }

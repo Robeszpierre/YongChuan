@@ -3,7 +3,6 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -18,7 +17,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane fx:id="symptomsTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="2000.0" minWidth="800.0" prefWidth="1251.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.SymptomsController">
+<TabPane fx:id="symptomsTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="2000.0" minWidth="800.0" prefWidth="1251.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.SymptomsController">
   <tabs>
     <Tab text="Fej">
       <content>
@@ -41,7 +40,7 @@
                                                       <Insets />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <RadioButton id="symptomsTabPane" accessibleText="1" mnemonicParsing="false" text="Nem jellemző">
+                                                <RadioButton fx:id="radio1" accessibleText="1" mnemonicParsing="false" text="Nem jellemző">
                                                    <HBox.margin>
                                                       <Insets />
                                                    </HBox.margin>
@@ -49,10 +48,9 @@
                                                       <ToggleGroup fx:id="group1" />
                                                    </toggleGroup>
                                                 </RadioButton>
-                                                <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group1" />
-                                                <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group1" />
-                                                <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group1" />
-                                                <Button mnemonicParsing="false" onAction="#saveButton" text="Button" />
+                                                <RadioButton fx:id="radio2" mnemonicParsing="false" text="Ritka" toggleGroup="$group1" />
+                                                <RadioButton fx:id="radio3" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group1" />
+                                                <RadioButton fx:id="radio4" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group1" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="20.0" />
@@ -114,7 +112,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio5" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -122,9 +120,9 @@
                                                 <ToggleGroup fx:id="group2" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group2" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group2" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group2" />
+                                          <RadioButton fx:id="radio6" mnemonicParsing="false" text="Ritka" toggleGroup="$group2" />
+                                          <RadioButton fx:id="radio7" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group2" />
+                                          <RadioButton fx:id="radio8" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group2" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="58.0" spacing="40.0">
@@ -134,7 +132,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio9" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -142,9 +140,9 @@
                                                 <ToggleGroup fx:id="group3" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group3" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group3" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group3" />
+                                          <RadioButton fx:id="radio10" mnemonicParsing="false" text="Ritka" toggleGroup="$group3" />
+                                          <RadioButton fx:id="radio11" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group3" />
+                                          <RadioButton fx:id="radio12" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group3" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="106.0" spacing="40.0">
@@ -154,7 +152,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio13" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -162,9 +160,9 @@
                                                 <ToggleGroup fx:id="group4" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group4" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group4" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group4" />
+                                          <RadioButton fx:id="radio14" mnemonicParsing="false" text="Ritka" toggleGroup="$group4" />
+                                          <RadioButton fx:id="radio15" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group4" />
+                                          <RadioButton fx:id="radio16" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group4" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="154.0" spacing="40.0">
@@ -174,7 +172,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio17" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -182,9 +180,9 @@
                                                 <ToggleGroup fx:id="group5" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group5" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group5" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group5" />
+                                          <RadioButton fx:id="radio18" mnemonicParsing="false" text="Ritka" toggleGroup="$group5" />
+                                          <RadioButton fx:id="radio19" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group5" />
+                                          <RadioButton fx:id="radio20" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group5" />
                                           <Label text="ideje:" />
                                           <TextField id="group5TextField" fx:id="group5TextField" />
                                        </children>
@@ -196,7 +194,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio21" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -204,9 +202,9 @@
                                                 <ToggleGroup fx:id="group6" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group6" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group6" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group6" />
+                                          <RadioButton fx:id="radio22" mnemonicParsing="false" text="Ritka" toggleGroup="$group6" />
+                                          <RadioButton fx:id="radio23" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group6" />
+                                          <RadioButton fx:id="radio24" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group6" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="258.0" spacing="40.0">
@@ -216,7 +214,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio25" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -224,9 +222,9 @@
                                                 <ToggleGroup fx:id="group7" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group7" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group7" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group7" />
+                                          <RadioButton fx:id="radio26" mnemonicParsing="false" text="Ritka" toggleGroup="$group7" />
+                                          <RadioButton fx:id="radio27" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group7" />
+                                          <RadioButton fx:id="radio28" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group7" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="306.0" spacing="40.0">
@@ -236,7 +234,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio29" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -244,9 +242,9 @@
                                                 <ToggleGroup fx:id="group8" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group8" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group8" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group8" />
+                                          <RadioButton fx:id="radio30" mnemonicParsing="false" text="Ritka" toggleGroup="$group8" />
+                                          <RadioButton fx:id="radio31" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group8" />
+                                          <RadioButton fx:id="radio32" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group8" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="354.0" spacing="40.0">
@@ -256,7 +254,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio33" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -264,9 +262,9 @@
                                                 <ToggleGroup fx:id="group9" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group9" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group9" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group9" />
+                                          <RadioButton fx:id="radio34" mnemonicParsing="false" text="Ritka" toggleGroup="$group9" />
+                                          <RadioButton fx:id="radio35" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group9" />
+                                          <RadioButton fx:id="radio36" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group9" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="402.0" spacing="40.0">
@@ -276,7 +274,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio37" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -284,9 +282,9 @@
                                                 <ToggleGroup fx:id="group10" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group10" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group10" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group10" />
+                                          <RadioButton fx:id="radio38" mnemonicParsing="false" text="Ritka" toggleGroup="$group10" />
+                                          <RadioButton fx:id="radio39" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group10" />
+                                          <RadioButton fx:id="radio40" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group10" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="450.0" spacing="40.0">
@@ -296,7 +294,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio41" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -304,9 +302,9 @@
                                                 <ToggleGroup fx:id="group11" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group11" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group11" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group11" />
+                                          <RadioButton fx:id="radio42" mnemonicParsing="false" text="Ritka" toggleGroup="$group11" />
+                                          <RadioButton fx:id="radio43" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group11" />
+                                          <RadioButton fx:id="radio44" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group11" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="498.0" spacing="40.0">
@@ -316,7 +314,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio45" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -324,9 +322,9 @@
                                                 <ToggleGroup fx:id="group12" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group12" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group12" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group12" />
+                                          <RadioButton fx:id="radio46" mnemonicParsing="false" text="Ritka" toggleGroup="$group12" />
+                                          <RadioButton fx:id="radio47" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group12" />
+                                          <RadioButton fx:id="radio48" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group12" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="546.0" spacing="40.0">
@@ -336,7 +334,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio49" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -344,9 +342,9 @@
                                                 <ToggleGroup fx:id="group13" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group13" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group13" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group13" />
+                                          <RadioButton fx:id="radio50" mnemonicParsing="false" text="Ritka" toggleGroup="$group13" />
+                                          <RadioButton fx:id="radio51" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group13" />
+                                          <RadioButton fx:id="radio52" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group13" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="594.0" spacing="40.0">
@@ -356,7 +354,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio53" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -364,9 +362,9 @@
                                                 <ToggleGroup fx:id="group14" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group14" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group14" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group14" />
+                                          <RadioButton fx:id="radio54" mnemonicParsing="false" text="Ritka" toggleGroup="$group14" />
+                                          <RadioButton fx:id="radio55" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group14" />
+                                          <RadioButton fx:id="radio56" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group14" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="642.0" maxWidth="-Infinity" spacing="40.0">
@@ -376,7 +374,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio57" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -384,9 +382,9 @@
                                                 <ToggleGroup fx:id="group15" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group15" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group15" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group15" />
+                                          <RadioButton fx:id="radio58" mnemonicParsing="false" text="Ritka" toggleGroup="$group15" />
+                                          <RadioButton fx:id="radio59" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group15" />
+                                          <RadioButton fx:id="radio60" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group15" />
                                           <ComboBox id="group15ComboBox1" fx:id="group15ComboBox1" prefWidth="150.0" promptText="Melyik oldal?">
                                           <items>
                                              <FXCollections fx:factory="observableArrayList">
@@ -414,7 +412,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio61" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -422,9 +420,9 @@
                                                 <ToggleGroup fx:id="group16" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group16" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group16" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group16" />
+                                          <RadioButton fx:id="radio62" mnemonicParsing="false" text="Ritka" toggleGroup="$group16" />
+                                          <RadioButton fx:id="radio63" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group16" />
+                                          <RadioButton fx:id="radio64" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group16" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="746.0" spacing="40.0">
@@ -434,7 +432,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio65" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -442,9 +440,9 @@
                                                 <ToggleGroup fx:id="group17" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group17" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group17" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group17" />
+                                          <RadioButton fx:id="radio66" mnemonicParsing="false" text="Ritka" toggleGroup="$group17" />
+                                          <RadioButton fx:id="radio67" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group17" />
+                                          <RadioButton fx:id="radio68" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group17" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="794.0" spacing="40.0">
@@ -454,7 +452,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio69" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -462,9 +460,9 @@
                                                 <ToggleGroup fx:id="group18" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group18" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group18" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group18" />
+                                          <RadioButton fx:id="radio70" mnemonicParsing="false" text="Ritka" toggleGroup="$group18" />
+                                          <RadioButton fx:id="radio71" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group18" />
+                                          <RadioButton fx:id="radio72" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group18" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="746.0" spacing="40.0">
@@ -474,7 +472,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio73" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -482,9 +480,9 @@
                                                 <ToggleGroup fx:id="group19" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group19" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group19" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group19" />
+                                          <RadioButton fx:id="radio74" mnemonicParsing="false" text="Ritka" toggleGroup="$group19" />
+                                          <RadioButton fx:id="radio75" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group19" />
+                                          <RadioButton fx:id="radio76" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group19" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="794.0" spacing="40.0">
@@ -494,7 +492,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio77" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -502,9 +500,9 @@
                                                 <ToggleGroup fx:id="group20" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group20" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group20" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group20" />
+                                          <RadioButton fx:id="radio78" mnemonicParsing="false" text="Ritka" toggleGroup="$group20" />
+                                          <RadioButton fx:id="radio79" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group20" />
+                                          <RadioButton fx:id="radio80" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group20" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="842.0" spacing="40.0">
@@ -514,7 +512,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio81" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -522,9 +520,9 @@
                                                 <ToggleGroup fx:id="group21" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group21" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group21" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group21" />
+                                          <RadioButton fx:id="radio82" mnemonicParsing="false" text="Ritka" toggleGroup="$group21" />
+                                          <RadioButton fx:id="radio83" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group21" />
+                                          <RadioButton fx:id="radio84" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group21" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="794.0" spacing="40.0">
@@ -534,7 +532,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio85" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -542,9 +540,9 @@
                                                 <ToggleGroup fx:id="group22" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group22" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group22" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group22" />
+                                          <RadioButton fx:id="radio86" mnemonicParsing="false" text="Ritka" toggleGroup="$group22" />
+                                          <RadioButton fx:id="radio87" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group22" />
+                                          <RadioButton fx:id="radio88" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group22" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="842.0" spacing="40.0">
@@ -554,7 +552,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio89" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -562,9 +560,9 @@
                                                 <ToggleGroup fx:id="group23" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group23" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group23" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group23" />
+                                          <RadioButton fx:id="radio90" mnemonicParsing="false" text="Ritka" toggleGroup="$group23" />
+                                          <RadioButton fx:id="radio91" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group23" />
+                                          <RadioButton fx:id="radio92" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group23" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="890.0" spacing="40.0">
@@ -574,7 +572,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio93" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -582,9 +580,9 @@
                                                 <ToggleGroup fx:id="group24" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group24" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group24" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group24" />
+                                          <RadioButton fx:id="radio94" mnemonicParsing="false" text="Ritka" toggleGroup="$group24" />
+                                          <RadioButton fx:id="radio95" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group24" />
+                                          <RadioButton fx:id="radio96" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group24" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="938.0" spacing="40.0">
@@ -594,7 +592,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio97" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -602,9 +600,9 @@
                                                 <ToggleGroup fx:id="group25" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group25" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group25" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group25" />
+                                          <RadioButton fx:id="radio98" mnemonicParsing="false" text="Ritka" toggleGroup="$group25" />
+                                          <RadioButton fx:id="radio99" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group25" />
+                                          <RadioButton fx:id="radio98" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group25" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="986.0" spacing="40.0">
@@ -614,7 +612,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio99" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -622,13 +620,33 @@
                                                 <ToggleGroup fx:id="group26" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group26" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group26" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group26" />
+                                          <RadioButton fx:id="radio100" mnemonicParsing="false" text="Ritka" toggleGroup="$group26" />
+                                          <RadioButton fx:id="radio101" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group26" />
+                                          <RadioButton fx:id="radio102" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group26" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="1356.0" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherRareCheckBox1" fx:id="otherRareCheckBox1" mnemonicParsing="false" prefWidth="200.0" text="Egyéb ritka tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherRareTextField1" fx:id="otherRareTextField1" prefHeight="26.0" prefWidth="517.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="1418.0" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherFrequentCheckBox1" fx:id="otherFrequentCheckBox1" mnemonicParsing="false" prefWidth="200.0" text="Egyéb gyakori tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherFrequentTextField1" fx:id="otherFrequentTextField1" prefHeight="26.0" prefWidth="517.0" />
+                                       </children>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -656,7 +674,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio103" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -664,9 +682,9 @@
                                                 <ToggleGroup fx:id="group27" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group27" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group27" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group27" />
+                                          <RadioButton fx:id="radio104" mnemonicParsing="false" text="Ritka" toggleGroup="$group27" />
+                                          <RadioButton fx:id="radio105" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group27" />
+                                          <RadioButton fx:id="radio106" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group27" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="40.0">
@@ -676,7 +694,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio107" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -684,9 +702,9 @@
                                                 <ToggleGroup fx:id="group28" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group28" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group28" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group28" />
+                                          <RadioButton fx:id="radio108" mnemonicParsing="false" text="Ritka" toggleGroup="$group28" />
+                                          <RadioButton fx:id="radio109" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group28" />
+                                          <RadioButton fx:id="radio110" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group28" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="58.0" spacing="40.0">
@@ -696,7 +714,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio111" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -704,9 +722,9 @@
                                                 <ToggleGroup fx:id="group29" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group29" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group29" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group29" />
+                                          <RadioButton fx:id="radio112" mnemonicParsing="false" text="Ritka" toggleGroup="$group29" />
+                                          <RadioButton fx:id="radio113" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group29" />
+                                          <RadioButton fx:id="radio114" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group29" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="106.0" spacing="40.0">
@@ -716,7 +734,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio115" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -724,9 +742,9 @@
                                                 <ToggleGroup fx:id="group30" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group30" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group30" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group30" />
+                                          <RadioButton fx:id="radio116" mnemonicParsing="false" text="Ritka" toggleGroup="$group30" />
+                                          <RadioButton fx:id="radio117" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group30" />
+                                          <RadioButton fx:id="radio118" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group30" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="154.0" spacing="40.0">
@@ -736,7 +754,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio119" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -744,9 +762,9 @@
                                                 <ToggleGroup fx:id="group31" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group31" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group31" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group31" />
+                                          <RadioButton fx:id="radio120" mnemonicParsing="false" text="Ritka" toggleGroup="$group31" />
+                                          <RadioButton fx:id="radio121" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group31" />
+                                          <RadioButton fx:id="radio122" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group31" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="154.0" spacing="40.0">
@@ -756,7 +774,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio123" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -764,9 +782,9 @@
                                                 <ToggleGroup fx:id="group32" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group32" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group32" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group32" />
+                                          <RadioButton fx:id="radio124" mnemonicParsing="false" text="Ritka" toggleGroup="$group32" />
+                                          <RadioButton fx:id="radio125" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group32" />
+                                          <RadioButton fx:id="radio126" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group32" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="258.0" spacing="40.0">
@@ -776,7 +794,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio127" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -784,9 +802,9 @@
                                                 <ToggleGroup fx:id="group33" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group33" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group33" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group33" />
+                                          <RadioButton fx:id="radio128" mnemonicParsing="false" text="Ritka" toggleGroup="$group33" />
+                                          <RadioButton fx:id="radio129" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group33" />
+                                          <RadioButton fx:id="radio130" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group33" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="306.0" spacing="40.0">
@@ -796,7 +814,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio131" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -804,9 +822,9 @@
                                                 <ToggleGroup fx:id="group34" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group34" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group34" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group34" />
+                                          <RadioButton fx:id="radio132" mnemonicParsing="false" text="Ritka" toggleGroup="$group34" />
+                                          <RadioButton fx:id="radio133" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group34" />
+                                          <RadioButton fx:id="radio134" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group34" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="354.0" spacing="40.0">
@@ -816,7 +834,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio135" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -824,9 +842,9 @@
                                                 <ToggleGroup fx:id="group35" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group35" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group35" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group35" />
+                                          <RadioButton fx:id="radio136" mnemonicParsing="false" text="Ritka" toggleGroup="$group35" />
+                                          <RadioButton fx:id="radio137" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group35" />
+                                          <RadioButton fx:id="radio138" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group35" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="402.0" spacing="40.0">
@@ -836,7 +854,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio139" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -844,9 +862,9 @@
                                                 <ToggleGroup fx:id="group36" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group36" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group36" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group36" />
+                                          <RadioButton fx:id="radio140" mnemonicParsing="false" text="Ritka" toggleGroup="$group36" />
+                                          <RadioButton fx:id="radio141" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group36" />
+                                          <RadioButton fx:id="radio142" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group36" />
                                           <Label text="Színe:" />
                                           <TextField id="group36TextField" fx:id="group36TextField" />
                                        </children>
@@ -858,7 +876,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio143" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -866,9 +884,9 @@
                                                 <ToggleGroup fx:id="group37" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group37" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group37" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group37" />
+                                          <RadioButton fx:id="radio144" mnemonicParsing="false" text="Ritka" toggleGroup="$group37" />
+                                          <RadioButton fx:id="radio145" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group37" />
+                                          <RadioButton fx:id="radio146" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group37" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="498.0" spacing="40.0">
@@ -878,7 +896,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio147" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -886,9 +904,9 @@
                                                 <ToggleGroup fx:id="group38" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group38" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group38" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group38" />
+                                          <RadioButton fx:id="radio148" mnemonicParsing="false" text="Ritka" toggleGroup="$group38" />
+                                          <RadioButton fx:id="radio149" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group38" />
+                                          <RadioButton fx:id="radio150" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group38" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="546.0" spacing="40.0">
@@ -898,7 +916,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio151" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -906,9 +924,9 @@
                                                 <ToggleGroup fx:id="group39" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group39" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group39" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group39" />
+                                          <RadioButton fx:id="radio152" mnemonicParsing="false" text="Ritka" toggleGroup="$group39" />
+                                          <RadioButton fx:id="radio153" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group39" />
+                                          <RadioButton fx:id="radio154" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group39" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="594.0" spacing="40.0">
@@ -918,7 +936,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <RadioButton mnemonicParsing="false" text="Nem jellemző">
+                                          <RadioButton fx:id="radio155" mnemonicParsing="false" text="Nem jellemző">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -926,9 +944,29 @@
                                                 <ToggleGroup fx:id="group40" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group40" />
-                                          <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group40" />
-                                          <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group40" />
+                                          <RadioButton fx:id="radio156" mnemonicParsing="false" text="Ritka" toggleGroup="$group40" />
+                                          <RadioButton fx:id="radio157" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group40" />
+                                          <RadioButton fx:id="radio158" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group40" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherRareCheckBox2" fx:id="otherRareCheckBox2" mnemonicParsing="false" prefWidth="200.0" text="Egyéb ritka tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherRareTextField2" fx:id="otherRareTextField2" prefHeight="26.0" prefWidth="517.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherFrequentCheckBox2" fx:id="otherFrequentCheckBox2" mnemonicParsing="false" prefWidth="200.0" text="Egyéb gyakori tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherFrequentTextField2" fx:id="otherFrequentTextField2" prefHeight="26.0" prefWidth="517.0" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -1212,7 +1250,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="594.0" spacing="20.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefWidth="220.0" text="Széklet" wrapText="true">
+                                          <CheckBox id="shitChechBox" fx:id="shitChechBox" mnemonicParsing="false" prefWidth="220.0" text="Széklet" wrapText="true">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -1363,6 +1401,26 @@
                                           <RadioButton mnemonicParsing="false" text="Ritka" toggleGroup="$group60" />
                                           <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group60" />
                                           <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group60" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherRareCheckBox3" fx:id="otherRareCheckBox3" mnemonicParsing="false" prefWidth="200.0" text="Egyéb ritka tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherRareTextField3" fx:id="otherRareTextField3" prefHeight="26.0" prefWidth="517.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherFrequentCheckBox3" fx:id="otherFrequentCheckBox3" mnemonicParsing="false" prefWidth="200.0" text="Egyéb gyakori tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherFrequentTextField3" fx:id="otherFrequentTextField3" prefHeight="26.0" prefWidth="517.0" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -1704,6 +1762,26 @@
                                           <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group76" />
                                        </children>
                                     </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherRareCheckBox4" fx:id="otherRareCheckBox4" mnemonicParsing="false" prefWidth="200.0" text="Egyéb ritka tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherRareTextField4" fx:id="otherRareTextField4" prefHeight="26.0" prefWidth="517.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherFrequentCheckBox4" fx:id="otherFrequentCheckBox4" mnemonicParsing="false" prefWidth="200.0" text="Egyéb gyakori tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherFrequentTextField4" fx:id="otherFrequentTextField4" prefHeight="26.0" prefWidth="517.0" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -1775,7 +1853,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="58.0" spacing="40.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefWidth="200.0" text="Napi folyadékbevitel" wrapText="true">
+                                          <CheckBox id="dailyFluidCheckBox" fx:id="dailyFluidCheckBox" mnemonicParsing="false" prefWidth="200.0" text="Napi folyadékbevitel" wrapText="true">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -1824,7 +1902,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="154.0" spacing="40.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefWidth="200.0" text="Napközbeni vizeletürítések száma" wrapText="true">
+                                          <CheckBox id="urinationCountCheckBox" fx:id="urinationCountCheckBox" mnemonicParsing="false" prefWidth="200.0" text="Napközbeni vizeletürítések száma" wrapText="true">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -1852,7 +1930,7 @@
                                           <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group80" />
                                           <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group80" />
                                           <Label text="Száma:" />
-                                          <Spinner max="100" min="0" prefWidth="80.0">
+                                          <Spinner id="group80Spinner" fx:id="group80Spinner" max="100" min="0" prefWidth="80.0">
                                              <HBox.margin>
                                                 <Insets left="-30.0" />
                                              </HBox.margin>
@@ -2307,6 +2385,26 @@
                                           <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group102" />
                                        </children>
                                     </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherRareCheckBox5" fx:id="otherRareCheckBox5" mnemonicParsing="false" prefWidth="200.0" text="Egyéb ritka tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherRareTextField5" fx:id="otherRareTextField5" prefHeight="26.0" prefWidth="517.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherFrequentCheckBox5" fx:id="otherFrequentCheckBox5" mnemonicParsing="false" prefWidth="200.0" text="Egyéb gyakori tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherFrequentTextField5" fx:id="otherFrequentTextField5" prefHeight="26.0" prefWidth="517.0" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -2330,7 +2428,7 @@
                                        <children>
                                           <Label>
                                              <graphic>
-                                                <CheckBox mnemonicParsing="false" text="Első menses:" wrapText="true" />
+                                                <CheckBox id="mensesAtAgeCheckBox" fx:id="mensesAtAgeCheckBox" mnemonicParsing="false" text="Első menses:" wrapText="true" />
                                              </graphic>
                                           </Label>
                                           <Spinner id="mensesSpinner1" fx:id="mensesSpinner1" max="100" min="0" prefWidth="80.0">
@@ -2461,7 +2559,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="258.0" spacing="40.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefWidth="200.0" text="Cikluson belül hány napos a vérzés" wrapText="true">
+                                          <CheckBox id="cycleDayCountCheckBox" fx:id="cycleDayCountCheckBox" mnemonicParsing="false" prefWidth="200.0" text="Cikluson belül hány napos a vérzés" wrapText="true">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -2516,6 +2614,26 @@
                                                 </FXCollections>
                                              </items>
                                           </ComboBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherRareCheckBox6" fx:id="otherRareCheckBox6" mnemonicParsing="false" prefWidth="200.0" text="Egyéb ritka tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherRareTextField6" fx:id="otherRareTextField6" prefHeight="26.0" prefWidth="517.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="40.0">
+                                       <children>
+                                          <CheckBox id="otherFrequentCheckBox6" fx:id="otherFrequentCheckBox6" mnemonicParsing="false" prefWidth="200.0" text="Egyéb gyakori tünet(ek):" wrapText="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                          <TextField id="otherFrequentTextField6" fx:id="otherFrequentTextField6" prefHeight="26.0" prefWidth="517.0" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -2655,23 +2773,19 @@
       </Tab>
       <Tab text="Végtagok, izületek">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <AnchorPane>
                <children>
-                  <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <ScrollPane prefHeight="1967.0" prefWidth="1251.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <content>
-                              <TabPane id="jointsTabPane" fx:id="jointsTabPane" prefHeight="1100.0" prefWidth="907.0" tabClosingPolicy="UNAVAILABLE">
-                                 <padding>
-                                    <Insets left="20.0" top="30.0" />
-                                 </padding>
-                              </TabPane>
-                           </content>
-                        </ScrollPane>
-                        <Button layoutX="14.0" layoutY="1867.0" mnemonicParsing="false" onMouseClicked="#addNewTab" text="Új izület" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" />
-                     </children>
-                  </AnchorPane>
-               </children></AnchorPane>
+                  <ScrollPane prefHeight="2017.0" prefWidth="1251.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <TabPane id="jointsTabPane" fx:id="jointsTabPane" prefHeight="1100.0" prefWidth="907.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE">
+                           <padding>
+                              <Insets left="20.0" top="30.0" />
+                           </padding>
+                        </TabPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
          </content>
       </Tab>
   </tabs>

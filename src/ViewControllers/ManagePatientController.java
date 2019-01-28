@@ -1,7 +1,11 @@
 package ViewControllers;
 
 import Controller.Main;
+import Controller.SecureLocalDateStringConverter;
 import Modell.*;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -9,30 +13,38 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
+
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class ManagePatientController implements Initializable, ControlledScreen {
 
     ScreensController myController;
     /**
-     * Initializes the controller class.
+     * Initializes the controller classgg.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -42,17 +54,34 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         makeListOfTextAreas();
         makelistOfTextFlows();
         makeListOfpersonalDateTextFields();
+        makeListOfTabs();
         personalDataBindings();
         setDatePickers();
         setPulseBindings();
         addListeners();
+        setImageBindings();
 
-        loadSymptoms();
+
+        genderChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                gender=genderChoiceBox.getItems().get((Integer) number2);
+                symptomsGridPane.getStyleClass().clear();
+                if(gender.equals("férfi")){
+                    symptomsGridPane.getStyleClass().add("male-image");
+                    System.out.println("f");
+                }else if(gender.equals("nő")){
+                    symptomsGridPane.getStyleClass().add("female-image");
+                    System.out.println("n");
+                }
+            }
+        });
     }
 
     public void setScreenParent(ScreensController screenParent){
         myController = screenParent;
     }
+
 
     @FXML
     SplitPane splitPane;
@@ -211,8 +240,6 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     @FXML
     TabPane therapyTabPane;
     @FXML
-    TabPane jointTabPane;
-    @FXML
     DatePicker finalOpinionDatePicker;
     @FXML
     StackPane psychicStackPane1;
@@ -289,7 +316,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     @FXML
     Label personalDataLabel9;
     @FXML
-    ChoiceBox<String> genderChoiceBoxx;
+    ChoiceBox<String> genderChoiceBox;
     @FXML
     TextArea pulseTextArea2;
     @FXML
@@ -364,17 +391,68 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     Label patientNameWarningLabel;
     @FXML
     Label birthDateWarningLabel;
-    @FXML
-    TextArea symptomsTextArea1;
-
 
     @FXML
-    TextArea treatment1TextArea;
+    TextFlow symptomsTextFlow1;
+    @FXML
+    TextFlow symptomsTextFlow2;
+    @FXML
+    TextFlow symptomsTextFlow3;
+    @FXML
+    TextFlow symptomsTextFlow4;
+    @FXML
+    TextFlow symptomsTextFlow5;
+    @FXML
+    TextFlow symptomsTextFlow6;
+    @FXML
+    TextFlow symptomsTextFlow7;
+    @FXML
+    TextFlow symptomsTextFlow8;
+    @FXML
+    TextFlow symptomsTextFlow9;
+    @FXML
+    TextFlow jointTextFlow1;
+    @FXML
+    TextFlow jointTextFlow2;
+    @FXML
+    TextFlow jointTextFlow3;
+    @FXML
+    TextFlow jointTextFlow4;
+    @FXML
+    TextFlow jointTextFlow5;
+    @FXML
+    Tab jointsTab1;
+    @FXML
+    Tab jointsTab2;
+    @FXML
+    Tab jointsTab3;
+    @FXML
+    Tab jointsTab4;
+    @FXML
+    Tab jointsTab5;
+    @FXML
+    ImageView earImageView;
+    @FXML
+    ScrollPane earImageScrollPane;
+    @FXML
+    ImageView tongueImageView;
+    @FXML
+    ScrollPane tongueImageScrollPane;
+    @FXML
+    TextArea earTextArea;
+    @FXML
+    TextArea tongueTextArea;
+    @FXML
+    TabPane managePatientTabPane;
+    @FXML
+    GridPane symptomsGridPane;
 
 
     private Boolean patientDataEditable =true;
     private Boolean treatmentEditable=true;
     private Patient patient= Patient.getInstance();
+
+    String gender="";
 
     ArrayList<ChoiceBox> choiceBoxes;
     ArrayList<TextArea>  psychicTextAreas;
@@ -385,9 +463,11 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     ArrayList<TextFlow> textFlows;
     ArrayList<TextField> personalDateTextFields;
     ArrayList<TitledPane> titledPanes;
+    ObservableList<Tab> managePatientTabs;
 
     private ArrayList<TreatmentController> treatmentControllers=new ArrayList<>();
     private ManagePatientController managePatientController;
+    private Image defaultImage = new Image("View/img/nopicture.jpg");
 
     public void load() {
         if(Main.getNewPatient()) {
@@ -402,12 +482,21 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             p.setTreatments(new ArrayList<>());
             p.setFinal(new Final());
             setPatient();
+            setImage();
+            setImageDescriptions();
+
+            for(Tab t: managePatientTabs){
+                t.setDisable(true);
+            }
+            managePatientTabs.get(0).setDisable(false);
         }else{
             Main.db.getPatient(Main.patientID);
             setPatient();
+            loadSymptoms();
+            loadImages();
+            loadImageDescriptions();
         }
     }
-
 
     private void setPulseBindings() {
         pulseLabel1.textProperty().bind(pulse1Choicebox.valueProperty());
@@ -451,7 +540,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         personalDataLabel6.textProperty().bind(personalDataTextField5.textProperty());
         personalDataLabel7.textProperty().bind(personalDataTextField6.textProperty());
         personalDataLabel8.textProperty().bind(personalDataTextField7.textProperty());
-        personalDataLabel9.textProperty().bind(genderChoiceBoxx.valueProperty());
+        personalDataLabel9.textProperty().bind(genderChoiceBox.valueProperty());
     }
 
     private void makeListOfpersonalDateTextFields() {
@@ -471,6 +560,11 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         textFlows.add(clinicalHistoryTextFlow);
         textFlows.add(actualTextFlow);
         textFlows.add(tcmTextFlow);
+    }
+
+    private void makeListOfTabs() {
+        managePatientTabs=FXCollections.observableArrayList();
+        managePatientTabs=managePatientTabPane.getTabs();
     }
 
     private void makeListOfTitledPanes() {
@@ -608,11 +702,13 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         });
     }
 
+    @FXML
+    Button aaaaaaaaaaaaaaaaaa;
+
     //Szerkesztés button clicked
     @FXML
     private void changeEditabilityClicked(){
         changeEditability();
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
     }
 
     public void changeEditability(){
@@ -622,6 +718,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         }else{
             editTextAreasButton.setText("Szerkesztő mód");
         }
+
 
         psychicStackPane1.setVisible(!patientDataEditable);
         psychicStackPane2.setVisible(patientDataEditable);
@@ -635,6 +732,10 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         personalDataStackPane2.setVisible(patientDataEditable);
         pulseStackPane1.setVisible(!patientDataEditable);
         pulseStackPane2.setVisible(patientDataEditable);
+        earTextArea.setEditable(!patientDataEditable);
+        earTextArea.setEditable(patientDataEditable);
+        tongueTextArea.setEditable(!patientDataEditable);
+        tongueTextArea.setEditable(patientDataEditable);
 
         setDataDisplay();
     }
@@ -684,12 +785,12 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             FXMLLoader fxmlLoader = new FXMLLoader();
             AnchorPane ap=(AnchorPane) fxmlLoader.load(this.getClass().getResource("/treatment.fxml").openStream());
             TreatmentController treatmentController = (TreatmentController) fxmlLoader.getController();
+            addDateValidator(treatmentController.treatmentDatePicker);
 
             tab.setContent(ap);
             tab.setText(String.valueOf(numberOfTabs));
             therapyTabPane.getSelectionModel().select(numberOfTabs-1);
             treatmentControllers.add(treatmentController);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -712,6 +813,27 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         }
     }
 
+    public void addDateValidator(DatePicker datePicker){
+        datePicker.getEditor().focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                {
+                    if (oldValue) {
+                        isDateValid(datePicker);
+                    }
+                }
+            }
+        });
+    }
+
+    private void isDateValid(DatePicker datePicker){
+        SecureLocalDateStringConverter checkDate=new SecureLocalDateStringConverter();
+        checkDate.fromString(datePicker.getEditor().getText());
+        if(checkDate.hasParseError()){
+            datePicker.getEditor().requestFocus();
+        }
+    }
+
     private Patient makePatient() {
 
         String patientDate;
@@ -720,6 +842,9 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         }catch (Exception e){
             patientDate=null;
         }
+        Calendar today = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
         PatientData patientData = new PatientData(
                 personalDataTextField1.getText(),
                 personalDataTextField2.getText(),
@@ -729,7 +854,8 @@ public class ManagePatientController implements Initializable, ControlledScreen 
                 personalDataTextField5.getText(),
                 personalDataTextField6.getText(),
                 personalDataTextField7.getText(),
-                genderChoiceBoxx.getValue()
+                genderChoiceBox.getValue(),
+                sdf.format(today.getTime())
         );
         patient.setPatientData(patientData);
 
@@ -852,9 +978,9 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         personalDataTextField5.setText(pd.getJob());
         personalDataTextField6.setText(pd.getEmail());
         personalDataTextField7.setText(pd.getPhone());
-        genderChoiceBoxx.setValue(pd.getGender());
+        genderChoiceBox.setValue(pd.getGender());
         if(Main.newPatient){
-            genderChoiceBoxx.setValue("────────");
+            genderChoiceBox.setValue("────────");
         }
 
         psychic1TextArea.setText(patient.getPsyche().getPsyche1());
@@ -930,6 +1056,10 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         finalTextArea.setText(f.getAssessment());
         finalOpinionChoiceBox.setValue(f.getResult());
 
+        if(Main.newPatient){
+            finalOpinionChoiceBox.setValue("────────");
+        }
+
         treatmentControllers.clear();
         ObservableList<Tab> tabList = therapyTabPane.getTabs();
         int size=tabList.size();
@@ -956,6 +1086,11 @@ public class ManagePatientController implements Initializable, ControlledScreen 
                 treatmentController.setGreenArrows();
 
                 k++;
+        }
+
+
+        if(Main.newPatient){
+            clearElements();
         }
 
     }
@@ -1038,62 +1173,71 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             }
         }
         addChangeListenersForPersonalData();
+
+        addDateValidator(personalDataDatePicker);
+        addDateValidator(finalOpinionDatePicker);
     }
 
     private void addChangeListenersForPersonalData(){
         personalDataTextField1.textProperty().addListener((observable, oldValue, newValue) -> {
-                if(!personalDataTextField1.getText().trim().equals("")){
-                    patientNameWarningLabel.setVisible(false);
-                }else{
-                    patientNameWarningLabel.setVisible(true);
-                }
+            if(!personalDataTextField1.getText().trim().equals("")){
+                patientNameWarningLabel.setVisible(false);
+            }else{
+                patientNameWarningLabel.setVisible(true);
+            }
+            setMandatoryFields();
         });
 
         personalDataDatePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-                if(!personalDataDatePicker.getEditor().getText().equals("")){
-                    birthDateWarningLabel.setVisible(false);
-                }else{
-                    birthDateWarningLabel.setVisible(true);
-                }
+            if(!personalDataDatePicker.getEditor().getText().equals("")){
+                birthDateWarningLabel.setVisible(false);
+            }else{
+                birthDateWarningLabel.setVisible(true);
+            }
+            setMandatoryFields();
         });
 
-        genderChoiceBoxx.valueProperty().addListener((observable, oldValue, newValue) ->  {
-                if (!genderChoiceBoxx.getValue().equals("────────")) {
-                    genderWarningLabel.setVisible(false);
-                } else {
-                    genderWarningLabel.setVisible(true);
-                }
+        genderChoiceBox.valueProperty().addListener((observable, oldValue, newValue) ->  {
+            if (!genderChoiceBox.getValue().equals("────────")) {
+                genderWarningLabel.setVisible(false);
+            } else {
+                genderWarningLabel.setVisible(true);
+            }
+            setMandatoryFields();
         });
-
     }
 
-
-    public void upDateClicked(MouseEvent mouseEvent) {
-        update();
-    }
-
-    public void saveClicked(MouseEvent mouseEvent) {
-        save();
+    private void setMandatoryFields(){
+        if(!(patientNameWarningLabel.visibleProperty().get()) && !(birthDateWarningLabel.visibleProperty().get()) && !(genderWarningLabel.visibleProperty().get())){
+            for(Tab t: managePatientTabs){
+                t.setDisable(false);
+            }
+        }else{
+            for(Tab t: managePatientTabs){
+                t.setDisable(true);
+            }
+            managePatientTabs.get(0).setDisable(false);
+        }
     }
 
     public void save(){
-        System.out.println("save");
         Patient patient = makePatient();
         Main.db.addPatient(patient);
+        Main.db.saveImageDescription(earTextArea.getText(), tongueTextArea.getText());
     }
 
     public void update(){
         Patient patient = makePatient();
         Main.db.updatePatient(patient);
+        Main.db.updateImageDescription(earTextArea.getText(), tongueTextArea.getText());
     }
 
     public void chooseOtherPatient(MouseEvent mouseEvent) {
         if(Main.newPatient){
             save();
-            System.out.println("save");
+            Main.newPatient=false;
         }else {
             update();
-            System.out.println("update");
         }
         myController.choosePatientController.refreshTableData();
         myController.setScreen("choose");
@@ -1112,14 +1256,19 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             FXMLLoader fxmlLoader = new FXMLLoader();
             TabPane t=(TabPane) fxmlLoader.load(getClass().getResource("/symptoms.fxml").openStream());
             SymptomsController symptomsController = (SymptomsController) fxmlLoader.getController();
-
+            symptomsController.setSymptomValues();
             Stage stage = new Stage();
             stage.setTitle("Tünetek");
             stage.setScene(new Scene(t));
+
             stage.show();
             stage.setMaximized(true);
+            symptomsController.setCurrentStage(stage); //injects the stage into symptomsController
+            symptomsController.setOnCloseRequest();
+            symptomsController.disableMenses(gender);
+            t.getStylesheets().add(this.getClass().getResource("/font.css").toExternalForm());
             t.getStylesheets().add(this.getClass().getResource("/symptoms.css").toExternalForm());
-            Main main=new Main();
+            t.styleProperty().bind(Bindings.format("-fx-font-size: " + myController.getSettingsController().getFontSize() + "; -fx-font-family: " + myController.getSettingsController().getFontFamily()));
             Stage currentStage;
             currentStage=(Stage) splitPane.getScene().getWindow();
             currentStage.hide();
@@ -1132,11 +1281,248 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     }
 
     public void refreshSymptoms(){
-        System.out.println("aaaaaa");
+        ArrayList<Symptom> s=Main.db.getSymptoms(Main.patientID);
+        loadSymptoms();
     }
 
-    private void loadSymptoms(){
-        symptomsTextArea1.setText("fejfajas, köhögés");
+    public void loadSymptoms(){
+        clearElements();
+        ArrayList<Symptom> symptoms=Main.db.getSymptoms(Main.patientID);
+        SortedSet activeTabs=new TreeSet();
+        for(Symptom s:symptoms){
+            Text separator=new Text(" █ ");
+            separator.setFill(Color.rgb(0, 97, 255, 0.4));
+            separator.setStyle("-fx-font-weight: 900");
+            Text text=new Text(s.getName());
+            text.setFill(Color.rgb(0, 0, 0));
+            if(s.getImportant()){
+                text.setFill(Color.RED);
+            }
+            double type=Double.parseDouble(s.getLocation());
+                if (type == 1) {
+                    symptomsSort(s, separator, text, symptomsTextFlow1, symptomsTextFlow2);
+                }
+                else if (type == 2) {
+                    symptomsSort(s, separator, text, symptomsTextFlow3, symptomsTextFlow4);
+                }
+                else if (type == 3) {
+                    symptomsSort(s, separator, text, symptomsTextFlow5, symptomsTextFlow6);
+                }
+                else if (type == 4) {
+                    symptomsSort(s, separator, text, symptomsTextFlow7, symptomsTextFlow8);
+                }
+                else if (type == 5) {
+                    symptomsSort(s, separator, text, symptomsTextFlow9);
+                }
+                else{
+                    int correctType=(int) Math.round((type-6)*10);
+                    int i=1;
+                    while (i!=correctType){
+                        i+=1;
+                    }
+                    activeTabs.add(i);
+                    if(i==0){
+                        symptomsSort(s, separator, text, jointTextFlow1);
+                    }
+                    else if(i==1){
+                        symptomsSort(s, separator, text, jointTextFlow2);
+                    }
+                    else if(i==2){
+                        symptomsSort(s, separator, text, jointTextFlow3);
+                    }
+                    else if(i==3){
+                        symptomsSort(s, separator, text, jointTextFlow4);
+                    }
+                    else{
+                        symptomsSort(s, separator, text, jointTextFlow5);
+                    }
+                }
+        }
+
+        jointsTab1.setDisable(true); jointsTab2.setDisable(true); jointsTab3.setDisable(true); jointsTab4.setDisable(true); jointsTab5.setDisable(true);
+
+        Iterator<Integer> it = activeTabs.iterator();
+        Integer current = 0;
+        while(it.hasNext() ) {
+            current = it.next()+1;
+            if(current==1){
+                jointsTab1.setDisable(false);
+            }else if(current==2){
+                jointsTab2.setDisable(false);
+            }else if(current==3){
+                jointsTab3.setDisable(false);
+            }else if(current==4){
+                jointsTab4.setDisable(false);
+            }else if(current==5){
+                jointsTab5.setDisable(false);
+            }
+        }
+    }
+
+    private void symptomsSort(Symptom s, Text separator, Text text, TextFlow symptomsTextFlow) {
+            if(symptomsTextFlow.getChildren().size()>0){
+                symptomsTextFlow.getChildren().add(separator);
+            }
+            symptomsTextFlow.getChildren().add(text);
+    }
+
+    private void symptomsSort(Symptom s, Text separator, Text text, TextFlow symptomsTextFlow1, TextFlow symptomsTextFlow2) {
+        if(Integer.parseInt(s.getType())==1) {
+            if(symptomsTextFlow1.getChildren().size()>0){
+                symptomsTextFlow1.getChildren().add(separator);
+            }
+            symptomsTextFlow1.getChildren().add(text);
+        }else{
+            if(symptomsTextFlow2.getChildren().size()>0){
+                symptomsTextFlow2.getChildren().add(separator);
+            }
+            symptomsTextFlow2.getChildren().add(text);
+        }
+    }
+
+    private void clearElements() {
+        symptomsTextFlow1.getChildren().clear();
+        symptomsTextFlow2.getChildren().clear();
+        symptomsTextFlow3.getChildren().clear();
+        symptomsTextFlow4.getChildren().clear();
+        symptomsTextFlow5.getChildren().clear();
+        symptomsTextFlow6.getChildren().clear();
+        symptomsTextFlow7.getChildren().clear();
+        symptomsTextFlow8.getChildren().clear();
+        symptomsTextFlow9.getChildren().clear();
+        jointTextFlow1.getChildren().clear();
+        jointTextFlow2.getChildren().clear();
+        jointTextFlow3.getChildren().clear();
+        jointTextFlow4.getChildren().clear();
+        jointTextFlow5.getChildren().clear();
+    }
+
+    private long currentTime=0;
+    private long lastTime=0;
+    boolean isdblClicked=false;
+
+    @FXML
+    public void openImage(MouseEvent mouseEvent) {
+            long diff = 0;
+            currentTime = System.currentTimeMillis();
+
+            if(lastTime!=0 && currentTime!=0){
+                diff=currentTime-lastTime;
+
+                if( diff<=300)
+                    isdblClicked=true;
+                else
+                    isdblClicked=false;
+            }
+
+            lastTime=currentTime;
+
+            if(isdblClicked) {
+                String id="";
+                ImageView imageView= (ImageView) mouseEvent.getSource();
+                id=imageView.getId();
+                File file2 = Main.db.getPictureFile(id);
+                if (Desktop.isDesktopSupported()) {
+                    new Thread(() -> {
+                        try {
+                            Desktop.getDesktop().open(file2);
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                    }).start();
+                }
+            }
+    }
+
+    public void addImage(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            AnchorPane ap=(AnchorPane) fxmlLoader.load(this.getClass().getResource("/dropImage.fxml").openStream());
+            DropImageController dropImageController = (DropImageController) fxmlLoader.getController();
+            Button b= (Button) mouseEvent.getSource();
+            String id=b.getId();
+
+            String imageName=getImageName(id);
+            dropImageController.setImageName(imageName);
+            dropImageController.setParentController(myController.managePatientController);
+
+            Stage stage = new Stage();
+            stage.setTitle("Kép");
+            stage.setScene(new Scene(ap));
+
+            Stage currentStage;
+            currentStage=(Stage) splitPane.getScene().getWindow();
+            currentStage.hide();
+            dropImageController.setParentStage(currentStage);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getImageName(String id) {
+        String imageName="";
+        if(id.equals("addEarImageButton")){
+            imageName="ear.jpg";
+        }else if(id.equals("addTongueImageButton")){
+            imageName="tongue.jpg";
+        }
+        return imageName;
+    }
+
+    public void setImage(String imageName, Image image){
+        if(imageName.equals("ear.jpg")){
+            earImageView.setImage(image);
+        }else if(imageName.equals("tongue.jpg")){
+            tongueImageView.setImage(image);
+        }
+    }
+
+    private void setImageBindings() {
+        earImageScrollPane.setFitToHeight(true);
+        earImageView.fitWidthProperty().bind(earImageScrollPane.widthProperty());
+        earImageView.fitHeightProperty().bind(earImageScrollPane.heightProperty());
+        tongueImageScrollPane.setFitToHeight(true);
+        tongueImageView.fitWidthProperty().bind(earImageScrollPane.widthProperty());
+        tongueImageView.fitHeightProperty().bind(earImageScrollPane.heightProperty());
+    }
+
+    public void setImage () {
+        earImageView.setImage(defaultImage);
+        tongueImageView.setImage(defaultImage);
+    }
+
+    public void setImage (String name) {
+        if(name.equals("ear")) {
+            earImageView.setImage(defaultImage);
+        }else if(name.equals("tongue")) {
+            tongueImageView.setImage(defaultImage);
+        }
+    }
+
+    private void loadImages() {
+        Main.db.loadImages(myController.getManagePatientController());
+    }
+
+    private void setImageDescriptions() {
+        earTextArea.setText("");
+        tongueTextArea.setText("");
+    }
+
+    private void loadImageDescriptions() {
+        ArrayList<String> descriptions=Main.db.getImageDescriptions();
+        earTextArea.setText(descriptions.get(0));
+        tongueTextArea.setText(descriptions.get(1));
+    }
+
+    public void deleteLastTreatment(MouseEvent mouseEvent) {
+        int tabNums=therapyTabPane.getTabs().size();
+        if(tabNums>1 && tabNums>patient.getTreatments().size()+1){
+            therapyTabPane.getTabs().remove(tabNums-2);
+            Main.db.deleteTreatment(tabNums-1);
+            treatmentControllers.remove(treatmentControllers.size()-1);
+        }
     }
 }
 

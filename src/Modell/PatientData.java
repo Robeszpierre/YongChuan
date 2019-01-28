@@ -18,9 +18,10 @@ public class PatientData {
     private final SimpleStringProperty email;
     private final SimpleStringProperty phone;
     private final SimpleStringProperty gender;
+    private final SimpleStringProperty lastModofied;
 
 
-    public PatientData(String name, String motherName, String birthPlace, String birthdate, String familyStatus, String job, String email, String phone, String gender){
+    public PatientData(String name, String motherName, String birthPlace, String birthdate, String familyStatus, String job, String email, String phone, String gender, String lastModified){
         this.patientID = new SimpleStringProperty(Integer.toString(Main.patientID));
         this.name = new SimpleStringProperty(name);
         this.motherName = new SimpleStringProperty(motherName);
@@ -31,6 +32,7 @@ public class PatientData {
         this.email = new SimpleStringProperty(email);
         this.phone = new SimpleStringProperty(phone);
         this.gender = new SimpleStringProperty(gender);
+        this.lastModofied = new SimpleStringProperty(lastModified);
     }
 
     public PatientData(){
@@ -44,6 +46,7 @@ public class PatientData {
         this.email = new SimpleStringProperty("");
         this.phone = new SimpleStringProperty("");
         this.gender = new SimpleStringProperty("");
+        this.lastModofied = new SimpleStringProperty("");
     }
 
     public String getPatientID() {
@@ -164,5 +167,17 @@ public class PatientData {
 
     public void setBirthPlace(String birthPlace) {
         this.birthPlace.set(birthPlace);
+    }
+
+    public String getLastModofied() {
+        return lastModofied.get();
+    }
+
+    public SimpleStringProperty lastModofiedProperty() {
+        return lastModofied;
+    }
+
+    public void setLastModofied(String lastModofied) {
+        this.lastModofied.set(lastModofied);
     }
 }

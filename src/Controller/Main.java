@@ -3,16 +3,14 @@ package Controller;
 import Modell.Database.DB_Controller;
 import ViewControllers.ScreensController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Screen;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.util.Locale;
 
 public class Main extends Application {
@@ -25,6 +23,8 @@ public class Main extends Application {
     public static String screen3File = "/managePatient.fxml";
     public static String screen4ID = "stat";
     public static String screen4File = "/statistic.fxml";
+    public static String screen5ID = "settings";
+    public static String screen5File = "/settings.fxml";
 
     public static DB_Controller db;
 
@@ -34,6 +34,7 @@ public class Main extends Application {
     Stage window;
 
     private ScreensController mainContainer;
+    private Group root;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -49,47 +50,49 @@ public class Main extends Application {
         mainContainer.loadScreen(Main.screen2ID, Main.screen2File);
         mainContainer.loadScreen(Main.screen3ID, Main.screen3File);
         mainContainer.loadScreen(Main.screen4ID, Main.screen4File);
+        mainContainer.loadScreen(Main.screen5ID, Main.screen5File);
 
-        mainContainer.setScreen(Main.screen3ID);
+        mainContainer.setScreen(Main.screen2ID);
 
 
-        Group root = new Group();
+        root = new Group();
         root.getChildren().addAll(mainContainer);
+        mainContainer.setRoot(root);
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 500, 500, Color.GREY);
         primaryStage.setScene(scene);
 
         mainContainer.prefWidthProperty().bind(scene.widthProperty());
         mainContainer.prefHeightProperty().bind(scene.heightProperty());
 
-
         primaryStage.setTitle("YongQuan");
-        root.setStyle("-fx-font-size: 13");
-        root.setStyle("-fx-font-family: 'DejaVu Sans'");
-        scene.getStylesheets().add(this.getClass().getResource("/view.css").toExternalForm());
         scene.getStylesheets().add(this.getClass().getResource("/font.css").toExternalForm());
+        scene.getStylesheets().add(this.getClass().getResource("/view.css").toExternalForm());
+
+        mainContainer.getSettingsController().setSettings();
 
         window=primaryStage;
         window.setOnCloseRequest(e -> {
             e.consume();
-            clooseProgram();
+            closeProgram();
         });
 
         primaryStage.show();
 
     }
 
-    private void clooseProgram() {
+
+    private void closeProgram() {
         try {
             if (newPatient) {
                 mainContainer.getManagePatientController().save();
-                System.out.println("save");
             } else{
                 mainContainer.getManagePatientController().update();
-                System.out.println("update");
             }
+            db.shutDown();
             System.exit(0);
         }catch (NullPointerException e) {
+            db.shutDown();
             System.exit(0);
         }
     }
@@ -97,7 +100,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         db=new DB_Controller();
         launch(args);
-        db.shutDown();
+
     }
 
     public static Boolean getNewPatient() {

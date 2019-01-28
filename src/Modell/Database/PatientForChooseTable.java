@@ -7,12 +7,14 @@ public class PatientForChooseTable {
     private final SimpleStringProperty patientID;
     private final SimpleStringProperty name;
     private final SimpleStringProperty birthDate;
+    private final SimpleStringProperty lastModified;
 
 
-    public PatientForChooseTable(int patientID, String name, String birthdate){
+    public PatientForChooseTable(int patientID, String name, String birthdate, String lastModified){
         this.patientID = new SimpleStringProperty(Integer.toString(patientID));
         this.name = new SimpleStringProperty(name);
         this.birthDate =  new SimpleStringProperty(birthdate);
+        this.lastModified =  new SimpleStringProperty(lastModified);
     }
 
     public String getPatientID() {
@@ -49,5 +51,17 @@ public class PatientForChooseTable {
 
     public void setBirthDate(String birthDate) {
         this.birthDate.set(birthDate);
+    }
+
+    public String getLastModified() {
+        return lastModified.get();
+    }
+
+    public SimpleStringProperty lastModifiedProperty() {
+        return lastModified;
+    }
+
+    public void setLastModified(String lastModified) {
+        this.lastModified.set(lastModified);
     }
 }

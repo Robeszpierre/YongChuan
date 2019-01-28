@@ -106,6 +106,31 @@ public class JointsController {
         return symptoms;
     }
 
+    public ArrayList<TextField> getTextFields(){
+        ArrayList<TextField> textFields=new ArrayList<>();
+        textFields.add(jointsTextField1);
+        textFields.add(jointsTextField2);
+        textFields.add(jointsTextField3);
+        textFields.add(jointsTextField4);
+        textFields.add(jointsTextField5);
+        textFields.add(jointsTextField6);
+        textFields.add(jointsTextField7);
+        textFields.add(jointsTextField8);
+        textFields.add(jointsTextField9);
+        textFields.add(jointsTextField10);
+        textFields.add(jointsTextField11);
+        textFields.add(jointsTextField12);
+        return textFields;
+    }
+
+    public ArrayList<ComboBox> getComboBoxes() {
+        ArrayList<ComboBox> comboBoxes = new ArrayList<>();
+        comboBoxes.add(jointsCombobox1);
+        comboBoxes.add(jointsCombobox2);
+        comboBoxes.add(jointsCombobox3);
+        return comboBoxes;
+    }
+
     public String getLocation() {
         return location;
     }

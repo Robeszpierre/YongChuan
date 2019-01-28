@@ -16,10 +16,10 @@ public class DB_Config {
 
     //create Database
     public DB_Config() {
-        //Megpróbáljuk életre kelteni
+        //trying to get alive
         try {
             conn = DriverManager.getConnection(URL);
-            System.out.println("A híd létrejött");
+            //System.out.println("the bridge is created");
         } catch (SQLException ex) {
             System.out.println("Valami baj van a connection (híd) létrehozásakor.");
             System.out.println("" + ex);
@@ -35,7 +35,7 @@ public class DB_Config {
             }
         }
 
-        //Megnézzük, hogy üres-e az adatbázis? Megnézzük, létezik-e az adott adattábla.
+        //Check if the database is empty? Check if the table exists.
         try {
             dbmd = conn.getMetaData();
         } catch (SQLException ex) {

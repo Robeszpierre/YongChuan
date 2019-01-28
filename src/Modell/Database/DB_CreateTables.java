@@ -22,7 +22,8 @@ public class DB_CreateTables extends  DB_Config {
                         "    JOB varchar(100)," +
                         "    EMAIL varchar(100)," +
                         "    PHONE varchar(30)," +
-                        "    GENDER varchar(5)" +
+                        "    GENDER varchar(5)," +
+                        "    LAST_MODIFIED date" +
                         ")");
                 System.out.println("PATIENT_DATA table created");
             }
@@ -40,7 +41,8 @@ public class DB_CreateTables extends  DB_Config {
                         "    PATIENT_ID INT," +
                         "    NAME varchar(100)," +
                         "    LOCATION varchar(5)," +
-                        "    TYPE int" +
+                        "    TYPE int," +
+                        "    IMPORTANT BOOLEAN" +
                         ")");
                 System.out.println("symptoms table created");
             }
@@ -212,6 +214,61 @@ public class DB_CreateTables extends  DB_Config {
             }
         } catch (SQLException ex) {
             System.out.println("something wrong with FINAL table creation");
+            System.out.println(""+ex);
+        }
+
+        try {
+            ResultSet rs = dbmd.getTables(null, "APP", "SYMPTOMS_SAVE", null);
+            if(!rs.next())
+            {
+                createStatement.execute("CREATE TABLE SYMPTOMS_SAVE" +
+                        "(" +
+                        "    PATIENT_ID INT," +
+                        "    RADIOBUTTONS long varchar," +
+                        "    TEXTFIELDS long varchar," +
+                        "    CHECKBOXES long varchar," +
+                        "    COMBOBOXES long varchar," +
+                        "    SPINNERS long varchar" +
+                        ")");
+                System.out.println("SYMPTOMS_SAVE table created");
+            }
+        } catch (SQLException ex) {
+            System.out.println("something wrong with SYMPTOMS_SAVE table creation");
+            System.out.println(""+ex);
+        }
+        try {
+            ResultSet rs = dbmd.getTables(null, "APP", "IMAGES", null);
+            if(!rs.next())
+            {
+                createStatement.execute("CREATE TABLE IMAGES" +
+                        "(" +
+                        "    PATIENT_ID INT," +
+                        "    EAR blob," +
+                        "    EAR_DESCRIPTION long varchar," +
+                        "    TONGUE blob," +
+                        "    TONGUE_DESCRIPTION long varchar" +
+                        ")");
+                System.out.println("IMAGES table created");
+            }
+        } catch (SQLException ex) {
+            System.out.println("something wrong with IMAGES table creation");
+            System.out.println(""+ex);
+        }
+        try {
+            ResultSet rs = dbmd.getTables(null, "APP", "SETTINGS", null);
+            if(!rs.next())
+            {
+                createStatement.execute("CREATE TABLE SETTINGS" +
+                        "(" +
+                        "    FONT_SIZE smallint," +
+                        "    FONT_FAMILY varchar(100)" +
+                        ")");
+                System.out.println("SETTINGS table created");
+                //insert initial data
+                conn.createStatement().executeUpdate("insert into SETTINGS (FONT_SIZE, FONT_FAMILY) values (13, 'DejaVu Sans')");
+            }
+        } catch (SQLException ex) {
+            System.out.println("something wrong with SETTINGS table creation");
             System.out.println(""+ex);
         }
     }

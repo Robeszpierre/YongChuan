@@ -39,4 +39,8 @@ public class StartController implements Initializable, ControlledScreen{
     public void getStartScreen(MouseEvent mouseEvent) {
         myController.setScreen(Main.screen4ID);
     }
+
+    public void getSetting(MouseEvent mouseEvent) {
+        myController.setScreen(Main.screen5ID);
+    }
 }

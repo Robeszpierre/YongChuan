@@ -8,12 +8,22 @@ public class Symptom {
     private final SimpleStringProperty name;
     private final SimpleStringProperty location;
     private final SimpleStringProperty type;
+    private boolean important;
+
+    public Symptom(int patientID, String name, String location, int type, boolean important){
+        this.patientID = new SimpleStringProperty(Integer.toString(patientID));
+        this.name = new SimpleStringProperty(name);
+        this.location = new SimpleStringProperty(location);
+        this.type = new SimpleStringProperty(Integer.toString(type));
+        this.important = new Boolean(important);
+    }
 
     public Symptom(int patientID, String name, String location, int type){
         this.patientID = new SimpleStringProperty(Integer.toString(patientID));
         this.name = new SimpleStringProperty(name);
         this.location = new SimpleStringProperty(location);
         this.type = new SimpleStringProperty(Integer.toString(type));
+        this.important = false;
     }
 
     public Symptom(){
@@ -21,6 +31,7 @@ public class Symptom {
         this.name = new SimpleStringProperty("");
         this.location = new SimpleStringProperty("");
         this.type = new SimpleStringProperty("");
+        this.important = false;
     }
 
     public String getPatientID() {
@@ -69,5 +80,13 @@ public class Symptom {
 
     public void setType(String type) {
         this.type.set(type);
+    }
+
+    public Boolean getImportant() {
+        return important;
+    }
+
+    public void setImportant(boolean important) {
+        this.important = important;
     }
 }

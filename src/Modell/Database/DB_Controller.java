@@ -2,10 +2,13 @@ package Modell.Database;
 
 import Controller.Main;
 import Modell.*;
+import ViewControllers.ManagePatientController;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.*;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DB_Controller extends DB_CreateTables {
@@ -16,7 +19,7 @@ public class DB_Controller extends DB_CreateTables {
 
     public void addPatient(Patient patient){
         try {
-            String sql = "insert into PATIENT_DATA (NAME, MOTHER_NAME, BIRTHPLACE, BIRTHDATE, FAMILY_STATUS, JOB, EMAIL, PHONE, GENDER) values (?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into PATIENT_DATA (NAME, MOTHER_NAME, BIRTHPLACE, BIRTHDATE, FAMILY_STATUS, JOB, EMAIL, PHONE, GENDER, LAST_MODIFIED) values (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, patient.getPatientData().getName());
             preparedStatement.setString(2, patient.getPatientData().getMotherName());
@@ -27,6 +30,7 @@ public class DB_Controller extends DB_CreateTables {
             preparedStatement.setString(7, patient.getPatientData().getEmail());
             preparedStatement.setString(8, patient.getPatientData().getPhone());
             preparedStatement.setString(9, patient.getPatientData().getGender());
+            preparedStatement.setString(10, patient.getPatientData().getLastModofied());
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("something wrong with adding PATIENT_DATA");
@@ -153,7 +157,7 @@ public class DB_Controller extends DB_CreateTables {
 
     public void updatePatient(Patient patient){
         try {
-            String sql = "update PATIENT_DATA set NAME=?, MOTHER_NAME=?, BIRTHPLACE=?, BIRTHDATE=?, FAMILY_STATUS=?, JOB=?, EMAIL=?, PHONE=?, GENDER=? where PATIENT_ID=?";
+            String sql = "update PATIENT_DATA set NAME=?, MOTHER_NAME=?, BIRTHPLACE=?, BIRTHDATE=?, FAMILY_STATUS=?, JOB=?, EMAIL=?, PHONE=?, GENDER=?, LAST_MODIFIED=? where PATIENT_ID=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, patient.getPatientData().getName());
             preparedStatement.setString(2, patient.getPatientData().getMotherName());
@@ -164,7 +168,8 @@ public class DB_Controller extends DB_CreateTables {
             preparedStatement.setString(7, patient.getPatientData().getEmail());
             preparedStatement.setString(8, patient.getPatientData().getPhone());
             preparedStatement.setString(9, patient.getPatientData().getGender());
-            preparedStatement.setInt(10, Main.patientID);
+            preparedStatement.setString(10, patient.getPatientData().getLastModofied());
+            preparedStatement.setInt(11, Main.patientID);
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("something wrong with updating PATIENT_DATA");
@@ -298,7 +303,6 @@ public class DB_Controller extends DB_CreateTables {
                         preparedStatement.setString(9, treatment.getTreatment6());
                         preparedStatement.setInt(10, Main.patientID);
                         preparedStatement.execute();
-                        System.out.println("updatelve");
                     } catch (SQLException ex) {
                         System.out.println("something wrong with updating TREATMENT");
                         System.out.println("" + ex);
@@ -317,7 +321,6 @@ public class DB_Controller extends DB_CreateTables {
                         preparedStatement.setString(8, treatment.getTreatment5());
                         preparedStatement.setString(9, treatment.getTreatment6());
                         preparedStatement.execute();
-                        System.out.println("hozzaadva");
                     }catch (SQLException ex) {
                         System.out.println("something wrong with updating TREATMENT");
                         System.out.println("" + ex);
@@ -353,7 +356,7 @@ public class DB_Controller extends DB_CreateTables {
             patients = new ArrayList<>();
 
             while (rs.next()){
-                PatientForChooseTable actualPatient = new PatientForChooseTable(rs.getInt("PATIENT_ID"),rs.getString("NAME"),rs.getString("BIRTHDATE"));
+                PatientForChooseTable actualPatient = new PatientForChooseTable(rs.getInt("PATIENT_ID"),rs.getString("NAME"),rs.getString("BIRTHDATE"), rs.getString("LAST_MODIFIED"));
                 patients.add(actualPatient);
             }
         } catch (SQLException ex) {
@@ -403,9 +406,10 @@ public class DB_Controller extends DB_CreateTables {
                     rs.getString("JOB"),
                     rs.getString("EMAIL"),
                     rs.getString("PHONE"),
-                    rs.getString("GENDER"));
+                    rs.getString("GENDER"),
+                    rs.getString("LAST_MODIFIED"));
         } catch (SQLException ex) {
-            System.out.println("no patient with the id " + id);
+            System.out.println("PATIENT_DATA no patient with the id " + id);
         }
         return patientData;
     }
@@ -421,7 +425,7 @@ public class DB_Controller extends DB_CreateTables {
                     rs.getString("PSYCHE2"),
                     rs.getString("PSYCHE3"));
         } catch (SQLException ex) {
-            System.out.println("no patient with the id " + id);
+            System.out.println("PSYCHE no patient with the id " + id);
         }
         return psyche;
     }
@@ -443,7 +447,7 @@ public class DB_Controller extends DB_CreateTables {
                     rs.getString("HISTORY8"),
                     rs.getString("HISTORY9"));
         } catch (SQLException ex) {
-            System.out.println("no patient with the id " + id);
+            System.out.println("HISTORY no patient with the id " + id);
         }
         return history;
     }
@@ -560,7 +564,7 @@ public class DB_Controller extends DB_CreateTables {
                     rs.getString("ASSASSMENT"),
                     rs.getString("RESULT"));
         } catch (SQLException ex) {
-            System.out.println("no patient with the id " + id);
+            System.out.println("FINAL no patient with the id " + id);
         }
         return finalOpinion;
     }
@@ -616,27 +620,337 @@ public class DB_Controller extends DB_CreateTables {
         return data;
     }
 
-    //-----------TREATMENTS-----------
+    //-----------SYMPTOMS-----------
 
-    public void addTreatments(ArrayList<Symptom> symptoms) {
+    public void addSymptoms(ArrayList<Symptom> symptoms) {
         try {
-            conn.createStatement().executeUpdate("TRUNCATE TABLE SYMPTOMS");
+            conn.createStatement().executeUpdate("delete from SYMPTOMS where PATIENT_ID=" + Main.patientID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try {
-            String sql = "insert into SYMPTOMS (PATIENT_ID, NAME, LOCATION, TYPE) VALUES (?,?,?,?)";
+            String sql = "insert into SYMPTOMS (PATIENT_ID, NAME, LOCATION, TYPE, IMPORTANT) VALUES (?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             for(Symptom symptom: symptoms) {
                 preparedStatement.setInt(1, Integer.parseInt(symptom.getPatientID()));
                 preparedStatement.setString(2, symptom.getName());
                 preparedStatement.setString(3, symptom.getLocation());
                 preparedStatement.setInt(4, Integer.parseInt(symptom.getType()));
+                preparedStatement.setBoolean(5, symptom.getImportant());
                 preparedStatement.execute();
             }
         } catch (SQLException ex) {
             System.out.println("something wrong with adding PSYCHE");
             System.out.println("" + ex);
+        }
+    }
+
+    public ArrayList<Symptom> getSymptoms(int id){
+        String sql = "select * from SYMPTOMS where PATIENT_ID="+id;
+        ArrayList<Symptom> symptoms = new ArrayList<>();
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            while (rs.next()){
+                Symptom actualSymptom = new Symptom(
+                        Integer.parseInt(rs.getString("PATIENT_ID")),
+                        rs.getString("NAME"),
+                        rs.getString("LOCATION"),
+                        Integer.parseInt(rs.getString("TYPE")),
+                        rs.getBoolean("IMPORTANT"));
+                symptoms.add(actualSymptom);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("something wrong with getting symptoms");
+            System.out.println(""+ex);
+        }
+        return symptoms;
+    }
+
+
+    public void saveSymptoms(String radiobuttonSave, String textFieldSave, String checkBoxSave, String comboBoxSave, String spinnerSave) {
+        String sql="select * from SYMPTOMS_SAVE where PATIENT_ID=" + Main.patientID;
+        ResultSet rs;
+        try {
+                rs = createStatement.executeQuery(sql);
+            if(!rs.next()) {
+                try {
+                    sql = "insert into SYMPTOMS_SAVE (PATIENT_ID, RADIOBUTTONS, TEXTFIELDS, CHECKBOXES, COMBOBOXES, SPINNERS) VALUES (?,?,?,?,?,?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setInt(1, Main.patientID);
+                    preparedStatement.setString(2, radiobuttonSave);
+                    preparedStatement.setString(3, textFieldSave);
+                    preparedStatement.setString(4, checkBoxSave);
+                    preparedStatement.setString(5, comboBoxSave);
+                    preparedStatement.setString(6, spinnerSave);
+                    preparedStatement.execute();
+                } catch (SQLException ex) {
+                    System.out.println("something wrong with adding PSYCHE");
+                    System.out.println("" + ex);
+                }
+            }else{
+                sql = "update SYMPTOMS_SAVE set PATIENT_ID=?, RADIOBUTTONS=?, TEXTFIELDS=?, CHECKBOXES=?, COMBOBOXES=?, SPINNERS=? where PATIENT_ID=?";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setInt(1, Main.patientID);
+                preparedStatement.setString(2, radiobuttonSave);
+                preparedStatement.setString(3, textFieldSave);
+                preparedStatement.setString(4, checkBoxSave);
+                preparedStatement.setString(5, comboBoxSave);
+                preparedStatement.setString(6, spinnerSave);
+                preparedStatement.setInt(7, Main.patientID);
+                preparedStatement.execute();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<String> loadSymptoms(){
+        String sql = "select * from SYMPTOMS_SAVE where PATIENT_ID=" + Main.patientID;
+        ArrayList<String> result = new ArrayList<>();
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            rs.next();
+            result.add(rs.getString("RADIOBUTTONS"));
+            result.add(rs.getString("TEXTFIELDS"));
+            result.add(rs.getString("CHECKBOXES"));
+            result.add(rs.getString("COMBOBOXES"));
+            result.add(rs.getString("SPINNERS"));
+        } catch (SQLException ex) {
+            System.out.println("no patient with the id " + Main.patientID);
+        }
+        return result;
+    }
+
+    public void saveImage(String imageName, File imageFile) {
+        String sql="select * from IMAGES where PATIENT_ID=" + Main.patientID;
+        ResultSet rs;
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(imageFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            rs = createStatement.executeQuery(sql);
+            if(!rs.next()) {
+                if(imageName.equals("ear.jpg")){
+                    sql = "insert into IMAGES (PATIENT_ID, EAR) VALUES (?,?)";
+                }else if(imageName.equals("tongue.jpg")){
+                    sql = "insert into IMAGES (PATIENT_ID, TONGUE) VALUES (?,?)";
+                }
+                try {
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setInt(1, Main.patientID);
+                    preparedStatement.setBinaryStream(2, fis, (int) imageFile.length());
+                    preparedStatement.execute();
+                } catch (SQLException ex) {
+                    System.out.println("something wrong with adding IMAGE");
+                    System.out.println("" + ex);
+                }
+            }else{
+                if(imageName.equals("ear.jpg")){
+                    sql = "update IMAGES set EAR=? where PATIENT_ID=" + Main.patientID;
+                } else if(imageName.equals("tongue.jpg")){
+                    sql = "update IMAGES set TONGUE=? where PATIENT_ID=" + Main.patientID;
+                }
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setBinaryStream(1, fis, (int) imageFile.length());
+                preparedStatement.execute();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void loadImages(ManagePatientController managePatientController) {
+        String sql = "select EAR, TONGUE from IMAGES where PATIENT_ID=" + Main.patientID;
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            if(rs.next()) {
+                InputStream ear=null;
+                InputStream tongue=null;
+                try {
+                    ear = rs.getBlob("EAR").getBinaryStream();
+                    Image img=new Image(ear);
+                    managePatientController.setImage("ear.jpg", img);
+                    ear.close();
+                }catch (Exception e){
+                    //no ear picture
+                    managePatientController.setImage("ear");
+                }
+                try {
+                    tongue = rs.getBlob("TONGUE").getBinaryStream();
+                    Image img=new Image(tongue);
+                    managePatientController.setImage("tongue.jpg", img);
+                    tongue.close();
+                }catch (Exception e){
+                    //no tongue picture
+                    managePatientController.setImage("tongue");
+                }
+            }else{
+                managePatientController.setImage();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public File getPictureFile(String imageViewId) {
+        File file=null;
+        String sql="";
+        String columnLabel="";
+        if(imageViewId.equals("earImageView")){
+            sql="select EAR from IMAGES where  PATIENT_ID=" + Main.patientID;
+            columnLabel="EAR";
+        }else if(imageViewId.equals("tongueImageView")){
+            sql="select TONGUE from IMAGES where  PATIENT_ID=" + Main.patientID;
+            columnLabel="TONGUE";
+        }
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            Blob blob = rs.getBlob(columnLabel);
+            byte [] array = blob.getBytes( 1, ( int ) blob.length() );
+            file = File.createTempFile("something-", ".jpg", new File("."));
+            FileOutputStream out = new FileOutputStream( file );
+            out.write( array );
+            out.close();
+            file.deleteOnExit();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    public void saveImageDescription(String earText, String tongueText) {
+        try {
+            String sql = "insert into IMAGES (PATIENT_ID, EAR_DESCRIPTION, TONGUE_DESCRIPTION) VALUES (?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, Main.patientID );
+            preparedStatement.setString(2, earText);
+            preparedStatement.setString(3, tongueText);
+            preparedStatement.execute();
+            System.out.println("save");
+        } catch (SQLException ex) {
+            System.out.println("something wrong with adding IMAGES DESCRIPTION");
+            System.out.println(""+ex);
+        }
+    }
+
+    public void updateImageDescription(String earText, String tongueText) {
+        try {
+            String sql = "update IMAGES set EAR_DESCRIPTION=?, TONGUE_DESCRIPTION=? where PATIENT_ID=" + Main.patientID;
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, earText);
+            preparedStatement.setString(2, tongueText);
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            System.out.println("something wrong with adding IMAGES DESCRIPTION");
+            System.out.println(""+ex);
+        }
+    }
+
+    public ArrayList<String> getImageDescriptions() {
+        String sql = "select EAR_DESCRIPTION, TONGUE_DESCRIPTION from IMAGES where PATIENT_ID=" + Main.patientID;
+        ArrayList<String> descriptions= new ArrayList<>();
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            rs.next();
+            descriptions.add(rs.getString("EAR_DESCRIPTION"));
+            descriptions.add(rs.getString("TONGUE_DESCRIPTION"));
+            System.out.println(descriptions.get(0));
+        } catch (SQLException ex) {
+            System.out.println("no picture description with the id " + Main.patientID);
+        }
+        return descriptions;
+    }
+
+    public void deletePatient(int id) {
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM ACTUAL WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM FINAL WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM HISTORY WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM IMAGES WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM PATIENT_DATA WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM PSYCHE WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM PULSE WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM SYMPTOMS WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM SYMPTOMS_SAVE WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM TCM WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM TREATMENT WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteTreatment(int treatmentId) {
+        try {
+            conn.createStatement().executeUpdate("delete from TREATMENT where PATIENT_ID=" + Main.patientID + " and TREATMENT_ID=" + treatmentId);
+            System.out.println(treatmentId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getFontSize(){
+        String sql = "select FONT_SIZE from SETTINGS";
+        int fontSize=13;
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            rs.next();
+            fontSize=rs.getInt("FONT_SIZE");
+            System.out.println(fontSize);
+        } catch (SQLException ex) {
+            System.out.println("no font size");
+        }
+        return fontSize;
+    }
+
+    public String getFonFamily(){
+        String sql = "select FONT_FAMILY from SETTINGS";
+        String fontFamily="";
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            rs.next();
+            fontFamily=rs.getString("FONT_FAMILY");
+        } catch (SQLException ex) {
+            System.out.println("no font size");
+        }
+        return fontFamily;
+    }
+
+    public void updateFontSizes(int fontSize){
+        try {
+            conn.createStatement().executeUpdate("UPDATE SETTINGS set FONT_SIZE=" + fontSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateFontFemily(String fontFamily){
+        try {
+            conn.createStatement().executeUpdate("UPDATE SETTINGS set FONT_FAMILY=" + "'" + fontFamily + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

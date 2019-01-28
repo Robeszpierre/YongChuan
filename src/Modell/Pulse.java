@@ -84,7 +84,7 @@ public class Pulse {
         this.pulse22 = new SimpleStringProperty("────────");
         this.pulse23 = new SimpleStringProperty("────────");
         this.pulse24 = new SimpleStringProperty("────────");
-        this.other = new SimpleStringProperty("────────");
+        this.other = new SimpleStringProperty("");
     }
 
     public String getPulse1() {

@@ -9,17 +9,70 @@
     -fx-background-radius: 9,8,5,4,3;
     -fx-padding: 10 20 10 20;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 1.3em;
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
 }
-.dark-grey Text {
-    -fx-effect: dropshadow( one-pass-box , black , 0, 0.0 , 0 , -1 );
+
+.dark-grey:hover{
+    -fx-background-color: black;
 }
 
-.   dark-grey:hover{
-    -fx-background-color: black;
+.blue {
+    -fx-background-color:
+            rgba(0,0,0,0.08),
+            linear-gradient(#3471db, #1c56bc),
+            linear-gradient(#e4fbff 0%,#cee6fb 10%, #a5d3fb 50%, #88c6fb 51%, #d5faff 100%);
+    -fx-background-insets: 0,1,4,5,6;
+    -fx-background-radius: 9,8,5,4,3;
+    -fx-padding: 10 20 10 20;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(145, 251, 255,0.2) , 1, 0.0 , 0 , 1);
+}
+
+.blue:hover{
+    -fx-background-color: #0f9bc6;
+}
+
+.red {
+    -fx-background-color:
+            rgba(0,0,0,0.08),
+            linear-gradient(#b73131, #af1d1d),
+            linear-gradient(#ffa0a0 0%,#ff8e8e 10%, #fc7676 50%, #fc6262 51%, #ff5454 100%);
+    -fx-background-insets: 0,1,4,5,6;
+    -fx-background-radius: 9,8,5,4,3;
+    -fx-padding: 10 20 10 20;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(145, 251, 255,0.2) , 1, 0.0 , 0 , 1);
+}
+
+.red:hover{
+    -fx-background-color: #ff2323;
+}
+.green {
+    -fx-background-color:
+            rgba(0,0,0,0.08),
+            linear-gradient(#28962f, #1b591f),
+            linear-gradient(#bfff9e 0%,#b6ff91 10%, #a7ff7a 50%, #96ff60 51%, #87ff49 100%);
+    -fx-background-insets: 0,1,4,5,6;
+    -fx-background-radius: 9,8,5,4,3;
+    -fx-padding: 10 20 10 20;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(145, 251, 255,0.2) , 1, 0.0 , 0 , 1);
+}
+
+.green:hover{
+    -fx-background-color: #59d817;
 }
 
 .background {
@@ -28,8 +81,14 @@
     -fx-background-size: stretch;
 }
 
-.image{
-    -fx-background-image: url("img/male2.jpg");
+.male-image{
+    -fx-background-image: url("img/male.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+}
+
+.female-image{
+    -fx-background-image: url("img/female.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-size: stretch;
 }
@@ -214,9 +273,14 @@
 }
 
 .transparent{
-    -fx-background-color: rgba(255,255,255,0.6);
+    -fx-background-color: rgba(255, 255, 255,0.5);
     -fx-border-color: black;
     -fx-border-width: 0 1 1 0;
+    -fx-border-style: solid;
+}
+
+.border-correction{
+    -fx-border-width: 0 2 2 0;
     -fx-border-style: solid;
 }
 
@@ -231,4 +295,28 @@
 
 .transparent .scroll-pane .content{
     -fx-background-color: transparent;
+}
+
+.transparent {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.transparent:focused {
+    -fx-background-insets: 0;
+}
+
+.transparent .corner {
+    -fx-background-insets: 0;
+}
+
+/* File style.css */
+
+.text-field {
+    -fx-background-color: black, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+.text-field:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
 }

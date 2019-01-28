@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.StatisticController">
-   <children>
-      <ScrollPane fx:id="statScrollPane" fitToHeight="true" fitToWidth="true" layoutX="139.0" layoutY="45.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.StatisticController">
+   <items>
+      <ScrollPane fx:id="statScrollPane" fitToHeight="true" fitToWidth="true" prefHeight="632.0" prefWidth="1012.0">
          <content>
             <VBox alignment="CENTER" spacing="100.0">
                <children>
                   <PieChart fx:id="genderPieChart" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" title="Nemek Aránya" />
                   <PieChart fx:id="resultPieChart" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" title="Gyógyultak aránya" />
-               </children></VBox>
+               </children>
+            </VBox>
          </content>
       </ScrollPane>
-   </children>
-</AnchorPane>
+      <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#getMainMenu" styleClass="dark-grey" text="Főnenű" />
+         </children>
+      </VBox>
+   </items>
+</SplitPane>

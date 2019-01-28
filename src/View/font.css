@@ -56,3 +56,11 @@
 .chart-legend{
     -fx-font-size: 1.3em;
 }
+
+.button-font{
+    -fx-font-size: 16px;
+}
+
+#jointsTabPane .headers-region{
+    -fx-font-size: 13px;
+}
