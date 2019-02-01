@@ -4,8 +4,6 @@ import Controller.Main;
 import Controller.SecureLocalDateStringConverter;
 import Modell.*;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -69,10 +67,8 @@ public class ManagePatientController implements Initializable, ControlledScreen 
                 symptomsGridPane.getStyleClass().clear();
                 if(gender.equals("férfi")){
                     symptomsGridPane.getStyleClass().add("male-image");
-                    System.out.println("f");
                 }else if(gender.equals("nő")){
                     symptomsGridPane.getStyleClass().add("female-image");
-                    System.out.println("n");
                 }
             }
         });
@@ -489,12 +485,14 @@ public class ManagePatientController implements Initializable, ControlledScreen 
                 t.setDisable(true);
             }
             managePatientTabs.get(0).setDisable(false);
+            managePatientTabPane.getSelectionModel().select(0);
         }else{
             Main.db.getPatient(Main.patientID);
             setPatient();
             loadSymptoms();
             loadImages();
             loadImageDescriptions();
+            managePatientTabPane.getSelectionModel().select(0);
         }
     }
 
@@ -807,7 +805,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
 
     public void setTodayForBirthDate(MouseEvent mouseEvent) {
         try {
-            String date = personalDataDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String date=personalDataDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         }catch (Exception e){
             personalDataDatePicker.setValue(LocalDate.now());
         }
@@ -827,9 +825,18 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     }
 
     private void isDateValid(DatePicker datePicker){
+        boolean valid=false;
         SecureLocalDateStringConverter checkDate=new SecureLocalDateStringConverter();
         checkDate.fromString(datePicker.getEditor().getText());
-        if(checkDate.hasParseError()){
+        checkDate.fromString2(datePicker.getEditor().getText());
+        System.out.println(!(checkDate.hasParseError()) +" "+ !(checkDate.hasParseError2()));
+        if(checkDate.hasParseError() && checkDate.hasParseError2()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Hiba üzenet");
+            alert.setHeaderText("Helytelen formátumban töltötte ki a dátumot!");
+            alert.setContentText("Kérem az alábbi formátumban töltse ki: éééé. hh. nn. \n Például.: 1974. 05. 11.");
+
+            alert.showAndWait();
             datePicker.getEditor().requestFocus();
         }
     }
@@ -1221,9 +1228,13 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     }
 
     public void save(){
-        Patient patient = makePatient();
-        Main.db.addPatient(patient);
-        Main.db.saveImageDescription(earTextArea.getText(), tongueTextArea.getText());
+        if(birthDateWarningLabel.isVisible() || patientNameWarningLabel.isVisible() || genderWarningLabel.isVisible()){
+            //doesn't save the informations
+        }else {
+            Patient patient = makePatient();
+            Main.db.addPatient(patient);
+            Main.db.saveImageDescription(earTextArea.getText(), tongueTextArea.getText());
+        }
     }
 
     public void update(){
@@ -1259,6 +1270,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             symptomsController.setSymptomValues();
             Stage stage = new Stage();
             stage.setTitle("Tünetek");
+            stage.getIcons().add(new Image(this.getClass().getResource("/View/img/tcm.png").toString()));
             stage.setScene(new Scene(t));
 
             stage.show();
@@ -1436,6 +1448,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
 
     public void addImage(MouseEvent mouseEvent) {
         try {
+
             FXMLLoader fxmlLoader = new FXMLLoader();
             AnchorPane ap=(AnchorPane) fxmlLoader.load(this.getClass().getResource("/dropImage.fxml").openStream());
             DropImageController dropImageController = (DropImageController) fxmlLoader.getController();
@@ -1448,6 +1461,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
 
             Stage stage = new Stage();
             stage.setTitle("Kép");
+            stage.getIcons().add(new Image(this.getClass().getResource("/View/img/tcm.png").toString()));
             stage.setScene(new Scene(ap));
 
             Stage currentStage;
@@ -1456,6 +1470,12 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             dropImageController.setParentStage(currentStage);
             stage.setResizable(false);
             stage.show();
+
+            stage.setOnCloseRequest(e -> {
+                e.consume();
+                stage.close();
+                currentStage.show();
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

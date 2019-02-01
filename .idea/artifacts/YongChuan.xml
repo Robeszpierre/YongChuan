@@ -15,6 +15,10 @@
       <element id="archive" name="YongChuan.jar">
         <element id="module-output" name="YongChuan" />
       </element>
+      <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derby.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbynet.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbytools.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbyclient.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

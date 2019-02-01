@@ -838,7 +838,6 @@ public class DB_Controller extends DB_CreateTables {
             preparedStatement.setString(2, earText);
             preparedStatement.setString(3, tongueText);
             preparedStatement.execute();
-            System.out.println("save");
         } catch (SQLException ex) {
             System.out.println("something wrong with adding IMAGES DESCRIPTION");
             System.out.println(""+ex);
@@ -866,7 +865,6 @@ public class DB_Controller extends DB_CreateTables {
             rs.next();
             descriptions.add(rs.getString("EAR_DESCRIPTION"));
             descriptions.add(rs.getString("TONGUE_DESCRIPTION"));
-            System.out.println(descriptions.get(0));
         } catch (SQLException ex) {
             System.out.println("no picture description with the id " + Main.patientID);
         }
@@ -906,7 +904,6 @@ public class DB_Controller extends DB_CreateTables {
     public void deleteTreatment(int treatmentId) {
         try {
             conn.createStatement().executeUpdate("delete from TREATMENT where PATIENT_ID=" + Main.patientID + " and TREATMENT_ID=" + treatmentId);
-            System.out.println(treatmentId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -919,7 +916,6 @@ public class DB_Controller extends DB_CreateTables {
             ResultSet rs = createStatement.executeQuery(sql);
             rs.next();
             fontSize=rs.getInt("FONT_SIZE");
-            System.out.println(fontSize);
         } catch (SQLException ex) {
             System.out.println("no font size");
         }

@@ -21,7 +21,7 @@
             <HBox alignment="CENTER" spacing="20.0">
                <children>
                   <Label text="Betűméret:" />
-                  <Spinner id="textSizeSpinner" fx:id="textSizeSpinner" initialValue="5" max="18" min="10" prefHeight="26.0" prefWidth="82.0" />
+                  <Spinner id="textSizeSpinner" fx:id="textSizeSpinner" initialValue="5" max="17" min="10" prefHeight="26.0" prefWidth="82.0" />
                </children>
             </HBox>
             <Label id="sampleTextLabel" fx:id="sampleTextLabel" text="Ilyen lesz a szöveg. Állítsa be az Ön számára könnyen olvasható méretet és betűtípust!" />

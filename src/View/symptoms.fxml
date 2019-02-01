@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane fx:id="symptomsTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="2000.0" minWidth="800.0" prefWidth="1251.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.SymptomsController">
+<TabPane fx:id="symptomsTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="2000.0" minWidth="800.0" prefWidth="1251.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.SymptomsController">
   <tabs>
     <Tab text="Fej">
       <content>
@@ -2777,7 +2777,7 @@
                <children>
                   <ScrollPane prefHeight="2017.0" prefWidth="1251.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <TabPane id="jointsTabPane" fx:id="jointsTabPane" prefHeight="1100.0" prefWidth="907.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane id="jointsTabPane" fx:id="jointsTabPane" prefWidth="907.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE">
                            <padding>
                               <Insets left="20.0" top="30.0" />
                            </padding>

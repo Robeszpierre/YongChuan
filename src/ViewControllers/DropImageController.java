@@ -25,11 +25,10 @@ public class DropImageController {
 
     Stage parentStage;
 
-    Image defaultImage=new Image("View" + File.separator + "img" + File.separator + "black.jpg");
+    Image defaultImage=new Image("img/black.jpg");
     @FXML
     public void initialize(){
         dropImageimageView.setImage(defaultImage);
-
     }
 
 
@@ -50,9 +49,8 @@ public class DropImageController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        alert(img, imageFile);
-
         dragEvent.consume();
+        alert(img, imageFile);
     }
 
     private void alert(Image img, File imageFile) {

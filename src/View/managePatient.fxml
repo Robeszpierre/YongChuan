@@ -27,7 +27,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<SplitPane dividerPositions="0.5" prefHeight="600.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
+<SplitPane dividerPositions="0.5" prefHeight="600.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
   <items>
       <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.9626307922272048" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
         <items>
@@ -245,7 +245,7 @@
                                                       <Insets />
                                                    </HBox.margin>
                                                 </Label>
-                                                <DatePicker id="personalDataDatePicker" fx:id="personalDataDatePicker" minWidth="250.0" onMouseClicked="#setTodayForBirthDate" prefWidth="250.0" promptText="1954. 04. 12.">
+                                                <DatePicker id="personalDataDatePicker" fx:id="personalDataDatePicker" minWidth="250.0" onMouseClicked="#setTodayForBirthDate" prefWidth="250.0" promptText="1954.04.12.">
                                                    <HBox.margin>
                                                       <Insets right="20.0" />
                                                    </HBox.margin></DatePicker>
@@ -632,7 +632,7 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <ScrollPane id="earImageScrollPane" fx:id="earImageScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="527.0" prefWidth="516.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <ScrollPane id="earImageScrollPane" fx:id="earImageScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="527.0" prefWidth="516.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <content>
                                     <ImageView id="earImageView" fx:id="earImageView" onMouseClicked="#openImage" pickOnBounds="true" />
                                  </content>
@@ -654,7 +654,7 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <ScrollPane id="tongueImageScrollPane" fx:id="tongueImageScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="527.0" prefWidth="516.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <ScrollPane id="tongueImageScrollPane" fx:id="tongueImageScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="527.0" prefWidth="516.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <content>
                                     <ImageView id="tongueImageView" fx:id="tongueImageView" onMouseClicked="#openImage" pickOnBounds="true" />
                                  </content>
@@ -1512,9 +1512,9 @@
                   </Tab>
               </tabs>
             </TabPane>
-          <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="40.0" prefWidth="160.0">
+          <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="41.0" prefWidth="160.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox alignment="CENTER" prefHeight="41.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Button id="editTextAreasButton" fx:id="editTextAreasButton" mnemonicParsing="false" onMouseClicked="#changeEditabilityClicked" styleClass="blue, button-font" text="Áttekintő mód">
                            <HBox.margin>
@@ -1587,9 +1587,9 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0">
+            <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="41.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="40.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox alignment="CENTER" prefHeight="41.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Button id="addNewTreatmentButton" fx:id="addNewTreatmentButton" mnemonicParsing="false" onMouseClicked="#addNewThreatment" styleClass="green, button-font" text="Új kezelés">
                            <HBox.margin>

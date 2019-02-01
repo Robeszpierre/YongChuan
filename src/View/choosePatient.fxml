@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.29797979797979796" prefHeight="518.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ChoosePatientController">
+<SplitPane dividerPositions="0.29797979797979796" prefHeight="518.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ChoosePatientController">
   <items>
     <AnchorPane minWidth="350.0">
          <children>
@@ -22,7 +22,7 @@
             <Button layoutX="11.0" layoutY="137.0" minHeight="90.0" minWidth="180.0" mnemonicParsing="false" onMouseClicked="#selectPatient" styleClass="green" text="Kiválaszt" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
             <Button layoutX="11.0" layoutY="268.0" minHeight="90.0" minWidth="180.0" mnemonicParsing="false" onMouseClicked="#deletePatient" styleClass="red" text="Töröl" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="20.0" />
             <Button layoutX="11.0" layoutY="233.0" minHeight="90.0" minWidth="180.0" mnemonicParsing="false" onMouseClicked="#addNewPatient" styleClass="blue" text="Új páciens" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="250.0" />
-            <Button layoutX="205.0" layoutY="420.0" minHeight="90.0" minWidth="180.0" mnemonicParsing="false" onMouseClicked="#backToMainManu" styleClass="dark-grey" text="Vissza a Főmenübe" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
+            <Button layoutX="205.0" layoutY="420.0" minHeight="90.0" minWidth="180.0" mnemonicParsing="false" onMouseClicked="#backToMainManu" styleClass="dark-grey" text="Főmenü" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>

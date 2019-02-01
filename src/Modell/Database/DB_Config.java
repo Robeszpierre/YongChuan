@@ -5,9 +5,9 @@ import java.sql.*;
 public class DB_Config {
     final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     final String URL = "jdbc:derby:YongQuanDB;create=true";
-    final String URL2 = "jdbc:derby:YongQuanDB;shutdown=true";
-    final String USERNAME = "";
-    final String PASSWORD = "";
+    final String URL2 = "jdbc:derby:;shutdown=true";
+    final String USERNAME = "sagodi";
+    final String PASSWORD = "zsuzsa";
 
     //Létrehozzuk a kapcsolatot (hidat)
     Connection conn = null;
@@ -18,8 +18,9 @@ public class DB_Config {
     public DB_Config() {
         //trying to get alive
         try {
-            conn = DriverManager.getConnection(URL);
-            //System.out.println("the bridge is created");
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+            System.out.println("the bridge is created");
         } catch (SQLException ex) {
             System.out.println("Valami baj van a connection (híd) létrehozásakor.");
             System.out.println("" + ex);
@@ -50,7 +51,7 @@ public class DB_Config {
 
     public void shutDown(){
         try {
-            DriverManager.getConnection("jdbc:derby:;shutdown=true");
+            DriverManager.getConnection(URL2);
 
         } catch (SQLException ex) {
             if (ex.getSQLState().equals("XJ015")) {
@@ -59,5 +60,13 @@ public class DB_Config {
                 System.out.println("Could not close the Database | " +ex);
             }
         }
+    }
+
+    public String getUSERNAME() {
+        return USERNAME;
+    }
+
+    public String getPASSWORD() {
+        return PASSWORD;
     }
 }

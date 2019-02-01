@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class StartController implements Initializable, ControlledScreen{
@@ -18,7 +19,17 @@ public class StartController implements Initializable, ControlledScreen{
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        int r=getRandomNumber();
+        backgroundVBox.getStyleClass().add("background" + r);
+
+    }
+
+    private int getRandomNumber(){
+        Random r = new Random();
+        int low = 1;
+        int high = 13;
+        int result = r.nextInt(high-low) + low;
+        return result;
     }
 
     public void setScreenParent(ScreensController screenParent){
@@ -26,7 +37,7 @@ public class StartController implements Initializable, ControlledScreen{
     }
 
     @FXML
-    VBox background;
+    VBox backgroundVBox;
     @FXML
     AnchorPane main;
 
