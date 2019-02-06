@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="540.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.MeridiansController">
+   <children>
+      <StackPane id="meridianStackPane1" fx:id="meridianStackPane1" prefHeight="540.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane gridLinesVisible="true">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" maxWidth="402" minWidth="402.0" prefWidth="281.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="455.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Accordion GridPane.vgrow="ALWAYS">
+                     <panes>
+                        <TitledPane id="normalMeridiansTitledPane" fx:id="normalMeridiansTitledPane" animated="false" styleClass="normal-arrow" text="A 12 szabályos csatorna kóros tünetei">
+                           <content>
+                              <Accordion id="accordion1" fx:id="accordion1">
+                                <panes>
+                                  <TitledPane id="titledPane1" fx:id="titledPane1" animated="false" text="Tüdő-csatorna">
+                                       <content>
+                                          <TextArea id="textArea1" fx:id="textArea1" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                  </TitledPane>
+                                  <TitledPane id="titledPane2" fx:id="titledPane2" animated="false" text="Vastagbél-csatorna">
+                                       <content>
+                                          <TextArea id="textArea2" fx:id="textArea2" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                  </TitledPane>
+                                  <TitledPane id="titledPane3" fx:id="titledPane3" animated="false" text="Gyomor-csatorna">
+                                       <content>
+                                          <TextArea id="textArea3" fx:id="textArea3" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                  </TitledPane>
+                                    <TitledPane id="titledPane4" fx:id="titledPane4" animated="false" layoutX="10.0" layoutY="10.0" text="Lép-csatorna">
+                                       <content>
+                                          <TextArea id="textArea4" fx:id="textArea4" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane5" fx:id="titledPane5" animated="false" layoutX="10.0" layoutY="445.0" text="Szív-csatorna">
+                                       <content>
+                                          <TextArea id="textArea5" fx:id="textArea5" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane6" fx:id="titledPane6" animated="false" layoutX="10.0" layoutY="471.0" text="Vékonybél-csatorna">
+                                       <content>
+                                          <TextArea id="textArea6" fx:id="textArea6" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane7" fx:id="titledPane7" animated="false" layoutX="10.0" layoutY="10.0" text="Hólyag-csatorna">
+                                       <content>
+                                          <TextArea id="textArea7" fx:id="textArea7" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane8" fx:id="titledPane8" animated="false" layoutX="10.0" layoutY="367.0" text="Vese-csatorna">
+                                       <content>
+                                          <TextArea id="textArea8" fx:id="textArea8" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane9" fx:id="titledPane9" animated="false" layoutX="10.0" layoutY="393.0" text="Szívburok-csatorna">
+                                       <content>
+                                          <TextArea id="textArea9" fx:id="textArea9" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane10" fx:id="titledPane10" animated="false" layoutX="10.0" layoutY="419.0" text="Három Melegítő-csatorna">
+                                       <content>
+                                          <TextArea id="textArea10" fx:id="textArea10" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane11" fx:id="titledPane11" animated="false" layoutX="10.0" layoutY="445.0" text="Epehólyag-csatorna">
+                                       <content>
+                                          <TextArea id="textArea11" fx:id="textArea11" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane12" fx:id="titledPane12" animated="false" layoutX="10.0" layoutY="471.0" text="Máj-csatorna">
+                                       <content>
+                                          <TextArea id="textArea12" fx:id="textArea12" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                </panes>
+                              </Accordion>
+                           </content>
+                        </TitledPane>
+                        <TitledPane id="extraOrdinaryMeridiansTitledPane" fx:id="extraOrdinaryMeridiansTitledPane" animated="false" styleClass="normal-arrow" text="A 8 különleges csatorna kóros tünetei">
+                           <content>
+                              <Accordion id="accordion2" fx:id="accordion2">
+                                 <panes>
+                                    <TitledPane id="titledPane13" fx:id="titledPane13" animated="false" text="Du Mai">
+                                       <content>
+                                          <TextArea id="textArea13" fx:id="textArea13" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane14" fx:id="titledPane14" animated="false" text="Ren Mai">
+                                       <content>
+                                          <TextArea id="textArea14" fx:id="textArea14" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane15" fx:id="titledPane15" animated="false" text="Chong Mai">
+                                       <content>
+                                          <TextArea id="textArea15" fx:id="textArea15" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane16" fx:id="titledPane16" animated="false" layoutX="10.0" layoutY="10.0" text="Dai Mai">
+                                       <content>
+                                          <TextArea id="textArea16" fx:id="textArea16" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane17" fx:id="titledPane17" animated="false" layoutX="10.0" layoutY="445.0" text="Yin Qiao Mai">
+                                       <content>
+                                          <TextArea id="textArea17" fx:id="textArea17" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane18" fx:id="titledPane18" animated="false" layoutX="10.0" layoutY="471.0" text="Yang Qiao Mai">
+                                       <content>
+                                          <TextArea id="textArea18" fx:id="textArea18" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane19" fx:id="titledPane19" animated="false" layoutX="10.0" layoutY="10.0" text="Yin Wei Mai">
+                                       <content>
+                                          <TextArea id="textArea19" fx:id="textArea19" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane id="titledPane20" fx:id="titledPane20" animated="false" layoutX="10.0" layoutY="367.0" text="Yang Wei Mai">
+                                       <content>
+                                          <TextArea id="textArea20" fx:id="textArea20" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </TitledPane>
+                                 </panes>
+                              </Accordion>
+                           </content>
+                        </TitledPane>
+                     </panes>
+                  </Accordion>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <StackPane id="mainImageStackPane" fx:id="mainImageStackPane" layoutX="108.0" layoutY="135.0" prefHeight="540.0" prefWidth="455.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <StackPane id="meridianImageStackPane" fx:id="meridianImageStackPane" layoutX="8.0" layoutY="228.0" prefHeight="540.0" prefWidth="455.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
+         </children>
+      </StackPane>
+      <StackPane id="meridianStackPane2" fx:id="meridianStackPane2" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

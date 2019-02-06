@@ -356,3 +356,40 @@
 .text-field:focused {
     -fx-background-color: -fx-focus-color, -fx-background ;
 }
+
+.fiveElementsBackGround{
+    -fx-background-image: url("img/5elem2.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+}
+
+.transparent2{
+    -fx-background-color: rgba(255, 255, 255, 0);
+}
+
+.transparent2 .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.transparent2 .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.transparent2 .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.transparent2 {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.transparent2:focused {
+    -fx-background-insets: 0;
+}
+
+.transparent2 .corner {
+    -fx-background-insets: 0;
+}
+

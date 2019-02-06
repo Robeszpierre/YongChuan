@@ -9,6 +9,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
@@ -27,7 +28,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<SplitPane dividerPositions="0.5" prefHeight="600.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
+<SplitPane id="mainSplitPane" fx:id="mainSplitPane" dividerPositions="0.5" prefHeight="600.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
   <items>
       <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.9626307922272048" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
         <items>
@@ -511,6 +512,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
+                  <Tab id="meridiansTab" fx:id="meridiansTab" text="Meridiánok" />
                   <Tab text="Pszichikum">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -628,50 +630,6 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Fül">
-                     <content>
-                        <AnchorPane>
-                           <children>
-                              <ScrollPane id="earImageScrollPane" fx:id="earImageScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="527.0" prefWidth="516.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <content>
-                                    <ImageView id="earImageView" fx:id="earImageView" onMouseClicked="#openImage" pickOnBounds="true" />
-                                 </content>
-                                 <padding>
-                                    <Insets bottom="-0.1" />
-                                 </padding>
-                              </ScrollPane>
-                              <VBox alignment="CENTER" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                 <children>
-                                    <Button id="addEarImageButton" fx:id="addEarImageButton" mnemonicParsing="false" onMouseClicked="#addImage" styleClass="green, button-font" text="Kép módosítása" />
-                                 </children>
-                              </VBox>
-                              <TextArea id="earTextArea" fx:id="earTextArea" layoutX="135.0" layoutY="301.0" prefHeight="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab text="Nyelv">
-                     <content>
-                        <AnchorPane>
-                           <children>
-                              <ScrollPane id="tongueImageScrollPane" fx:id="tongueImageScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="527.0" prefWidth="516.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <content>
-                                    <ImageView id="tongueImageView" fx:id="tongueImageView" onMouseClicked="#openImage" pickOnBounds="true" />
-                                 </content>
-                                 <padding>
-                                    <Insets bottom="-0.1" />
-                                 </padding>
-                              </ScrollPane>
-                              <VBox alignment="CENTER" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                 <children>
-                                    <Button id="addTongueImageButton" fx:id="addTongueImageButton" mnemonicParsing="false" onMouseClicked="#addImage" styleClass="green, button-font" text="Kép módosítása" />
-                                 </children>
-                              </VBox>
-                              <TextArea id="tongueTextArea" fx:id="tongueTextArea" layoutX="135.0" layoutY="301.0" prefHeight="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
                   <Tab text="Aktuális">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -749,7 +707,176 @@
                                        <panes>
                                           <TitledPane id="tcm1TitledPane" fx:id="titledPane18" animated="false" layoutX="10.0" layoutY="590.0" text="Diagnózis(ok)">
                                              <content>
-                                                <TextArea id="tcm1TextArea" fx:id="tcm1TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                <AnchorPane>
+                                                   <children>
+                                                      <GridPane layoutX="10.399999618530273" layoutY="10.399999618530273" prefHeight="606.0" prefWidth="632.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                         </columnConstraints>
+                                                         <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                         </rowConstraints>
+                                                         <children>
+                                                            <TextArea id="tcm1TextArea" fx:id="tcm1TextArea" prefHeight="42.0" prefWidth="137.0" visible="false" wrapText="true" GridPane.columnIndex="1" />
+                                                            <VBox spacing="10.0">
+                                                               <children>
+                                                                  <Label style="-fx-font-style: italic;" text="Lehetséges diagnózisok:">
+                                                                     <VBox.margin>
+                                                                        <Insets />
+                                                                     </VBox.margin></Label>
+                                                                  <ListView id="tcm1ListView1" fx:id="tcm1ListView1" prefHeight="399.0" prefWidth="300.0" VBox.vgrow="ALWAYS">
+                                                                     <items>
+                                                                        <FXCollections fx:factory="observableArrayList">
+                                                                           <String fx:value="Szív Qi Hiány" />
+                                                                           <String fx:value="Szív Yang Hiány" />
+                                                                           <String fx:value="Szív Yang Collapsus" />
+                                                                           <String fx:value="Szív Vér Hiány" />
+                                                                           <String fx:value="Szív Yin Hiány" />
+                                                                           <String fx:value="Szív Yin Hiány + Üres Forróság" />
+                                                                           <String fx:value="Szív Tűz Lángol" />
+                                                                           <String fx:value="Nyálka-Tűz Háborgatja a Szívet" />
+                                                                           <String fx:value="Nyálka Ködösíti az Elmét" />
+                                                                           <String fx:value="Szív Qi Pangás" />
+                                                                           <String fx:value="Szív Ér Elzáródása" />
+                                                                           <String fx:value="Szív Vér Pangás" />
+                                                                           <String fx:value="Pericardium Forróság" />
+                                                                           <String fx:value="Pericardium Vér Hiány" />
+                                                                           <String fx:value="Pericardium Tűz" />
+                                                                           <String fx:value="Nyálka-Tűz Háborgatja a Pericardiumot" />
+                                                                           <String fx:value="Pericardium Qi Pangás" />
+                                                                           <String fx:value="Pericardium Vér Pangás" />
+                                                                           <String fx:value="Máj Qi Pangás" />
+                                                                           <String fx:value="Máj Qi Pangás Forróságba Fordul" />
+                                                                           <String fx:value="Lázadó Máj Qi" />
+                                                                           <String fx:value="Máj Vér Pangás" />
+                                                                           <String fx:value="Máj Tűz Lángol" />
+                                                                           <String fx:value="Nedves Forróság a Májban" />
+                                                                           <String fx:value="Hideg Pangás a Máj-csatornában" />
+                                                                           <String fx:value="Máj Vér Hiány" />
+                                                                           <String fx:value="Máj Yin Hiány" />
+                                                                           <String fx:value="Máj Yang Felszállás" />
+                                                                           <String fx:value="Máj Szél" />
+                                                                           <String fx:value="Lázadó Máj Qi Támadja a Lépet" />
+                                                                           <String fx:value="Lázadó Máj Qi Támadja a Gyomrot" />
+                                                                           <String fx:value="Máj Tűz Sérti a Tüdőt" />
+                                                                           <String fx:value="Szív és Máj Vér Hiány" />
+                                                                           <String fx:value="Tüdő Qi Hiány" />
+                                                                           <String fx:value="Tüdő Yin Hiány" />
+                                                                           <String fx:value="Tüdő Yin Hiány + Üres forróság" />
+                                                                           <String fx:value="Tüdő Szárazság" />
+                                                                           <String fx:value="Hideg Szél Inváziója" />
+                                                                           <String fx:value="Szél Forróság Inváziója" />
+                                                                           <String fx:value="Szél-Víz Inváziója" />
+                                                                           <String fx:value="Tüdő Forróság" />
+                                                                           <String fx:value="Nedvesség-Nyálka a Tüdőben" />
+                                                                           <String fx:value="Hideg Nyálka a Tüdőben" />
+                                                                           <String fx:value="Nyálka Forróság a Tüdőben" />
+                                                                           <String fx:value="Száraz Nyálka a Tüdőben" />
+                                                                           <String fx:value="Nyálka-Folyadék elzárja a Tüdőt" />
+                                                                           <String fx:value="Tüdő és Szív Qi Hiány" />
+                                                                           <String fx:value="Lép Qi Hiány" />
+                                                                           <String fx:value="Lép Yang Hiány" />
+                                                                           <String fx:value="Lép Qi Süllyedés" />
+                                                                           <String fx:value="Lép Nem Kontrollálja a Vért" />
+                                                                           <String fx:value="Lép Vér Hiány" />
+                                                                           <String fx:value="Hideg Nedvesség Támadja a Lépet" />
+                                                                           <String fx:value="Nedves Forróság Támadja a Lépet" />
+                                                                           <String fx:value="Lép és Szív Vér Hiány" />
+                                                                           <String fx:value="Lép és Tüdő Qi Hiány" />
+                                                                           <String fx:value="Lép és Máj Vér Hiány" />
+                                                                           <String fx:value="Nedvesség Máj Qi Pangással Elzárja a Lépet" />
+                                                                           <String fx:value="Vese Yang Hiány" />
+                                                                           <String fx:value="Vese Yin Hiány" />
+                                                                           <String fx:value="Vese Yin Hiány + Üres Forróság" />
+                                                                           <String fx:value="Vese Qi Nem Szilárd" />
+                                                                           <String fx:value="Vese Nem Fogadja a Qi-t" />
+                                                                           <String fx:value="Vese Eszencia Hiány" />
+                                                                           <String fx:value="Vese Yang Hiány, Vízáradás" />
+                                                                           <String fx:value="Vese Yin Hiány, Üres Forróság Lángol" />
+                                                                           <String fx:value="Vese és Máj Yin Hiány" />
+                                                                           <String fx:value="Vese és Szív Nincsenek Harmóniában" />
+                                                                           <String fx:value="Vese és Tüdő Yin Hiány" />
+                                                                           <String fx:value="Vese és Lép Yang Hiány" />
+                                                                           <String fx:value="Gyomor Qi Hiány" />
+                                                                           <String fx:value="Gyomor Hiány és Hideg" />
+                                                                           <String fx:value="Gyomor Yin Hiány" />
+                                                                           <String fx:value="Gyomor Yin Hiány + Üres Forroság" />
+                                                                           <String fx:value="Gyomor Qi Pangás" />
+                                                                           <String fx:value="Gyomor Tűz/Nyálka-Tűz" />
+                                                                           <String fx:value="Hideg Támadja a Gyomrot" />
+                                                                           <String fx:value="Gyomor Qi Felfelé Lázad" />
+                                                                           <String fx:value="Nedves-Forróság a Gyomorban" />
+                                                                           <String fx:value="Ételpangás a Gyomorban" />
+                                                                           <String fx:value="Gyomor Vér Pangás" />
+                                                                           <String fx:value="Gyomor és Lép Qi Hiány" />
+                                                                           <String fx:value="Többlet Forróság a Vékonybélben" />
+                                                                           <String fx:value="Vékonybél Qi Fájdalom" />
+                                                                           <String fx:value="Vékonybél Qi Megkötözöttsége" />
+                                                                           <String fx:value="Féregfertőzés a Vékonybélben" />
+                                                                           <String fx:value="Vékonybél Hiány és Hideg" />
+                                                                           <String fx:value="Nedves Forróság a Vastagbélben" />
+                                                                           <String fx:value="Vastagbél Forróság" />
+                                                                           <String fx:value="Forróság Elzárja a Vastagbelet" />
+                                                                           <String fx:value="Hideg Támadja a Vastagbelet" />
+                                                                           <String fx:value="Vastagbél Qi Pangás" />
+                                                                           <String fx:value="Vastagbél Szárazság" />
+                                                                           <String fx:value="Vastagbél Hideg" />
+                                                                           <String fx:value="Vastagbél Összeomlás" />
+                                                                           <String fx:value="Nedvesség az Epehólyagban" />
+                                                                           <String fx:value="Epehólyag Nedves Forróság" />
+                                                                           <String fx:value="Epehólyag Hiány" />
+                                                                           <String fx:value="Nedves Forróság az Epehólyagban és a Májban" />
+                                                                           <String fx:value="Nedves Forróság a Hólyagban" />
+                                                                           <String fx:value="Hideg Nedvesség a Hólyagban" />
+                                                                           <String fx:value="Hólyag Hiány és Hideg" />
+                                                                        </FXCollections>
+                                                                     </items>
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </VBox.margin>
+                                                                  </ListView>
+                                                                  <HBox alignment="CENTER_LEFT">
+                                                                     <children>
+                                                                        <TextField id="filterTextField" fx:id="filterTextField" maxWidth="200.0" promptText="Keresés">
+                                                                           <HBox.margin>
+                                                                              <Insets right="10.0" />
+                                                                           </HBox.margin>
+                                                                        </TextField>
+                                                                        <Button mnemonicParsing="false" onMouseClicked="#addDiagnose" styleClass="green" text="Hozzáadás" />
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </VBox.margin>
+                                                                  </HBox>
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox spacing="10.0" GridPane.columnIndex="1">
+                                                               <children>
+                                                                  <Label style="-fx-font-style: italic;" text="Beteg diagnózisai:">
+                                                                     <VBox.margin>
+                                                                        <Insets left="10.0" />
+                                                                     </VBox.margin>
+                                                                  </Label>
+                                                                  <ListView id="tcm1ListView2" fx:id="tcm1ListView2" prefWidth="300.0" VBox.vgrow="ALWAYS">
+                                                                     <VBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                     </VBox.margin>
+                                                                  </ListView>
+                                                                  <VBox alignment="CENTER_RIGHT">
+                                                                     <VBox.margin>
+                                                                        <Insets bottom="5.0" />
+                                                                     </VBox.margin>
+                                                                     <children>
+                                                                        <Button mnemonicParsing="false" onMouseClicked="#deleteDiagnose" styleClass="red" text="Törlés" />
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </GridPane>
+                                                   </children>
+                                                </AnchorPane>
                                              </content>
                                           </TitledPane>
                                           <TitledPane id="tcm2TitledPane" fx:id="titledPane19" animated="false" layoutX="10.0" layoutY="166.0" text="Terápiás koncepció">
@@ -803,6 +930,51 @@
                                     </Accordion>
                                  </children>
                               </StackPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab id="fiveElementsTab" fx:id="fiveElementsTab" onSelectionChanged="#fiveElementsSelected" text="5 Elem" />
+                  <Tab text="Fül">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <ScrollPane id="earImageScrollPane" fx:id="earImageScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="527.0" prefWidth="516.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <content>
+                                    <ImageView id="earImageView" fx:id="earImageView" onMouseClicked="#openImage" pickOnBounds="true" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="-0.1" />
+                                 </padding>
+                              </ScrollPane>
+                              <VBox alignment="CENTER" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <Button id="addEarImageButton" fx:id="addEarImageButton" mnemonicParsing="false" onMouseClicked="#addImage" styleClass="green, button-font" text="Kép módosítása" />
+                                 </children>
+                              </VBox>
+                              <TextArea id="earTextArea" fx:id="earTextArea" layoutX="135.0" layoutY="301.0" prefHeight="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Nyelv">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <ScrollPane id="tongueImageScrollPane" fx:id="tongueImageScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="527.0" prefWidth="516.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <content>
+                                    <ImageView id="tongueImageView" fx:id="tongueImageView" onMouseClicked="#openImage" pickOnBounds="true" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="-0.1" />
+                                 </padding>
+                              </ScrollPane>
+                              <VBox alignment="CENTER" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <Button id="addTongueImageButton" fx:id="addTongueImageButton" mnemonicParsing="false" onMouseClicked="#addImage" styleClass="green, button-font" text="Kép módosítása" />
+                                 </children>
+                              </VBox>
+                              <TextArea id="tongueTextArea" fx:id="tongueTextArea" layoutX="135.0" layoutY="301.0" prefHeight="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -1604,7 +1776,7 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Button>
-                        <Button mnemonicParsing="false" styleClass="green" text="PDF" />
+                        <Button mnemonicParsing="false" onMouseClicked="#createPDF" styleClass="green" text="PDF" />
                      </children>
                   </HBox>
                </children>

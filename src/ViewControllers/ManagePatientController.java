@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import sun.plugin.javascript.navig.Anchor;
 
 
 import java.awt.*;
@@ -54,24 +56,45 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         makeListOfpersonalDateTextFields();
         makeListOfTabs();
         personalDataBindings();
-        setDatePickers();
         setPulseBindings();
         addListeners();
         setImageBindings();
+        tcmListDefaultValues=tcm1ListView1.getItems();
+        for(String s: tcmListDefaultValues){
+            actualPatientTcmList.add(s);
+        }
+        tcm1ListView1.setItems(actualPatientTcmList);
 
+        setFiveElementsTab();
+        setMeridiansTab();
+    }
 
-        genderChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-                gender=genderChoiceBox.getItems().get((Integer) number2);
-                symptomsGridPane.getStyleClass().clear();
-                if(gender.equals("férfi")){
-                    symptomsGridPane.getStyleClass().add("male-image");
-                }else if(gender.equals("nő")){
-                    symptomsGridPane.getStyleClass().add("female-image");
-                }
-            }
-        });
+    public void setMeridiansTab() {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        AnchorPane ap= null;
+        try {
+            ap = (AnchorPane) fxmlLoader.load(this.getClass().getResource("/meridians.fxml").openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        MeridiansController meridiansCtroller = (MeridiansController) fxmlLoader.getController();
+
+        meridiansTab.setContent(ap);
+        meridiansController=meridiansCtroller;
+    }
+
+    private void setFiveElementsTab() {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        AnchorPane ap= null;
+        try {
+            ap = (AnchorPane) fxmlLoader.load(this.getClass().getResource("/fiveElements.fxml").openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FiveElementsController fiveElementsCtroller = (FiveElementsController) fxmlLoader.getController();
+
+        fiveElementsTab.setContent(ap);
+        fiveElementsController=fiveElementsCtroller;
     }
 
     public void setScreenParent(ScreensController screenParent){
@@ -81,6 +104,8 @@ public class ManagePatientController implements Initializable, ControlledScreen 
 
     @FXML
     SplitPane splitPane;
+    @FXML
+    SplitPane mainSplitPane;
     @FXML
     TitledPane titledPane1;
     @FXML
@@ -387,7 +412,6 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     Label patientNameWarningLabel;
     @FXML
     Label birthDateWarningLabel;
-
     @FXML
     TextFlow symptomsTextFlow1;
     @FXML
@@ -442,6 +466,16 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     TabPane managePatientTabPane;
     @FXML
     GridPane symptomsGridPane;
+    @FXML
+    ListView<String> tcm1ListView1;
+    @FXML
+    ListView<String> tcm1ListView2;
+    @FXML
+    TextField filterTextField;
+    @FXML
+    Tab fiveElementsTab;
+    @FXML
+    Tab meridiansTab;
 
 
     private Boolean patientDataEditable =true;
@@ -455,15 +489,22 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     ArrayList<TextArea>  clinicalHistoryTextAreas;
     ArrayList<TextArea>  actualTextAreas;
     ArrayList<TextArea> tcmTextAreas;
+    ArrayList<TextArea> meridianTextAreas;
     ArrayList<ArrayList<TextArea>> allTextareas;
     ArrayList<TextFlow> textFlows;
     ArrayList<TextField> personalDateTextFields;
     ArrayList<TitledPane> titledPanes;
     ObservableList<Tab> managePatientTabs;
 
+    private ObservableList<String> tcmListDefaultValues = FXCollections.observableArrayList();
+    private ObservableList<String> actualPatientTcmList = FXCollections.observableArrayList();
+
     private ArrayList<TreatmentController> treatmentControllers=new ArrayList<>();
     private ManagePatientController managePatientController;
     private Image defaultImage = new Image("View/img/nopicture.jpg");
+
+    private FiveElementsController fiveElementsController;
+    private MeridiansController meridiansController;
 
     public void load() {
         if(Main.getNewPatient()) {
@@ -486,12 +527,21 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             }
             managePatientTabs.get(0).setDisable(false);
             managePatientTabPane.getSelectionModel().select(0);
+
+            tcm1ListView1.getItems().clear();
+            for(String s: tcmListDefaultValues){
+                actualPatientTcmList.add(s);
+            }
+            tcm1ListView1.setItems(actualPatientTcmList);
+            tcm1ListView2.getItems().clear();
+            meridiansController.clear();
         }else{
             Main.db.getPatient(Main.patientID);
             setPatient();
             loadSymptoms();
             loadImages();
             loadImageDescriptions();
+            meridiansController.load();
             managePatientTabPane.getSelectionModel().select(0);
         }
     }
@@ -522,11 +572,25 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         pulseLabel23.textProperty().bind(pulse23Choicebox.valueProperty());
         pulseLabel24.textProperty().bind(pulse24Choicebox.valueProperty());
         pulseTextArea1.textProperty().bind(pulseTextArea2.textProperty());
-
     }
 
-    private void setDatePickers() {
-
+    public void search(String oldVal, String newVal) {
+        if (oldVal != null && (newVal.length() < oldVal.length())) {
+            tcm1ListView1.setItems(actualPatientTcmList);
+        }
+        String value = newVal.toLowerCase();
+        ObservableList<String> subentries = FXCollections.observableArrayList();
+        for (String entry : tcm1ListView1.getItems()) {
+            boolean match = true;
+            if (!entry.toLowerCase().contains(value)) {
+                match = false;
+            }
+            if (match) {
+                subentries.add(entry);
+            }
+        }
+        tcm1ListView1.setItems(subentries);
+        tcm1ListView1.getSelectionModel().selectFirst();
     }
 
     private void personalDataBindings() {
@@ -700,9 +764,6 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         });
     }
 
-    @FXML
-    Button aaaaaaaaaaaaaaaaaa;
-
     //Szerkesztés button clicked
     @FXML
     private void changeEditabilityClicked(){
@@ -736,6 +797,8 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         tongueTextArea.setEditable(patientDataEditable);
 
         setDataDisplay();
+
+        meridiansController.changeEditMode(patientDataEditable);
     }
 
     private void setDataDisplay() {
@@ -745,7 +808,12 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         int whichTab=0;
         for(ArrayList<TextArea> textAreasPlace: allTextareas){
             for(TextArea tarea: textAreasPlace){
-                    TitledPane tp= (TitledPane) tarea.getParent().getParent();
+                    TitledPane tp=null;
+                    if(tarea.getId().equals("tcm1TextArea")){
+                         tp= (TitledPane) tarea.getParent().getParent().getParent().getParent();
+                    }else {
+                        tp = (TitledPane) tarea.getParent().getParent();
+                    }
                     if(!tarea.getText().trim().equals("")){
                     Text label = new Text(tp.getText() + "\n\n");
                     label.getStyleClass().add("labelText");
@@ -829,7 +897,6 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         SecureLocalDateStringConverter checkDate=new SecureLocalDateStringConverter();
         checkDate.fromString(datePicker.getEditor().getText());
         checkDate.fromString2(datePicker.getEditor().getText());
-        System.out.println(!(checkDate.hasParseError()) +" "+ !(checkDate.hasParseError2()));
         if(checkDate.hasParseError() && checkDate.hasParseError2()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Hiba üzenet");
@@ -907,6 +974,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
                 tcm8TextArea.getText()
         );
         patient.setTcm(tcm);
+
 
         Pulse pulse=new Pulse(
                 pulse1Choicebox.getValue(),
@@ -1012,10 +1080,9 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         actual4TextArea.setText(a.getActual4());
         actual5TextArea.setText(a.getActual5());
 
-
-
         Tcm t=patient.getTcm();
         tcm1TextArea.setText(t.getTcm1());
+        loadTcmToList();
         tcm2TextArea.setText(t.getTcm2());
         tcm3TextArea.setText(t.getTcm3());
         tcm4TextArea.setText(t.getTcm4());
@@ -1161,28 +1228,104 @@ public class ManagePatientController implements Initializable, ControlledScreen 
                 for(TextArea tarea: textAreasPlace) {
                     TitledPane tp;
                     tp=titledPanes.get(i);
-                    tarea.textProperty().addListener(new ChangeListener<String>() {
-                        @Override
-                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                            if (!tarea.getText().trim().equals("")) {
-                                if (!tp.getStyleClass().contains("green-arrow")) {
-                                    tp.getStyleClass().add("green-arrow");
-                                }
-                            } else {
-                                tp.getStyleClass().remove("green-arrow");
-                            }
-                        }
-                    });
+                    MeridiansController.arrowColorChanger(tarea, tp);
                     i++;
                 }
             }catch(Exception e){
-
+                e.printStackTrace();
             }
         }
         addChangeListenersForPersonalData();
 
         addDateValidator(personalDataDatePicker);
         addDateValidator(finalOpinionDatePicker);
+
+        genderChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                gender=genderChoiceBox.getItems().get((Integer) number2);
+                symptomsGridPane.getStyleClass().clear();
+                if(gender.equals("férfi")){
+                    symptomsGridPane.getStyleClass().add("male-image");
+                }else if(gender.equals("nő")){
+                    symptomsGridPane.getStyleClass().add("female-image");
+                }
+            }
+        });
+
+        filterTextField.textProperty().addListener(new ChangeListener() {
+            public void changed(ObservableValue observable, Object oldVal,
+                                Object newVal) {
+                search((String) oldVal, (String) newVal);
+            }
+        });
+
+        addFiveElementsListeners();
+    }
+
+    private void addFiveElementsListeners() {
+        ObservableList<SplitPane.Divider> dividers = mainSplitPane.getDividers();
+        SplitPane.Divider divider=dividers.get(0);
+        divider.positionProperty().addListener((observable, oldValue, newValue) -> {
+            changeElementsTextPositions();
+        });
+
+        Stage s=Main.getWindow();
+        s.widthProperty().addListener((observable, oldValue, newValue) -> {
+            changeElementsTextPositions();
+        });
+        s.heightProperty().addListener((observable, oldValue, newValue) -> {
+            changeElementsTextPositions();
+        });
+    }
+
+    private void changeElementsTextPositions(){
+        double width=fiveElementsController.getFiveElementsAnchorPane().getWidth();
+        double height=fiveElementsController.getFiveElementsAnchorPane().getHeight();
+
+        double circleHeight=height/4.53;
+
+        fiveElementsController.getScrollPane1().setPrefHeight(circleHeight);
+        fiveElementsController.getScrollPane2().setPrefHeight(circleHeight);
+        fiveElementsController.getScrollPane3().setPrefHeight(circleHeight);
+        fiveElementsController.getScrollPane4().setPrefHeight(circleHeight);
+        fiveElementsController.getScrollPane5().setPrefHeight(circleHeight);
+
+        double width1=width/2-100;
+        double height1=height/13;
+
+        double width2=width/6.3-100;
+        double height2=height/3.5;
+
+        double width3=width/1.2-100;
+        double height3=height/3.5;
+
+        double width4=width/3.47-100;
+        double height4=height/1.5;
+
+        double width5=width/1.42-100;
+        double height5=height/1.5;
+
+
+        setScrollPaneAnchors(width1, height1, fiveElementsController.getScrollPane1());
+        setScrollPaneAnchors(width2, height2, fiveElementsController.getScrollPane2());
+        setScrollPaneAnchors(width3, height3, fiveElementsController.getScrollPane3());
+        setScrollPaneAnchors(width4, height4, fiveElementsController.getScrollPane4());
+        setScrollPaneAnchors(width5, height5, fiveElementsController.getScrollPane5());
+    };
+
+    private boolean selected=false;
+
+    @FXML
+    public void fiveElementsSelected(Event event) {
+        selected=!selected;
+        changeElementsTextPositions();
+        fiveElementsController.setTexts(tcmListDefaultValues, tcm1ListView2.getItems(), selected);
+    }
+
+    private void setScrollPaneAnchors(double left, double top, ScrollPane scrollPane){
+        AnchorPane.setLeftAnchor(scrollPane, left);
+        AnchorPane.setTopAnchor(scrollPane, top);
     }
 
     private void addChangeListenersForPersonalData(){
@@ -1234,6 +1377,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             Patient patient = makePatient();
             Main.db.addPatient(patient);
             Main.db.saveImageDescription(earTextArea.getText(), tongueTextArea.getText());
+                meridiansController.save();
         }
     }
 
@@ -1241,6 +1385,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         Patient patient = makePatient();
         Main.db.updatePatient(patient);
         Main.db.updateImageDescription(earTextArea.getText(), tongueTextArea.getText());
+        meridiansController.update();
     }
 
     public void chooseOtherPatient(MouseEvent mouseEvent) {
@@ -1544,6 +1689,65 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             treatmentControllers.remove(treatmentControllers.size()-1);
         }
     }
+
+    @FXML
+    public void addDiagnose(MouseEvent mouseEvent) {
+        changeElementPosition(tcm1ListView1, tcm1ListView2);
+        filterTextField.setText("");
+    }
+
+    @FXML
+    public void deleteDiagnose(MouseEvent mouseEvent) {
+        changeElementPosition(tcm1ListView2, tcm1ListView1);
+    }
+
+    private void changeElementPosition(ListView<String> listView1, ListView<String> listView2){
+        try {
+            String item = listView1.getSelectionModel().getSelectedItem();
+            int itemIndex = listView1.getSelectionModel().getSelectedIndex();
+            listView1.getItems().remove(itemIndex);
+            listView2.getItems().add(item);
+
+            tcm1TextArea.setText("");
+            for(String s: tcm1ListView2.getItems()){
+                tcm1TextArea.setText(tcm1TextArea.getText()+s+"~");
+            }
+        }catch (Exception e){
+            //no more element or element not selected
+        }
+    }
+
+    private void loadTcmToList() {
+        tcm1ListView1.getItems().clear();
+        tcm1ListView2.getItems().clear();
+        String[] diagnoses = tcm1TextArea.getText().split("~");
+
+        for(String d: tcmListDefaultValues){
+            boolean isInDb=isInDb(d, diagnoses);
+            if(!isInDb){
+                tcm1ListView1.getItems().add(d);
+            }else{
+                tcm1ListView2.getItems().add(d);
+            }
+        }
+        actualPatientTcmList=tcm1ListView1.getItems();
+
+    }
+
+    private boolean isInDb(String d, String[] diagnoses) {
+        for(String s:diagnoses){
+           if(s.equals(d)){
+               return true;
+           }
+        }
+        return false;
+    }
+
+    public void createPDF(MouseEvent mouseEvent) {
+
+    }
+
+
 }
 
 

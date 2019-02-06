@@ -44,6 +44,7 @@ public class StartController implements Initializable, ControlledScreen{
     @FXML
     public void getchoosePatientScreen(MouseEvent mouseEvent) {
         myController.setScreen(Main.screen2ID);
+        myController.managePatientController.setMeridiansTab();
     }
 
 

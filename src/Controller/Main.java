@@ -39,7 +39,7 @@ public class Main extends Application {
     public static int patientID=1;
     public static Boolean newPatient;
 
-    Stage window;
+    private static Stage window;
 
     private ScreensController mainContainer;
     private Group root;
@@ -48,11 +48,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         createDialog();
-        while(!authenticate()){
-
-        }
+//        while(!authenticate()){
+//
+//        }
         Locale.setDefault(new Locale("hu", "HUN"));
         primaryStage.setMaximized(true);
+        window=primaryStage;
 
         primaryStage.setMinWidth(1100);
         primaryStage.setMinHeight(600);
@@ -65,7 +66,7 @@ public class Main extends Application {
         mainContainer.loadScreen(Main.screen4ID, Main.screen4File);
         mainContainer.loadScreen(Main.screen5ID, Main.screen5File);
 
-        mainContainer.setScreen(Main.screen1ID);
+        mainContainer.setScreen(Main.screen2ID);
 
 
         root = new Group();
@@ -84,7 +85,6 @@ public class Main extends Application {
 
         mainContainer.getSettingsController().setSettings();
 
-        window=primaryStage;
         window.setOnCloseRequest(e -> {
             e.consume();
             closeProgram();
@@ -196,5 +196,9 @@ public class Main extends Application {
 
     public static void setNewPatient(Boolean newPatient) {
         Main.newPatient = newPatient;
+    }
+
+    public static Stage getWindow() {
+        return window;
     }
 }

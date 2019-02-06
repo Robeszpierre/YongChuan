@@ -8,7 +8,7 @@ public class DB_CreateTables extends  DB_Config {
 
     public DB_CreateTables() {
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "PATIENT_DATA", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "PATIENT_DATA", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE PATIENT_DATA" +
@@ -33,7 +33,7 @@ public class DB_CreateTables extends  DB_Config {
         }
 
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "SYMPTOMS", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "SYMPTOMS", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE SYMPTOMS" +
@@ -52,7 +52,7 @@ public class DB_CreateTables extends  DB_Config {
         }
 
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "PSYCHE", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "PSYCHE", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE PSYCHE" +
@@ -70,7 +70,7 @@ public class DB_CreateTables extends  DB_Config {
         }
 
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "HISTORY", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "HISTORY", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE HISTORY" +
@@ -94,7 +94,7 @@ public class DB_CreateTables extends  DB_Config {
         }
 
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "ACTUAL", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "ACTUAL", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE ACTUAL" +
@@ -114,7 +114,7 @@ public class DB_CreateTables extends  DB_Config {
         }
 
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "TCM", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "TCM", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE TCM" +
@@ -137,36 +137,36 @@ public class DB_CreateTables extends  DB_Config {
         }
 
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "PULSE", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "PULSE", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE PULSE" +
                         "(" +
                         "    PATIENT_ID INT," +
-                        "    PULSE1 long varchar ," +
-                        "    PULSE2 long varchar," +
-                        "    PULSE3 long varchar," +
-                        "    PULSE4 long varchar," +
-                        "    PULSE5 long varchar," +
-                        "    PULSE6 long varchar," +
-                        "    PULSE7 long varchar," +
-                        "    PULSE8 long varchar," +
-                        "    PULSE9 long varchar," +
-                        "    PULSE10 long varchar," +
-                        "    PULSE11 long varchar," +
-                        "    PULSE12 long varchar," +
-                        "    PULSE13 long varchar," +
-                        "    PULSE14 long varchar," +
-                        "    PULSE15 long varchar," +
-                        "    PULSE16 long varchar," +
-                        "    PULSE17 long varchar," +
-                        "    PULSE18 long varchar," +
-                        "    PULSE19 long varchar," +
-                        "    PULSE20 long varchar," +
-                        "    PULSE21 long varchar," +
-                        "    PULSE22 long varchar," +
-                        "    PULSE23 long varchar," +
-                        "    PULSE24 long varchar," +
+                        "    PULSE1 varchar(20) ," +
+                        "    PULSE2 varchar(20)," +
+                        "    PULSE3 varchar(20)," +
+                        "    PULSE4 varchar(20)," +
+                        "    PULSE5 varchar(20)," +
+                        "    PULSE6 varchar(20)," +
+                        "    PULSE7 varchar(20)," +
+                        "    PULSE8 varchar(20)," +
+                        "    PULSE9 varchar(20)," +
+                        "    PULSE10 varchar(20)," +
+                        "    PULSE11 varchar(20)," +
+                        "    PULSE12 varchar(20)," +
+                        "    PULSE13 varchar(20)," +
+                        "    PULSE14 varchar(20)," +
+                        "    PULSE15 varchar(20)," +
+                        "    PULSE16 varchar(20)," +
+                        "    PULSE17 varchar(20)," +
+                        "    PULSE18 varchar(20)," +
+                        "    PULSE19 varchar(20)," +
+                        "    PULSE20 varchar(20)," +
+                        "    PULSE21 varchar(20)," +
+                        "    PULSE22 varchar(20)," +
+                        "    PULSE23 varchar(20)," +
+                        "    PULSE24 varchar(20)," +
                         "    other long varchar" +
                         ")");
                 System.out.println("PULSE table created");
@@ -177,7 +177,7 @@ public class DB_CreateTables extends  DB_Config {
         }
 
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "TREATMENT", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "TREATMENT", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE TREATMENT" +
@@ -200,7 +200,7 @@ public class DB_CreateTables extends  DB_Config {
         }
 
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "FINAL", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "FINAL", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE FINAL" +
@@ -218,7 +218,7 @@ public class DB_CreateTables extends  DB_Config {
         }
 
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "SYMPTOMS_SAVE", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "SYMPTOMS_SAVE", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE SYMPTOMS_SAVE" +
@@ -237,7 +237,7 @@ public class DB_CreateTables extends  DB_Config {
             System.out.println(""+ex);
         }
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "IMAGES", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "IMAGES", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE IMAGES" +
@@ -255,7 +255,7 @@ public class DB_CreateTables extends  DB_Config {
             System.out.println(""+ex);
         }
         try {
-            ResultSet rs = dbmd.getTables(null, "APP", "SETTINGS", null);
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "SETTINGS", null);
             if(!rs.next())
             {
                 createStatement.execute("CREATE TABLE SETTINGS" +
@@ -269,6 +269,41 @@ public class DB_CreateTables extends  DB_Config {
             }
         } catch (SQLException ex) {
             System.out.println("something wrong with SETTINGS table creation");
+            System.out.println(""+ex);
+        }
+
+        try {
+            ResultSet rs = dbmd.getTables(null, getUSERNAME().toUpperCase(), "MERIDIANS", null);
+            if(!rs.next())
+            {
+                createStatement.execute("CREATE TABLE MERIDIANS" +
+                        "(" +
+                        "    PATIENT_ID INT," +
+                        "    MERIDIAN1 long varchar ," +
+                        "    MERIDIAN2 long varchar," +
+                        "    MERIDIAN3 long varchar," +
+                        "    MERIDIAN4 long varchar," +
+                        "    MERIDIAN5 long varchar," +
+                        "    MERIDIAN6 long varchar," +
+                        "    MERIDIAN7 long varchar," +
+                        "    MERIDIAN8 long varchar," +
+                        "    MERIDIAN9 long varchar," +
+                        "    MERIDIAN10 long varchar," +
+                        "    MERIDIAN11 long varchar," +
+                        "    MERIDIAN12 long varchar," +
+                        "    MERIDIAN13 long varchar," +
+                        "    MERIDIAN14 long varchar," +
+                        "    MERIDIAN15 long varchar," +
+                        "    MERIDIAN16 long varchar," +
+                        "    MERIDIAN17 long varchar," +
+                        "    MERIDIAN18 long varchar," +
+                        "    MERIDIAN19 long varchar," +
+                        "    MERIDIAN20 long varchar" +
+                        ")");
+                System.out.println("MERIDIANS table created");
+            }
+        } catch (SQLException ex) {
+            System.out.println("something wrong with MERIDIANS table creation");
             System.out.println(""+ex);
         }
     }

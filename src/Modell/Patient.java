@@ -127,4 +127,12 @@ public class Patient {
     public void setTreatments(ArrayList<Treatment> treatments) {
         this.treatments = treatments;
     }
+
+    public static Patient getOurInstance() {
+        return ourInstance;
+    }
+
+    public static void setOurInstance(Patient ourInstance) {
+        Patient.ourInstance = ourInstance;
+    }
 }

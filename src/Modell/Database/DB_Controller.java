@@ -895,6 +895,8 @@ public class DB_Controller extends DB_CreateTables {
             preparedStatement.executeUpdate();
             preparedStatement = conn.prepareStatement("DELETE FROM TREATMENT WHERE PATIENT_ID = " + id);
             preparedStatement.executeUpdate();
+            preparedStatement = conn.prepareStatement("DELETE FROM MERIDIANS WHERE PATIENT_ID = " + id);
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -947,6 +949,103 @@ public class DB_Controller extends DB_CreateTables {
             conn.createStatement().executeUpdate("UPDATE SETTINGS set FONT_FAMILY=" + "'" + fontFamily + "'");
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public Meridians getMeridians() {
+        String sql = "select * from MERIDIANS where PATIENT_ID=" + Main.patientID;
+        Meridians meridians = null;
+        try {
+            ResultSet rs = createStatement.executeQuery(sql);
+            rs.next();
+            meridians = new Meridians(
+                    rs.getString("MERIDIAN1"),
+                    rs.getString("MERIDIAN2"),
+                    rs.getString("MERIDIAN3"),
+                    rs.getString("MERIDIAN4"),
+                    rs.getString("MERIDIAN5"),
+                    rs.getString("MERIDIAN6"),
+                    rs.getString("MERIDIAN7"),
+                    rs.getString("MERIDIAN8"),
+                    rs.getString("MERIDIAN9"),
+                    rs.getString("MERIDIAN10"),
+                    rs.getString("MERIDIAN11"),
+                    rs.getString("MERIDIAN12"),
+                    rs.getString("MERIDIAN13"),
+                    rs.getString("MERIDIAN14"),
+                    rs.getString("MERIDIAN15"),
+                    rs.getString("MERIDIAN16"),
+                    rs.getString("MERIDIAN17"),
+                    rs.getString("MERIDIAN18"),
+                    rs.getString("MERIDIAN19"),
+                    rs.getString("MERIDIAN20"));
+        } catch (SQLException ex) {
+            System.out.println("HISTORY no patient with the id " + Main.patientID);
+        }
+        return meridians;
+    }
+
+    public void saveMeridians(Meridians m){
+        try {
+            String sql = "insert into MERIDIANS (PATIENT_ID, MERIDIAN1, MERIDIAN2, MERIDIAN3, MERIDIAN4, MERIDIAN5, MERIDIAN6, MERIDIAN7, MERIDIAN8, MERIDIAN9, MERIDIAN10, MERIDIAN11, MERIDIAN12, MERIDIAN13, MERIDIAN14, MERIDIAN15, MERIDIAN16, MERIDIAN17, MERIDIAN18, MERIDIAN19, MERIDIAN20) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, Main.patientID );
+            preparedStatement.setString(2, m.getMeridian1());
+            preparedStatement.setString(3, m.getMeridian2());
+            preparedStatement.setString(4, m.getMeridian3());
+            preparedStatement.setString(5, m.getMeridian4());
+            preparedStatement.setString(6, m.getMeridian5());
+            preparedStatement.setString(7, m.getMeridian6());
+            preparedStatement.setString(8, m.getMeridian7());
+            preparedStatement.setString(9, m.getMeridian8());
+            preparedStatement.setString(10, m.getMeridian9());
+            preparedStatement.setString(11, m.getMeridian10());
+            preparedStatement.setString(12, m.getMeridian11());
+            preparedStatement.setString(13, m.getMeridian12());
+            preparedStatement.setString(14, m.getMeridian13());
+            preparedStatement.setString(15, m.getMeridian14());
+            preparedStatement.setString(16, m.getMeridian15());
+            preparedStatement.setString(17, m.getMeridian16());
+            preparedStatement.setString(18, m.getMeridian17());
+            preparedStatement.setString(19, m.getMeridian18());
+            preparedStatement.setString(20, m.getMeridian19());
+            preparedStatement.setString(21, m.getMeridian20());
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            System.out.println("something wrong with adding Meridians");
+            System.out.println(""+ex);
+        }
+    }
+
+    public void updateMeridians(Meridians m){
+        try {
+            String sql = "update MERIDIANS set MERIDIAN1=?, MERIDIAN2=?, MERIDIAN3=?, MERIDIAN4=?, MERIDIAN5=?, MERIDIAN6=?, MERIDIAN7=?, MERIDIAN8=?, MERIDIAN9=?, MERIDIAN10=?,MERIDIAN11=?, MERIDIAN12=?, MERIDIAN13=?, MERIDIAN14=?, MERIDIAN15=?, MERIDIAN16=?, MERIDIAN17=?, MERIDIAN18=?, MERIDIAN19=?, MERIDIAN20=? where PATIENT_ID=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, m.getMeridian1());
+            preparedStatement.setString(2, m.getMeridian2());
+            preparedStatement.setString(3, m.getMeridian3());
+            preparedStatement.setString(4, m.getMeridian4());
+            preparedStatement.setString(5, m.getMeridian5());
+            preparedStatement.setString(6, m.getMeridian6());
+            preparedStatement.setString(7, m.getMeridian7());
+            preparedStatement.setString(8, m.getMeridian8());
+            preparedStatement.setString(9, m.getMeridian9());
+            preparedStatement.setString(10, m.getMeridian10());
+            preparedStatement.setString(11, m.getMeridian11());
+            preparedStatement.setString(12, m.getMeridian12());
+            preparedStatement.setString(13, m.getMeridian13());
+            preparedStatement.setString(14, m.getMeridian14());
+            preparedStatement.setString(15, m.getMeridian15());
+            preparedStatement.setString(16, m.getMeridian16());
+            preparedStatement.setString(17, m.getMeridian17());
+            preparedStatement.setString(18, m.getMeridian18());
+            preparedStatement.setString(19, m.getMeridian19());
+            preparedStatement.setString(20, m.getMeridian20());
+            preparedStatement.setInt(21, Main.patientID);
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            System.out.println("something wrong with updating MERIDIANS");
+            System.out.println(""+ex);
         }
     }
 }

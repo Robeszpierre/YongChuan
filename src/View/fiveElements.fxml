@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="fiveElementsAnchorPane" fx:id="fiveElementsAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="fiveElementsBackGround" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.FiveElementsController">
+   <children>
+      <ScrollPane id="scrollPane1" fx:id="scrollPane1" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="266.0" layoutY="36.0" pannable="true" prefHeight="130.0" prefWidth="200.0" styleClass="transparent2" vbarPolicy="NEVER">
+         <content>
+            <TextFlow id="textFlow1" fx:id="textFlow1" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" />
+         </content>
+      </ScrollPane>
+      <ScrollPane id="scrollPane2" fx:id="scrollPane2" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="20.0" layoutY="172.0" prefHeight="130.0" prefWidth="200.0" styleClass="transparent2" vbarPolicy="NEVER">
+         <content>
+            <TextFlow id="textFlow2" fx:id="textFlow2" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" />
+         </content>
+      </ScrollPane>
+      <ScrollPane id="scrollPane3" fx:id="scrollPane3" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="456.0" layoutY="206.0" prefHeight="130.0" prefWidth="200.0" styleClass="transparent2" vbarPolicy="NEVER">
+         <content>
+            <TextFlow id="textFlow3" fx:id="textFlow3" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" />
+         </content>
+      </ScrollPane>
+      <ScrollPane id="scrollPane4" fx:id="scrollPane4" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="120.0" layoutY="406.0" prefHeight="130.0" prefWidth="200.0" styleClass="transparent2" vbarPolicy="NEVER">
+         <content>
+            <TextFlow id="textFlow4" fx:id="textFlow4" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" />
+         </content>
+      </ScrollPane>
+      <ScrollPane id="scrollPane5" fx:id="scrollPane5" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="356.0" layoutY="414.0" prefHeight="130.0" prefWidth="200.0" styleClass="transparent2" vbarPolicy="NEVER">
+         <content>
+            <TextFlow id="textFlow5" fx:id="textFlow5" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

@@ -152,18 +152,7 @@ public class TreatmentController {
     }
 
     public void addChangeListener(TextArea tarea, TitledPane tp){
-        tarea.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!tarea.getText().trim().equals("")) {
-                    if (!tp.getStyleClass().contains("green-arrow")) {
-                        tp.getStyleClass().add("green-arrow");
-                    }
-                } else {
-                    tp.getStyleClass().remove("green-arrow");
-                }
-            }
-        });
+        MeridiansController.arrowColorChanger(tarea, tp);
     }
 
 
