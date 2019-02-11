@@ -1776,7 +1776,6 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#createPDF" styleClass="green" text="PDF" />
                      </children>
                   </HBox>
                </children>

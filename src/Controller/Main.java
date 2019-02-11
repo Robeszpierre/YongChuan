@@ -66,7 +66,7 @@ public class Main extends Application {
         mainContainer.loadScreen(Main.screen4ID, Main.screen4File);
         mainContainer.loadScreen(Main.screen5ID, Main.screen5File);
 
-        mainContainer.setScreen(Main.screen2ID);
+        mainContainer.setScreen(Main.screen1ID);
 
 
         root = new Group();
