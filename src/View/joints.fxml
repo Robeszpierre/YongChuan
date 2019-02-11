@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="1038.0" style="-fx-background-color: ;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.JointsController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="1038.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.JointsController">
    <children>
       <VBox prefWidth="1045.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -50,7 +50,7 @@
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" spacing="40.0">
                <children>
                   <Label minWidth="-Infinity" prefWidth="200.0" text="Éjszaka fennáll-e a fájdalom?" wrapText="true" />
-                  <ComboBox id="jointsCombobox1" fx:id="jointsCombobox1" value="nem">
+                  <ComboBox id="jointsCombobox1" fx:id="jointsCombobox1" promptText="nem megkérdezett">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="nem" />
@@ -81,7 +81,7 @@
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" spacing="40.0">
                <children>
                   <Label minWidth="-Infinity" prefWidth="200.0" text="Mozgáskorlátozott-e?" wrapText="true" />
-                  <ComboBox id="jointsCombobox2" fx:id="jointsCombobox2" value="nem">
+                  <ComboBox id="jointsCombobox2" fx:id="jointsCombobox2" promptText="nem megkérdezett">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="nem" />

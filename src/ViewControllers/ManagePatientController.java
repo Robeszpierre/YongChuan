@@ -27,7 +27,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import sun.plugin.javascript.navig.Anchor;
 
 
 import java.awt.*;
@@ -521,6 +520,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             setPatient();
             setImage();
             setImageDescriptions();
+            isSaved=false;
 
             for(Tab t: managePatientTabs){
                 t.setDisable(true);
@@ -536,6 +536,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             tcm1ListView2.getItems().clear();
             meridiansController.clear();
         }else{
+            isSaved=true;
             Main.db.getPatient(Main.patientID);
             setPatient();
             loadSymptoms();
@@ -1368,16 +1369,24 @@ public class ManagePatientController implements Initializable, ControlledScreen 
             }
             managePatientTabs.get(0).setDisable(false);
         }
+        save();
     }
 
+    private boolean isSaved=false;
     public void save(){
         if(birthDateWarningLabel.isVisible() || patientNameWarningLabel.isVisible() || genderWarningLabel.isVisible()){
             //doesn't save the informations
         }else {
-            Patient patient = makePatient();
-            Main.db.addPatient(patient);
-            Main.db.saveImageDescription(earTextArea.getText(), tongueTextArea.getText());
+            if(isSaved){
+
+            }else {
+                Patient patient = makePatient();
+                Main.db.addPatient(patient);
+                Main.db.saveImageDescription(earTextArea.getText(), tongueTextArea.getText());
                 meridiansController.save();
+                Main.newPatient=false;
+                isSaved=true;
+            }
         }
     }
 
@@ -1389,12 +1398,8 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     }
 
     public void chooseOtherPatient(MouseEvent mouseEvent) {
-        if(Main.newPatient){
-            save();
             Main.newPatient=false;
-        }else {
             update();
-        }
         myController.choosePatientController.refreshTableData();
         myController.setScreen("choose");
     }

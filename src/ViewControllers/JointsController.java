@@ -64,9 +64,11 @@ public class JointsController {
             Symptom symptom=new Symptom(Main.patientID, "Érzékeny (trigger, Ah Shi pontok: " +jointsTextField5.getText(), "6."+location ,0);
             symptoms.add(symptom);
         }
-        if(jointsCombobox1.getValue().equals("igen")){
-            Symptom symptom=new Symptom(Main.patientID, "Fennáll éjszaka a fájdalom", "6."+location ,0);
-            symptoms.add(symptom);
+        if(!(jointsCombobox1.getValue()==null)) {
+            if (jointsCombobox1.getValue().equals("igen")) {
+                Symptom symptom = new Symptom(Main.patientID, "Fennáll éjszaka a fájdalom", "6." + location, 0);
+                symptoms.add(symptom);
+            }
         }
         if(!jointsTextField6.getText().equals("")){
             Symptom symptom=new Symptom(Main.patientID, "Fájdalom jellege: " +jointsTextField6.getText(), "6."+location ,0);
@@ -80,9 +82,11 @@ public class JointsController {
             Symptom symptom=new Symptom(Main.patientID, "Fájdalmat javítja: " +jointsTextField8.getText(), "6."+location ,0);
             symptoms.add(symptom);
         }
-        if(jointsCombobox2.getValue().equals("igen")){
-            Symptom symptom=new Symptom(Main.patientID, "Mozgáskorlátozott", "6."+location ,0);
-            symptoms.add(symptom);
+        if(!(jointsCombobox2.getValue()==null)) {
+            if (jointsCombobox2.getValue().equals("igen")) {
+                Symptom symptom = new Symptom(Main.patientID, "Mozgáskorlátozott", "6." + location, 0);
+                symptoms.add(symptom);
+            }
         }
         if(!jointsTextField9.getText().equals("")){
             Symptom symptom=new Symptom(Main.patientID, "Egyéb kísérő tünetek: " +jointsTextField9.getText(), "6."+location ,0);

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane fx:id="symptomsTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="2000.0" minWidth="800.0" prefWidth="1251.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.SymptomsController">
+<TabPane fx:id="symptomsTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="2000.0" minWidth="800.0" prefWidth="1251.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.SymptomsController">
   <tabs>
     <Tab text="Fej">
       <content>
@@ -600,9 +600,9 @@
                                                 <ToggleGroup fx:id="group25" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton fx:id="radio98" mnemonicParsing="false" text="Ritka" toggleGroup="$group25" />
-                                          <RadioButton fx:id="radio99" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group25" />
-                                          <RadioButton fx:id="radio98" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group25" />
+                                          <RadioButton fx:id="radio298" mnemonicParsing="false" text="Ritka" toggleGroup="$group25" />
+                                          <RadioButton fx:id="radio299" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group25" />
+                                          <RadioButton fx:id="radio294" layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group25" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="986.0" spacing="40.0">
@@ -2689,7 +2689,7 @@
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" spacing="40.0">
                                        <children>
                                           <Label minWidth="-Infinity" prefWidth="200.0" text="Éjszaka fennáll-e a fájdalom?" wrapText="true" />
-                                          <ComboBox id="spineComboBox1" fx:id="spineComboBox1" value="nem">
+                                          <ComboBox id="spineComboBox1" fx:id="spineComboBox1" promptText="nem megkérdezett">
                                              <items>
                                                 <FXCollections fx:factory="observableArrayList">
                                                    <String fx:value="nem" />
@@ -2720,7 +2720,7 @@
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" spacing="40.0">
                                        <children>
                                           <Label minWidth="-Infinity" prefWidth="200.0" text="Mozgáskorlátozott-e?" wrapText="true" />
-                                          <ComboBox id="spineComboBox2" fx:id="spineComboBox2" value="nem">
+                                          <ComboBox id="spineComboBox2" fx:id="spineComboBox2" promptText="nem megkérdezett">
                                              <items>
                                                 <FXCollections fx:factory="observableArrayList">
                                                    <String fx:value="nem" />
@@ -2733,7 +2733,7 @@
                                     <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="234.0" minWidth="-Infinity" prefWidth="300.0" spacing="40.0">
                                        <children>
                                           <Label prefWidth="200.0" text="Derék fázékony-e?" wrapText="true" />
-                                          <ComboBox id="spineComboBox3" fx:id="spineComboBox3" promptText="nem kérdezett">
+                                          <ComboBox id="spineComboBox3" fx:id="spineComboBox3" promptText="nem megkérdezett">
                                              <items>
                                                 <FXCollections fx:factory="observableArrayList">
                                                    <String fx:value="igen" />
@@ -2769,6 +2769,67 @@
                      </content>
                   </ScrollPane>
                </children></AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Medence">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane prefHeight="1967.0" prefWidth="1251.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <VBox layoutX="30.0" layoutY="26.0" spacing="30.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" spacing="40.0">
+                                       <children>
+                                          <Label minWidth="-Infinity" prefWidth="200.0" text="Deformitás:" wrapText="true" />
+                                          <ComboBox id="pelvicComboBox1" fx:id="pelvicComboBox1" promptText="nem lett vizsgálva">
+                                             <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                   <String fx:value="nem lett vizsgálva" />
+                                                   <String fx:value="szemből balra le" />
+                                                   <String fx:value="szemből jobbra le" />
+                                                </FXCollections>
+                                             </items>
+                                          </ComboBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="40.0">
+                                       <children>
+                                          <Label minWidth="-Infinity" prefWidth="200.0" text="Egyéb a medencéhez:" wrapText="true" />
+                                          <TextField id="pelvicTextField1" fx:id="pelvicTextField1" prefWidth="500.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" spacing="40.0">
+                                       <children>
+                                          <Label minWidth="-Infinity" prefWidth="200.0" text="Farokcsont deformitása:" wrapText="true" />
+                                          <ComboBox id="pelvicComboBox2" fx:id="pelvicComboBox2" promptText="nem lett vizsgálva">
+                                             <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                   <String fx:value="nem lett vizsgálva" />
+                                                   <String fx:value="hátulról balra hajlik" />
+                                                   <String fx:value="korábbi sérülés" />
+                                                   <String fx:value="jelenlegi sérülés" />
+                                                </FXCollections>
+                                             </items>
+                                          </ComboBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="626.0" spacing="40.0">
+                                       <children>
+                                          <Label minWidth="-Infinity" prefWidth="200.0" text="Egyéb a farokcsonthoz:" />
+                                          <TextField id="pelvicTextField2" fx:id="pelvicTextField2" prefWidth="500.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
          </content>
       </Tab>
       <Tab text="Végtagok, izületek">

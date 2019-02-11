@@ -36,7 +36,7 @@ public class Main extends Application {
 
     public static DB_Controller db;
 
-    public static int patientID=1;
+    public static int patientID;
     public static Boolean newPatient;
 
     private static Stage window;
@@ -48,9 +48,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         createDialog();
-//        while(!authenticate()){
-//
-//        }
+        while(!authenticate()){
+
+        }
         Locale.setDefault(new Locale("hu", "HUN"));
         primaryStage.setMaximized(true);
         window=primaryStage;

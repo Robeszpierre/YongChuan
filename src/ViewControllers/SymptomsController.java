@@ -330,11 +330,19 @@ public class SymptomsController {
     @FXML
     TextField spineTextField11;
     @FXML
+    TextField pelvicTextField1;
+    @FXML
+    TextField pelvicTextField2;
+    @FXML
     ComboBox<String> spineComboBox1;
     @FXML
     ComboBox<String> spineComboBox2;
     @FXML
     ComboBox<String> spineComboBox3;
+    @FXML
+    ComboBox<String> pelvicComboBox1;
+    @FXML
+    ComboBox<String> pelvicComboBox2;
     @FXML
     CheckBox shitChechBox;
     @FXML
@@ -685,6 +693,8 @@ public class SymptomsController {
         textFields.add(spineTextField9);
         textFields.add(spineTextField10);
         textFields.add(spineTextField11);
+        textFields.add(pelvicTextField1);
+        textFields.add(pelvicTextField2);
         for(JointsController j: jointsControllers){
             for(TextField t:j.getTextFields()){
                 textFields.add(t);
@@ -734,6 +744,8 @@ public class SymptomsController {
         comboBoxes.add(spineComboBox1);
         comboBoxes.add(spineComboBox2);
         comboBoxes.add(spineComboBox3);
+        comboBoxes.add(pelvicComboBox1);
+        comboBoxes.add(pelvicComboBox2);
 
         for(JointsController j: jointsControllers){
             for(ComboBox c:j.getComboBoxes()){
@@ -991,9 +1003,11 @@ public class SymptomsController {
             Symptom symptom=new Symptom(Main.patientID, "Érzékeny (trigger, Ah Shi pontok: " +spineTextField5.getText(), "5" ,0);
             symptoms.add(symptom);
         }
-        if(spineComboBox1.getValue().equals("igen")){
-            Symptom symptom=new Symptom(Main.patientID, "Fennáll éjszaka a fájdalom", "5" ,0);
-            symptoms.add(symptom);
+        if(!(spineComboBox1.getValue()==null)) {
+            if (spineComboBox1.getValue().equals("igen")) {
+                Symptom symptom = new Symptom(Main.patientID, "Fennáll éjszaka a fájdalom", "5", 0);
+                symptoms.add(symptom);
+            }
         }
         if(!spineTextField6.getText().equals("")){
             Symptom symptom=new Symptom(Main.patientID, "Fájdalom jellege: " +spineTextField6.getText(), "5" ,0);
@@ -1007,12 +1021,16 @@ public class SymptomsController {
             Symptom symptom=new Symptom(Main.patientID, "Fájdalmat javítja: " +spineTextField8.getText(), "5" ,0);
             symptoms.add(symptom);
         }
-        if(spineComboBox2.getValue().equals("igen")){
-            Symptom symptom=new Symptom(Main.patientID, "Mozgáskorlátozott", "5" ,0);
-            symptoms.add(symptom);
+        if(!(spineComboBox2.getValue()==null)) {
+            if (spineComboBox2.getValue().equals("igen")) {
+                Symptom symptom = new Symptom(Main.patientID, "Mozgáskorlátozott", "5", 0);
+                symptoms.add(symptom);
+            }
         }
-        if(!(spineComboBox3.getValue()==null)){
-            symptoms.add(new Symptom(Main.patientID, "Derék fázékony? - " + spineComboBox3.getValue(), "5" ,0));
+        if(!(spineComboBox3.getValue()==null)) {
+            if (!(spineComboBox3.getValue() == null)) {
+                symptoms.add(new Symptom(Main.patientID, "Derék fázékony? - " + spineComboBox3.getValue(), "5", 0));
+            }
         }
         if(!spineTextField9.getText().equals("")){
             Symptom symptom=new Symptom(Main.patientID, "Korábbi sérülés: " +spineTextField9.getText(), "5" ,0);
@@ -1109,6 +1127,22 @@ public class SymptomsController {
                 symptom.setImportant(true);
             }
             symptoms.add(symptom);
+        }
+
+
+        if(!pelvicTextField1.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, "Medence egyéb: " + pelvicTextField1.getText(), "3" ,2);
+            symptoms.add(symptom);
+        }
+        if(!(pelvicComboBox1.getValue()==null)){
+            symptoms.add(new Symptom(Main.patientID, "Medence deformitása: - " + pelvicComboBox1.getValue(), "3" ,0));
+        }
+        if(!pelvicTextField2.getText().equals("")){
+            Symptom symptom=new Symptom(Main.patientID, "Farokcsont egyéb:" + pelvicTextField2.getText(), "3" ,2);
+            symptoms.add(symptom);
+        }
+        if(!(pelvicComboBox2.getValue()==null)){
+            symptoms.add(new Symptom(Main.patientID, "Farokcsont deformitása: - " + pelvicComboBox2.getValue(), "3" ,0));
         }
         return symptoms;
     }

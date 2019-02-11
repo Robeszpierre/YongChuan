@@ -39,6 +39,7 @@ public class DB_Controller extends DB_CreateTables {
 
         //set the patient id
         Main.patientID=getID();
+        System.out.println(getID());
 
 
         try {
@@ -669,12 +670,14 @@ public class DB_Controller extends DB_CreateTables {
 
 
     public void saveSymptoms(String radiobuttonSave, String textFieldSave, String checkBoxSave, String comboBoxSave, String spinnerSave) {
+        System.out.println(Main.patientID);
         String sql="select * from SYMPTOMS_SAVE where PATIENT_ID=" + Main.patientID;
         ResultSet rs;
         try {
                 rs = createStatement.executeQuery(sql);
             if(!rs.next()) {
                 try {
+                    System.out.println("save");
                     sql = "insert into SYMPTOMS_SAVE (PATIENT_ID, RADIOBUTTONS, TEXTFIELDS, CHECKBOXES, COMBOBOXES, SPINNERS) VALUES (?,?,?,?,?,?)";
                     PreparedStatement preparedStatement = conn.prepareStatement(sql);
                     preparedStatement.setInt(1, Main.patientID);
@@ -689,15 +692,15 @@ public class DB_Controller extends DB_CreateTables {
                     System.out.println("" + ex);
                 }
             }else{
-                sql = "update SYMPTOMS_SAVE set PATIENT_ID=?, RADIOBUTTONS=?, TEXTFIELDS=?, CHECKBOXES=?, COMBOBOXES=?, SPINNERS=? where PATIENT_ID=?";
+                System.out.println("update");
+                sql = "update SYMPTOMS_SAVE set RADIOBUTTONS=?, TEXTFIELDS=?, CHECKBOXES=?, COMBOBOXES=?, SPINNERS=? where PATIENT_ID=?";
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setInt(1, Main.patientID);
-                preparedStatement.setString(2, radiobuttonSave);
-                preparedStatement.setString(3, textFieldSave);
-                preparedStatement.setString(4, checkBoxSave);
-                preparedStatement.setString(5, comboBoxSave);
-                preparedStatement.setString(6, spinnerSave);
-                preparedStatement.setInt(7, Main.patientID);
+                preparedStatement.setString(1, radiobuttonSave);
+                preparedStatement.setString(2, textFieldSave);
+                preparedStatement.setString(3, checkBoxSave);
+                preparedStatement.setString(4, comboBoxSave);
+                preparedStatement.setString(5, spinnerSave);
+                preparedStatement.setInt(6, Main.patientID);
                 preparedStatement.execute();
             }
         } catch (SQLException e) {
