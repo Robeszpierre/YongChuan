@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.TextFlow?>
-
+<?import javafx.scene.text.*?>
 <AnchorPane id="fiveElementsAnchorPane" fx:id="fiveElementsAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="fiveElementsBackGround" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.FiveElementsController">
    <children>
       <ScrollPane id="scrollPane1" fx:id="scrollPane1" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="266.0" layoutY="36.0" pannable="true" prefHeight="130.0" prefWidth="200.0" styleClass="transparent2" vbarPolicy="NEVER">

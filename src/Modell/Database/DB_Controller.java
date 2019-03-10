@@ -3,12 +3,13 @@ package Modell.Database;
 import Controller.Main;
 import Modell.*;
 import ViewControllers.ManagePatientController;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 
 import java.io.*;
-import java.sql.*;
+import java.sql.Blob;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DB_Controller extends DB_CreateTables {

@@ -263,12 +263,12 @@
       <Position>11</Position>
       <DataType>DATE|91s</DataType>
     </column>
-    <index id="84" parent="19" name="SQL190206203217790">
+    <index id="84" parent="19" name="SQL190306201944470">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>PATIENT_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="85" parent="19" name="SQL190206203217790">
+    <key id="85" parent="19" name="SQL190306201944470">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>PATIENT_ID</ColNames>
       <Primary>1</Primary>

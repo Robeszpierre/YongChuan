@@ -1,6 +1,5 @@
 package Modell;
 
-import Controller.Main;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Psyche {

@@ -3,9 +3,6 @@ package Modell;
 import Controller.Main;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 public class PatientData {
 
     private final SimpleStringProperty patientID;

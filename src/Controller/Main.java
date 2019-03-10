@@ -14,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Pair;
 
 import java.util.Locale;
@@ -90,7 +89,7 @@ public class Main extends Application {
             closeProgram();
         });
 
-        window.getIcons().add(new Image(this.getClass().getResource("/View/img/tcm.png").toString()));
+        window.getIcons().add(new Image(this.getClass().getResource("/img/tcm.png").toString()));
 
         primaryStage.show();
     }
@@ -124,7 +123,7 @@ public class Main extends Application {
 // Set the icon (must be included in the project).
         dialog.setGraphic(new ImageView(new Image("img/login.png")));
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(this.getClass().getResource("/View/img/login.png").toString()));
+        stage.getIcons().add(new Image(this.getClass().getResource("/img/login.png").toString()));
 
         stage.setOnCloseRequest(e -> {
             e.consume();

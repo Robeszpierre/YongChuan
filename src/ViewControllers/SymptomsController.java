@@ -5,17 +5,14 @@ import Modell.Symptom;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Text;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -912,7 +909,7 @@ public class SymptomsController {
             symptoms.add(new Symptom(Main.patientID, "Arc színe: " + faceColorTextField.getText(), "3" ,0, false));
         }
         if(!shitTextField1.getText().equals("") || !shitTextField2.getText().equals("") || !shitTextField3.getText().equals("")){
-            Symptom symptom=new Symptom(Main.patientID, "Széklet", "0" ,0, shitChechBox.isSelected());
+            Symptom symptom=new Symptom(Main.patientID, "Széklet", "3" ,0, shitChechBox.isSelected());
             if(!shitTextField1.getText().equals("")){
                 symptom.setName(symptom.getName() + " - gyakorisága: " + shitTextField1.getText());
             }
