@@ -7,6 +7,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbynet.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbytools.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbyclient.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/itext/itextpdf-5.5.13.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

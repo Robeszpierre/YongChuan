@@ -47,9 +47,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         createDialog();
-        while(!authenticate()){
-
-        }
+//        while(!authenticate()){
+//
+//        }
         Locale.setDefault(new Locale("hu", "HUN"));
         primaryStage.setMaximized(true);
         window=primaryStage;

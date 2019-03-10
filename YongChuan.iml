@@ -18,5 +18,15 @@
         <jarDirectory url="file://$MODULE_DIR$/derbyJars" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/itext" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/itext" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>

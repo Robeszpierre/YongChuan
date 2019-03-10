@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import java.lang.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
 <TabPane fx:id="symptomsTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="2000.0" minWidth="800.0" prefWidth="1251.0" styleClass="my-tab-pane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.SymptomsController">
   <tabs>
     <Tab text="Fej">
@@ -1895,7 +1907,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </CheckBox>
-                                          <Spinner id="urinationCountSpinner" fx:id="urinationCountSpinner" max="100" min="0" prefWidth="80.0">
+                                          <Spinner id="urinationCountSpinner" fx:id="urinationCountSpinner" editable="true" max="100" min="0" prefWidth="80.0">
                                           </Spinner>
                                        </children>
                                     </HBox>
@@ -1918,7 +1930,7 @@
                                           <RadioButton layoutX="147.0" layoutY="16.0" mnemonicParsing="false" text="Gyakori" toggleGroup="$group80" />
                                           <RadioButton layoutX="205.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Nem megkérdezett" toggleGroup="$group80" />
                                           <Label text="Száma:" />
-                                          <Spinner id="group80Spinner" fx:id="group80Spinner" max="100" min="0" prefWidth="80.0">
+                                          <Spinner id="group80Spinner" fx:id="group80Spinner" editable="true" max="100" min="0" prefWidth="80.0">
                                              <HBox.margin>
                                                 <Insets left="-30.0" />
                                              </HBox.margin>

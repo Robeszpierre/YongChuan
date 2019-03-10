@@ -974,7 +974,7 @@ public class SymptomsController {
             symptoms.add(symptom);
         }
         if(!(mensesSpinner5.getValue()==0)){
-            Symptom symptom=new Symptom(Main.patientID, "Cikluson belüli " + mensesSpinner5.getValue() + " napos a vérzés", "4" ,0, cycleDayCountCheckBox.isSelected());
+            Symptom symptom=new Symptom(Main.patientID, "Cikluson belül " + mensesSpinner5.getValue() + " napos a vérzés", "4" ,0, cycleDayCountCheckBox.isSelected());
             symptoms.add(symptom);
         }
 

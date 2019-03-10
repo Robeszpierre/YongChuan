@@ -3,6 +3,10 @@ package ViewControllers;
 import Controller.Main;
 import Controller.SecureLocalDateStringConverter;
 import Modell.*;
+import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfWriter;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,6 +16,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -30,6 +35,8 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -1161,8 +1168,6 @@ public class ManagePatientController implements Initializable, ControlledScreen 
 
                 k++;
         }
-
-
         if(Main.newPatient){
             clearElements();
         }
@@ -1583,15 +1588,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
                 ImageView imageView= (ImageView) mouseEvent.getSource();
                 id=imageView.getId();
                 File file2 = Main.db.getPictureFile(id);
-                if (Desktop.isDesktopSupported()) {
-                    new Thread(() -> {
-                        try {
-                            Desktop.getDesktop().open(file2);
-                        } catch (IOException e1) {
-                            e1.printStackTrace();
-                        }
-                    }).start();
-                }
+                openFile(file2);
             }
     }
 
@@ -1752,6 +1749,191 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     }
 
 
+    public void createPdf(MouseEvent mouseEvent) throws DocumentException, IOException {
+        Document document = new Document();
+        String fileName = personalDataTextField1.getText();
+        try {
+            PdfWriter sdf = PdfWriter.getInstance(document, new FileOutputStream(fileName));
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        document.open();
+        BaseFont baseFont = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.NOT_EMBEDDED);
+
+        Font regular = new Font(baseFont, 12, Font.NORMAL);
+        Font bold = new Font(baseFont, 16, Font.BOLD);
+        Font bigBold = new Font(baseFont, 20, Font.BOLD);
+        Font fontBold = new Font(baseFont, 12, Font.BOLDITALIC);
+
+        addTitle("Páciens adatai", document, bold);
+        makeParagraph("Páciens neve", personalDataTextField1.getText(), document, regular);
+        makeParagraph("Anyja neve", personalDataTextField2.getText(), document, regular);
+        makeParagraph("Születési helye", personalDataTextField3.getText(), document, regular);
+        makeParagraph("Születési időpontja", personalDataDatePicker.getEditor().getText(), document, regular);
+        makeParagraph("Családi állapota", personalDataTextField4.getText(), document, regular);
+        makeParagraph("Foglalkozása", personalDataTextField5.getText(), document, regular);
+        makeParagraph("E-mail címe", personalDataTextField6.getText(), document, regular);
+        makeParagraph("Telefonszáma", personalDataTextField7.getText(), document, regular);
+        makeParagraph("Páciens neme", genderChoiceBox.getValue(), document, regular);
+
+        addTitle("Tünetek", document, bold);
+        makeParagraph("Fej ritka tünetei", getTextFromTextFlow(symptomsTextFlow1), document, regular);
+        makeParagraph("Fej gyakori tünetei", getTextFromTextFlow(symptomsTextFlow2), document, regular);
+        makeParagraph("Mellkas ritka tünetei", getTextFromTextFlow(symptomsTextFlow3), document, regular);
+        makeParagraph("Mellkas gyakori tünetei", getTextFromTextFlow(symptomsTextFlow4), document, regular);
+        makeParagraph("Has ritka tünetei", getTextFromTextFlow(symptomsTextFlow5), document, regular);
+        makeParagraph("Has gyakori tünetei", getTextFromTextFlow(symptomsTextFlow6), document, regular);
+        makeParagraph("Alhas ritka tünetei", getTextFromTextFlow(symptomsTextFlow7), document, regular);
+        makeParagraph("Alhas gyakori tünetei", getTextFromTextFlow(symptomsTextFlow8), document, regular);
+        makeParagraph("Gerinc", getTextFromTextFlow(symptomsTextFlow9), document, regular);
+        makeParagraph("1. Végtag/izület", getTextFromTextFlow(jointTextFlow1), document, regular);
+        makeParagraph("2. Végtag/izület", getTextFromTextFlow(jointTextFlow2), document, regular);
+        makeParagraph("3. Végtag/izület", getTextFromTextFlow(jointTextFlow3), document, regular);
+        makeParagraph("4. Végtag/izület", getTextFromTextFlow(jointTextFlow4), document, regular);
+        makeParagraph("5. Végtag/izület", getTextFromTextFlow(jointTextFlow5), document, regular);
+
+        addTitle("Meridiánok", document, bold);
+        meridianTextAreas=new ArrayList<TextArea>();
+        meridianTextAreas.add(meridiansController.textArea1);
+        meridianTextAreas.add(meridiansController.textArea2);
+        meridianTextAreas.add(meridiansController.textArea3);
+        meridianTextAreas.add(meridiansController.textArea4);
+        meridianTextAreas.add(meridiansController.textArea5);
+        meridianTextAreas.add(meridiansController.textArea6);
+        meridianTextAreas.add(meridiansController.textArea7);
+        meridianTextAreas.add(meridiansController.textArea8);
+        meridianTextAreas.add(meridiansController.textArea9);
+        meridianTextAreas.add(meridiansController.textArea10);
+        meridianTextAreas.add(meridiansController.textArea11);
+        meridianTextAreas.add(meridiansController.textArea12);
+        meridianTextAreas.add(meridiansController.textArea13);
+        meridianTextAreas.add(meridiansController.textArea14);
+        meridianTextAreas.add(meridiansController.textArea15);
+        meridianTextAreas.add(meridiansController.textArea16);
+        meridianTextAreas.add(meridiansController.textArea17);
+        meridianTextAreas.add(meridiansController.textArea18);
+        meridianTextAreas.add(meridiansController.textArea19);
+        meridianTextAreas.add(meridiansController.textArea20);
+        addSection(meridianTextAreas, document, regular);
+
+        addTitle("Pszichikum", document, bold);
+        addSection(psychicTextAreas, document, regular);
+
+        addTitle("Kórtörténet", document, bold);
+        addSection(clinicalHistoryTextAreas, document, regular);
+
+        addTitle("Aktuális", document, bold);
+        addSection(actualTextAreas, document, regular);
+
+        ArrayList<TextArea> pdfTcmTextAreas = new ArrayList<>();
+        pdfTcmTextAreas.add(tcm2TextArea);
+        pdfTcmTextAreas.add(tcm3TextArea);
+        pdfTcmTextAreas.add(tcm4TextArea);
+        pdfTcmTextAreas.add(tcm5TextArea);
+        pdfTcmTextAreas.add(tcm6TextArea);
+        pdfTcmTextAreas.add(tcm7TextArea);
+        pdfTcmTextAreas.add(tcm8TextArea);
+
+        String content = tcm1ListView2.getItems().toString();
+
+        addTitle("HKO Diagnózis", document, bold);
+        makeParagraph("HKO diagnózisok", content, document, regular);
+        addSection(pdfTcmTextAreas, document, regular);
+
+        addTitle("Kezelések", document, bigBold);
+
+        int k=0;
+        for(TreatmentController treatmentController: treatmentControllers){
+            addTitle(k+1 + ". Kezelés", document, bold);
+            String date;
+            try {
+                date = treatmentController.treatmentDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            } catch (Exception e) {
+                date = "";
+            }
+            makeParagraph("Kezelés dátuma", date, document, regular);
+            makeParagraph("Romlás", treatmentController.treatment1TextArea.getText(), document, regular);
+            makeParagraph("Javulás", treatmentController.treatment2TextArea.getText(), document, regular);
+            makeParagraph("Egyéb", treatmentController.treatment3TextArea.getText(), document, regular);
+            makeParagraph("Újabb javaslatok", treatmentController.treatment4TextArea.getText(), document, regular);
+            makeParagraph("Terápia (pontok, masszázs, moxa, köpöly stb.)", treatmentController.treatment5TextArea.getText(), document, regular);
+            makeParagraph("Manuálterápia", treatmentController.treatment6TextArea.getText(), document, regular);
+            k++;
+        }
+
+        addTitle("Záróvélemény", document, bold);
+        String date;
+        try {
+            date = finalOpinionDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (Exception e) {
+            date = "";
+        }
+        makeParagraph("Záróvélemény kelte", date, document, regular);
+        makeParagraph("Értékelés", finalTextArea.getText(), document, regular);
+        makeParagraph("Páciens állapota", finalOpinionChoiceBox.getValue(), document, regular);
+
+
+        document.close();
+
+        File file = new File(fileName);
+        openFile(file);
+    }
+
+    private String getTextFromTextFlow(TextFlow textFlow){
+        StringBuilder sb = new StringBuilder();
+        int i=0;
+        for (Node node : textFlow.getChildren()) {
+            if (node instanceof Text && i%2!=1) {
+                if(i!=0) {
+                    sb.append(", ");
+                }
+                sb.append(((Text) node).getText());
+                System.out.println(node);
+            }
+            i++;
+        }
+        String fullText = sb.toString();
+        return fullText;
+    }
+
+    private void addSection(ArrayList<TextArea> textAreas, Document document, Font regular) throws DocumentException, IOException {
+        for(TextArea ta: textAreas){
+            TitledPane tp = (TitledPane) ta.getParent().getParent();
+            makeParagraph(tp.getText(), ta.getText(), document, regular);
+        }
+    }
+
+    private void addTitle(String title, Document document, Font bold) throws DocumentException {
+        document.add(new Paragraph("\n"));
+        document.add(new Paragraph(title, bold));
+    }
+
+    private void makeParagraph(String description, String content, Document document, Font regular) throws DocumentException, IOException {
+        BaseFont baseFont = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.NOT_EMBEDDED);
+        Font fontBold = new Font(baseFont, 12, Font.BOLDITALIC);
+
+        if(!(content.equals(""))) {
+            Phrase p = new Phrase(description, fontBold);
+            Phrase p2 = new Phrase(": " + content + "\n", regular);
+            document.add(p);
+            document.add(p2);
+        }
+    }
+
+    private void openFile(File file) {
+        if (Desktop.isDesktopSupported()) {
+            new Thread(() -> {
+                try {
+                    Desktop.getDesktop().open(file);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }).start();
+        }
+    }
 }
 
 
