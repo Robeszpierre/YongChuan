@@ -189,10 +189,4 @@ public class FiveElementsController {
         }
         return -1;
     }
-
-    //a Fa elemhez a Maj es az Epeholyag
-    //Fém: Tudo, Vastagbel
-    //Viz: Vese, Húgyhólyag
-    //Föld: Lep, Gyomor
-    //Tűz: Szív es Vekonybel, illetve itt meg a HaromMelegito es Szivburok
 }

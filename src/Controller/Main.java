@@ -4,6 +4,9 @@ import Modell.Database.DB_Controller;
 import ViewControllers.ScreensController;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -11,6 +14,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -51,7 +57,10 @@ public class Main extends Application {
 //
 //        }
         Locale.setDefault(new Locale("hu", "HUN"));
-        primaryStage.setMaximized(true);
+        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreenExitHint("F11-el tudsz ki, illetve belépni a teljes képernyős módba");
+        primaryStage.setFullScreenExitKeyCombination(KeyCombination.keyCombination("asd"));
+
         window=primaryStage;
 
         primaryStage.setMinWidth(1100);
@@ -75,6 +84,16 @@ public class Main extends Application {
         Scene scene = new Scene(root, 500, 500, Color.GREY);
         primaryStage.setScene(scene);
 
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+                if(e.getCode() == KeyCode.F11) {
+                    primaryStage.setFullScreen(!primaryStage.isFullScreen());
+                    primaryStage.setMaximized(true);
+                }
+            }
+        });
+
         mainContainer.prefWidthProperty().bind(scene.widthProperty());
         mainContainer.prefHeightProperty().bind(scene.heightProperty());
 
@@ -92,6 +111,7 @@ public class Main extends Application {
         window.getIcons().add(new Image(this.getClass().getResource("/img/tcm.png").toString()));
 
         primaryStage.show();
+        primaryStage.setFullScreenExitHint("");
     }
 
 

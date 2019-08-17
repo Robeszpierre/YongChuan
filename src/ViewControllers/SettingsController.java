@@ -75,7 +75,8 @@ public class SettingsController implements Initializable, ControlledScreen {
     }
 
     private void changeSettings(){
-        myController.getRoot().styleProperty().bind(Bindings.format("-fx-font-family: " + fontFamily + "; -fx-font-size: " + fontSize));
+        myController.getRoot().styleProperty().bind(Bindings.format(
+                "-fx-font-family: " + fontFamily + "; -fx-font-size: " + fontSize));
     }
 
     public void setScreenParent(ScreensController screenParent){

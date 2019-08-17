@@ -42,17 +42,16 @@ public class StartController implements Initializable, ControlledScreen{
     AnchorPane main;
 
     @FXML
-    public void getchoosePatientScreen(MouseEvent mouseEvent) {
+    public void getChoosePatientScreen(MouseEvent mouseEvent) {
         myController.setScreen(Main.screen2ID);
         myController.managePatientController.setMeridiansTab();
     }
-
 
     public void getStartScreen(MouseEvent mouseEvent) {
         myController.setScreen(Main.screen4ID);
     }
 
-    public void getSetting(MouseEvent mouseEvent) {
+    public void getSettingsScreen(MouseEvent mouseEvent) {
         myController.setScreen(Main.screen5ID);
     }
 }

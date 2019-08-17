@@ -877,7 +877,7 @@ public class DB_Controller extends DB_CreateTables {
 
     public void deletePatient(int id) {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM ACTUAL WHERE PATIENT_ID = " + id);
+            PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM SYMPTOMS WHERE PATIENT_ID = " + id);
             preparedStatement.executeUpdate();
             preparedStatement = conn.prepareStatement("DELETE FROM FINAL WHERE PATIENT_ID = " + id);
             preparedStatement.executeUpdate();

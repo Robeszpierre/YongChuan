@@ -2,12 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.*?>
-<AnchorPane fx:id="main" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.StartController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="main" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.StartController">
    <children>
       <VBox id="backgroundVbox" fx:id="backgroundVBox" alignment="CENTER" spacing="100.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#getchoosePatientScreen" prefHeight="100.0" prefWidth="400.0" styleClass="dark-grey" text="Betegek kezelése">
+            <Button mnemonicParsing="false" onMouseClicked="#getChoosePatientScreen" prefHeight="100.0" prefWidth="400.0" styleClass="dark-grey" text="Páciensek kezelése">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -17,7 +19,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button layoutX="110.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#getSetting" prefHeight="100.0" prefWidth="400.0" styleClass="dark-grey" text="Beállítások" />
+            <Button layoutX="110.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#getSettingsScreen" prefHeight="100.0" prefWidth="400.0" styleClass="dark-grey" text="Beállítások" />
          </children>
       </VBox>
    </children>

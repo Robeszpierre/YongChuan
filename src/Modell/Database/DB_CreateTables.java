@@ -3,7 +3,7 @@ package Modell.Database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DB_CreateTables extends  DB_Config {
+public class DB_CreateTables extends DB_Config {
 
 
     public DB_CreateTables() {
@@ -305,6 +305,11 @@ public class DB_CreateTables extends  DB_Config {
         } catch (SQLException ex) {
             System.out.println("something wrong with MERIDIANS table creation");
             System.out.println(""+ex);
+        }
+        try{
+            createStatement.execute("ALTER TABLE SYMPTOMS ALTER COLUMN NAME set data type varchar(300)");
+        }catch (SQLException e){
+            System.out.println("type already changed");
         }
     }
 }

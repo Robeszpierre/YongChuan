@@ -393,3 +393,6 @@
     -fx-background-insets: 0;
 }
 
+.titled-pane{
+    -fx-font-size: 16px;
+}

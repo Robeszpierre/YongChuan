@@ -1,7 +1,7 @@
 package ViewControllers;
 
 import Controller.Main;
-import Modell.Database.PatientForChooseTable;
+import Modell.PatientForChooseTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -30,6 +32,7 @@ public class ChoosePatientController implements Initializable, ControlledScreen 
     public void initialize(URL url, ResourceBundle rb) {
         setTableData();
         customerSearch();
+
     }
 
     public void setScreenParent(ScreensController screenParent){
@@ -48,7 +51,11 @@ public class ChoosePatientController implements Initializable, ControlledScreen 
     private final ObservableList<PatientForChooseTable> data = FXCollections.observableArrayList();
     private FilteredList<PatientForChooseTable> filteredData = new FilteredList<>(data, p -> true);
 
-    public void selectPatient(MouseEvent mouseEvent) {
+    public void selectPatientByClick(MouseEvent mouseEvent) {
+        selectPatient();
+    }
+
+    private void selectPatient() {
         try {
             Main.setNewPatient(false);
             PatientForChooseTable selectedPatient = patientsTable.getSelectionModel().getSelectedItem();
@@ -101,8 +108,6 @@ public class ChoosePatientController implements Initializable, ControlledScreen 
         birthDateCol.setMaxWidth( 1f * Integer.MAX_VALUE * 50 ); // 30% width
 
         setColorForOldPatient();
-
-
     }
 
     private void setColorForOldPatient() {
@@ -195,7 +200,7 @@ public class ChoosePatientController implements Initializable, ControlledScreen 
         myController.setScreen("start");
     }
 
-    public void deletePatient(MouseEvent mouseEvent) {
+    private void deletePatient(){
         PatientForChooseTable selectedPatient = patientsTable.getSelectionModel().getSelectedItem();
         int id=Integer.parseInt(selectedPatient.getPatientID());
 
@@ -215,7 +220,29 @@ public class ChoosePatientController implements Initializable, ControlledScreen 
             Main.db.deletePatient(id);
             refreshTableData();
         } else {
-          //cancel delete
+            //cancel delete
+        }
+    }
+
+    public void deletePatientByClick(MouseEvent mouseEvent) {
+        deletePatient();
+    }
+
+    public void keyPressedAction(KeyEvent keyEvent) {
+        if(keyEvent.getCode()==KeyCode.ENTER){
+            selectPatient();
+        }else if(keyEvent.getCode()==KeyCode.DELETE){
+            deletePatient();
+        }
+    }
+
+    public void keyPressedInSearchBox(KeyEvent keyEvent) {
+        if(keyEvent.getCode()==KeyCode.ENTER){
+            selectPatient();
+        }else if(keyEvent.getCode()==KeyCode.DELETE){
+            deletePatient();
+        }else{
+            patientsTable.getSelectionModel().selectFirst();
         }
     }
 }

@@ -2,7 +2,7 @@
   <artifact type="jar" name="YongQuan">
     <output-path>$PROJECT_DIR$/out/artifacts/YongQuan</output-path>
     <root id="archive" name="YongQuan.jar">
-      <element id="module-output" name="YongChuan" />
+      <element id="module-output" name="YongQuan" />
       <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derby.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbynet.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbytools.jar" path-in-jar="/" />
