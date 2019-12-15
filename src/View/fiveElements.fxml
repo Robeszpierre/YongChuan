@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
-<AnchorPane id="fiveElementsAnchorPane" fx:id="fiveElementsAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="fiveElementsBackGround" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.FiveElementsController">
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="fiveElementsAnchorPane" fx:id="fiveElementsAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="fiveElementsBackGround" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.FiveElementsController">
    <children>
       <ScrollPane id="scrollPane1" fx:id="scrollPane1" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="266.0" layoutY="36.0" pannable="true" prefHeight="130.0" prefWidth="200.0" styleClass="transparent2" vbarPolicy="NEVER">
          <content>
@@ -28,6 +29,11 @@
       <ScrollPane id="scrollPane5" fx:id="scrollPane5" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="356.0" layoutY="414.0" prefHeight="130.0" prefWidth="200.0" styleClass="transparent2" vbarPolicy="NEVER">
          <content>
             <TextFlow id="textFlow5" fx:id="textFlow5" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" />
+         </content>
+      </ScrollPane>
+      <ScrollPane id="scrollPane6" fx:id="scrollPane6" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" pannable="true" prefHeight="130.0" prefWidth="200.0" styleClass="transparent2" vbarPolicy="NEVER">
+         <content>
+            <TextFlow id="textFlow6" fx:id="textFlow6" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" />
          </content>
       </ScrollPane>
    </children>

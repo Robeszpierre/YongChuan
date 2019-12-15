@@ -24,6 +24,8 @@ public class FiveElementsController {
     @FXML
     TextFlow textFlow5;
     @FXML
+    TextFlow textFlow6;
+    @FXML
     ScrollPane scrollPane1;
     @FXML
     ScrollPane scrollPane2;
@@ -33,6 +35,8 @@ public class FiveElementsController {
     ScrollPane scrollPane4;
     @FXML
     ScrollPane scrollPane5;
+    @FXML
+    ScrollPane scrollPane6;
 
     public AnchorPane getFiveElementsAnchorPane() {
         return fiveElementsAnchorPane;
@@ -58,6 +62,10 @@ public class FiveElementsController {
         return textFlow5;
     }
 
+    public TextFlow getTextFlow6() {
+        return textFlow6;
+    }
+
     public ScrollPane getScrollPane1() {
         return scrollPane1;
     }
@@ -75,6 +83,10 @@ public class FiveElementsController {
     }
 
     public ScrollPane getScrollPane5() {
+        return scrollPane5;
+    }
+
+    public ScrollPane getScrollPane6() {
         return scrollPane5;
     }
 
@@ -154,6 +166,8 @@ public class FiveElementsController {
                     addText(textFlow2, "-és a Májban", Color.LIMEGREEN);
                 }else if(98<id && id<=101){
                     addText(textFlow4, s);
+                }else{
+                    addText(textFlow6, s);
                 }
             }
         }
@@ -177,6 +191,7 @@ public class FiveElementsController {
         textFlow3.getChildren().clear();
         textFlow4.getChildren().clear();
         textFlow5.getChildren().clear();
+        textFlow6.getChildren().clear();
     }
 
     private int getSelectedId(String s, ObservableList<String> tcmListDefaultValues){

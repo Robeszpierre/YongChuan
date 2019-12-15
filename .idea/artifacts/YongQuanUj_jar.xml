@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="YongQuanUj:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/YongQuanUj_jar</output-path>
+    <root id="archive" name="YongQuanUj.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/resources/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="YongQuanUj" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derby.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbynet.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbytools.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/derbyJars/derbyclient.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/itext/itextpdf-5.5.13.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

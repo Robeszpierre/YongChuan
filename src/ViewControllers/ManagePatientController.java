@@ -478,6 +478,8 @@ public class ManagePatientController implements Initializable, ControlledScreen 
     @FXML
     TextField filterTextField;
     @FXML
+    TextField customDiagnoseTextField;
+    @FXML
     Tab fiveElementsTab;
     @FXML
     Tab meridiansTab;
@@ -1295,6 +1297,7 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         fiveElementsController.getScrollPane3().setPrefHeight(circleHeight);
         fiveElementsController.getScrollPane4().setPrefHeight(circleHeight);
         fiveElementsController.getScrollPane5().setPrefHeight(circleHeight);
+        fiveElementsController.getScrollPane6().setPrefHeight(circleHeight);
 
         double width1=width/2-100;
         double height1=height/13;
@@ -1311,12 +1314,16 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         double width5=width/1.42-100;
         double height5=height/1.5;
 
+        double width6=width/1-100;
+        double height6=height/1.5;
+
 
         setScrollPaneAnchors(width1, height1, fiveElementsController.getScrollPane1());
         setScrollPaneAnchors(width2, height2, fiveElementsController.getScrollPane2());
         setScrollPaneAnchors(width3, height3, fiveElementsController.getScrollPane3());
         setScrollPaneAnchors(width4, height4, fiveElementsController.getScrollPane4());
         setScrollPaneAnchors(width5, height5, fiveElementsController.getScrollPane5());
+        setScrollPaneAnchors(width6, height6, fiveElementsController.getScrollPane5());
     };
 
     private boolean selected=false;
@@ -1693,8 +1700,14 @@ public class ManagePatientController implements Initializable, ControlledScreen 
 
     @FXML
     public void addDiagnose(MouseEvent mouseEvent) {
-        changeElementPosition(tcm1ListView1, tcm1ListView2);
-        filterTextField.setText("");
+        if(customDiagnoseTextField.getText().isEmpty()) {
+            changeElementPosition(tcm1ListView1, tcm1ListView2);
+            filterTextField.setText("");
+        }else{
+            tcm1ListView2.getItems().add(customDiagnoseTextField.getText());
+            tcm1TextArea.setText(tcm1TextArea.getText()+customDiagnoseTextField.getText()+"~");
+            customDiagnoseTextField.setText("");
+        }
     }
 
     @FXML
@@ -1723,6 +1736,13 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         tcm1ListView2.getItems().clear();
         String[] diagnoses = tcm1TextArea.getText().split("~");
 
+        for(String diagnose: diagnoses){
+            boolean isDefaultValue = isDefaultValue(diagnose);
+            if(!isDefaultValue){
+                tcm1ListView2.getItems().add(diagnose);
+            }
+        }
+
         for(String d: tcmListDefaultValues){
             boolean isInDb=isInDb(d, diagnoses);
             if(!isInDb){
@@ -1733,6 +1753,16 @@ public class ManagePatientController implements Initializable, ControlledScreen 
         }
         actualPatientTcmList=tcm1ListView1.getItems();
 
+
+    }
+
+    private boolean isDefaultValue(String value){
+        for(String defaultValue: tcmListDefaultValues){
+            if(defaultValue.equals(value)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isInDb(String d, String[] diagnoses) {
@@ -1742,10 +1772,6 @@ public class ManagePatientController implements Initializable, ControlledScreen 
            }
         }
         return false;
-    }
-
-    public void createPDF(MouseEvent mouseEvent) {
-
     }
 
 

@@ -28,7 +28,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<SplitPane id="mainSplitPane" fx:id="mainSplitPane" dividerPositions="0.5" prefHeight="600.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
+<SplitPane id="mainSplitPane" fx:id="mainSplitPane" dividerPositions="0.5" prefHeight="600.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewControllers.ManagePatientController">
   <items>
       <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.9626307922272048" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
         <items>
@@ -512,6 +512,28 @@
                         </AnchorPane>
                   </content>
                 </Tab>
+                  <Tab text="Nyelv">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <ScrollPane id="tongueImageScrollPane" fx:id="tongueImageScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="527.0" prefWidth="516.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <content>
+                                    <ImageView id="tongueImageView" fx:id="tongueImageView" onMouseClicked="#openImage" pickOnBounds="true" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="-0.1" />
+                                 </padding>
+                              </ScrollPane>
+                              <VBox alignment="CENTER" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <Button id="addTongueImageButton" fx:id="addTongueImageButton" mnemonicParsing="false" onMouseClicked="#addImage" styleClass="green, button-font" text="Kép módosítása" />
+                                 </children>
+                              </VBox>
+                              <TextArea id="tongueTextArea" fx:id="tongueTextArea" layoutX="135.0" layoutY="301.0" prefHeight="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
                   <Tab text="Pszichikum">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -867,7 +889,20 @@
                                                                         <Insets bottom="5.0" />
                                                                      </VBox.margin>
                                                                      <children>
-                                                                        <Button mnemonicParsing="false" onMouseClicked="#deleteDiagnose" styleClass="red" text="Törlés" />
+                                                                        <HBox alignment="CENTER_LEFT">
+                                                                           <children>
+                                                                              <TextField id="customDiagnoseTextField" fx:id="customDiagnoseTextField" maxWidth="200.0" promptText="Egyéni diagnózis">
+                                                                                 <HBox.margin>
+                                                                                    <Insets right="10.0" />
+                                                                                 </HBox.margin>
+                                                                              </TextField>
+                                                                              <Button mnemonicParsing="false" onMouseClicked="#deleteDiagnose" styleClass="red" text="Törlés">
+                                                                                 <HBox.margin>
+                                                                                    <Insets left="100.0" />
+                                                                                 </HBox.margin>
+                                                                              </Button>
+                                                                           </children>
+                                                                        </HBox>
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -935,28 +970,6 @@
                   </Tab>
                   <Tab id="fiveElementsTab" fx:id="fiveElementsTab" onSelectionChanged="#fiveElementsSelected" text="5 Elem" />
                   <Tab id="meridiansTab" fx:id="meridiansTab" text="Meridiánok" />
-                  <Tab text="Nyelv">
-                     <content>
-                        <AnchorPane>
-                           <children>
-                              <ScrollPane id="tongueImageScrollPane" fx:id="tongueImageScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="527.0" prefWidth="516.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <content>
-                                    <ImageView id="tongueImageView" fx:id="tongueImageView" onMouseClicked="#openImage" pickOnBounds="true" />
-                                 </content>
-                                 <padding>
-                                    <Insets bottom="-0.1" />
-                                 </padding>
-                              </ScrollPane>
-                              <VBox alignment="CENTER" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                 <children>
-                                    <Button id="addTongueImageButton" fx:id="addTongueImageButton" mnemonicParsing="false" onMouseClicked="#addImage" styleClass="green, button-font" text="Kép módosítása" />
-                                 </children>
-                              </VBox>
-                              <TextArea id="tongueTextArea" fx:id="tongueTextArea" layoutX="135.0" layoutY="301.0" prefHeight="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
                   <Tab text="Fül">
                      <content>
                         <AnchorPane>
